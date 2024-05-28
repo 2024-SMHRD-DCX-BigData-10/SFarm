@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1> 핵심 프로젝트</h1>
+<h1> 핵심 프로젝트 오늘 점심메뉴 추천받아요</h1>
 <p> 고선우 </p>
 <p> 김용빈 </p>
 <h1>강상원 die</h1>
