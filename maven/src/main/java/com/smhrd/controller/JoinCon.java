@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.smhrd.model.MemberDAO;
 import com.smhrd.model.MemberDTO;
 
-@WebServlet("/JoinCon")
+@WebServlet("/S_JoinCon")
 
 public class JoinCon extends HttpServlet {
 

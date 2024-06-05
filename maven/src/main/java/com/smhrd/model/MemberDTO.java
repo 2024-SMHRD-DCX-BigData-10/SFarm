@@ -8,17 +8,18 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @AllArgsConstructor
-
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Getter
 
 public class MemberDTO {
 	
 	
     // 회원 아이디 
-    private String mb_id;
+   @NonNull private String mb_id;
 
     // 회원 비밀번호 
-    private String mb_pw;
+   @NonNull private String mb_pw;
 
     // 회원 이름 
     private String mb_name;
