@@ -13,13 +13,13 @@
 	MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
 	String logresult = (String) session.getAttribute("logresult");
 	
-	if (user_info.getMb_id().equals("fail")) {
+	if (user_info !=null) {
 	%>
 	<h1>로그인 해주세요</h1>
 	<%
 	} else
 	%>
-	<h1><%=user_info.getMb_id()%>님 환영합니다.
+	<h1> 환영합니다.
 	</h1>
 
 
