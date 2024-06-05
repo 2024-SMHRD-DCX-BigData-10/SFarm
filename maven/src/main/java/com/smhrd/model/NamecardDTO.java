@@ -9,14 +9,15 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @AllArgsConstructor
-
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Getter
 
 public class NamecardDTO {
 	  // 명함 식별자 
-    private Double card_idx;
+	@NonNull   private Double card_idx;
     // 농가 식별자 
-    private Double fh_idx;
+   @NonNull private Double fh_idx;
     // 포스터 식별자 
     private Double poster_idx;
     // 명함 소개 

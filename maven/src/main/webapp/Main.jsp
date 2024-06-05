@@ -35,6 +35,7 @@
             <input type="submit" value="JoinUs" class="button fit">
         </p>
     </form>
+    <button type="button" id="namecard">명함발급</button>
     <hr>
     <%
     } else {
@@ -83,11 +84,12 @@
     }
     %>
 
-    <script>
+<script>
         document.addEventListener("DOMContentLoaded", () => {
             const addButton = document.getElementById('addButton');
             const contentDiv = document.getElementById('content');
-            const clearUserInfoButton = document.getElementById('clearUserInfoButton');
+            const logoutButton = document.getElementById('LogoutButton'); // 로그아웃 버튼
+            const nameCardButton = document.getElementById('namecard'); // 명함 발급 버튼
 
             addButton.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -96,8 +98,12 @@
                 contentDiv.appendChild(newParagraph);
             });
 
-           LogoutButton.addEventListener('click', () => {
+            logoutButton.addEventListener('click', () => { // 로그아웃 버튼 클릭 이벤트
                 window.location.href = 'S_LogoutCon';
+            });
+
+            nameCardButton.addEventListener('click', () => { // 명함 발급 버튼 클릭 이벤트
+                window.location.href = 'S_NameCardCon';
             });
         });
     </script>

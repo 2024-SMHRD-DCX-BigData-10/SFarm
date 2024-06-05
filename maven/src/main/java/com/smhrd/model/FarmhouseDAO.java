@@ -1,5 +1,7 @@
 package com.smhrd.model;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -13,5 +15,14 @@ public class FarmhouseDAO {
 		int row =session.insert("fh_join",dto);
 		session.close();
 		return row;
+}
+	
+	public ArrayList<FarmhouseDTO> getFarmhouseDTO(String id) {
+		
+		SqlSession session = sqlSessionFactory.openSession(true);
+		ArrayList<FarmhouseDTO>  fh_dto =(ArrayList)session.selectList("getFarmhouse");
+		session.close();
+	
+		return fh_dto;
 }
 }
