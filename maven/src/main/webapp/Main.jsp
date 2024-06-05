@@ -9,7 +9,8 @@
 <body>
 <h1>회원가입</h1>	
 <form action="joinmembership.jsp" method="post"> 
-<li>회원 아이디 : <input name="mb_id" type="text" placeholder="아이디를 입력해주세요"> </li>
+<p>회원 아이디 : <input name="mb id" type="text" placeholder="아이디를 입력해주세요"> </p>
+<p>회원 비밀번호 : <input name="mb pw"> </p>
 </form>
 </body>
 </html>
