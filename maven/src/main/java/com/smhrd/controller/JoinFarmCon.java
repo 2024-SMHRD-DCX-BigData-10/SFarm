@@ -37,7 +37,7 @@ public class JoinFarmCon extends HttpServlet {
 		 String moveURL=null;
 		for(String agri_name : agri_names ) {
 		FarmhouseDTO dto = new FarmhouseDTO(mb_id,fh_name,fh_owner,agri_name);
-		 int row = new FarmhouseDAO().join(dto);
+		 int row = new FarmhouseDAO().fh_join(dto);
 		
 		 if(row> 0) {
 			 num++;

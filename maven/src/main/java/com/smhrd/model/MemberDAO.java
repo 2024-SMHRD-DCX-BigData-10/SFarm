@@ -10,7 +10,7 @@ import com.smhrd.mybatis.SqlSessionManager;
 public class MemberDAO {
 static SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 
-public int fh_join(MemberDTO dto) {
+public int join(MemberDTO dto) {
 	
 	SqlSession session = sqlSessionFactory.openSession(true);
 	int row =session.insert("join",dto);

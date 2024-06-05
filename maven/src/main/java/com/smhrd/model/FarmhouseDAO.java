@@ -7,7 +7,7 @@ import com.smhrd.mybatis.SqlSessionManager;
 
 public class FarmhouseDAO {
 	static SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
-	public int join(FarmhouseDTO dto) {
+	public int fh_join(FarmhouseDTO dto) {
 		
 		SqlSession session = sqlSessionFactory.openSession(true);
 		int row =session.insert("join",dto);
