@@ -10,7 +10,7 @@ public class FarmhouseDAO {
 	public int fh_join(FarmhouseDTO dto) {
 		
 		SqlSession session = sqlSessionFactory.openSession(true);
-		int row =session.insert("join",dto);
+		int row =session.insert("fh_join",dto);
 		session.close();
 		return row;
 }

@@ -33,13 +33,13 @@ public class JoinCon extends HttpServlet {
 		Date join_at= new Date();
 		String mb_type=request.getParameter("mb_type");
 		
-		// 3. 데이터 캡슐화
+		
 		MemberDTO dto = new MemberDTO(mb_id,mb_pw,mb_name,mb_phone,farm_info,join_at,mb_type);
 		
-		//4. DB에 회원정보 입력 (메소드 호출)
+		
 		 int row = new MemberDAO().join(dto);
 		 
-		 // 5. 실행한 결과에 따라 페이지 이동
+		
 		 String moveURL;
 		 if(row> 0) {
 			 System.out.println("회원가입 성공");
