@@ -17,11 +17,35 @@
 	%>
 	<h1><%=user_info.getMb_name() %> 환영합니다.
 	</h1>
+			<hr>
+		<h1>농가등록</h1>
+	<form action="S_JoinFarmCon" method="post">
+		<p>
+			농가명 : <input name="fh_name" type="text" placeholder="농가 이름 입력">
+		</p>
+		<p>
+			대표자 : <input name="fh_owner" type="text"
+				placeholder="">
+		</p>
+				<p>
+			<button>품목추가</button>
+			
+			품명 : <input name="agri_names" type="text"
+				placeholder="">
+			품명 : <input name="agri_names" type="text"
+				placeholder="">
+			품명 : <input name="agri_names" type="text"
+				placeholder="">
+		</p>
+<p>	<input type="submit" type="submit" value="JoinUs"
+					class="button fit"></p>
+	</form>
+	<hr>
 	<%
 	} else{
 	%>
 	<h1>로그인 해주세요</h1>
-<%} %>
+
 
 	<h1>회원가입</h1>
 	<form action="S_JoinCon" method="post">
@@ -65,5 +89,10 @@
 <p>	<input type="submit" type="submit" value="JoinUs"
 					class="button fit"></p>
 	</form>
+		<%} %>
+
+	
+
+		
 </body>
 </html>
