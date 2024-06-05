@@ -5,12 +5,11 @@
 
 <mapper namespace="com.smhrd.mapper.MemberMapper">
 	<insert id="join" parameterType="MemberDTO">
-		insert into web_member
+		insert into tb_member
 		values(#{mb_id},#{mb_pw},#{mb_name},#{mb_phone},#{mb_farmhouse_info},#{joined_at},#{mb_type})
 	</insert>
-	<select id="Login" parameterType="MemberDTO"
-		resultType="MemberDTO">
-		select * from web_member where mb_id=#{mb_id} and
+	<select id="Login" parameterType="MemberDTO" resultType="MemberDTO">
+		select * from tb_member where mb_id=#{mb_id} and
 		mb_pw=#{mb_pw}
 	</select>
 
