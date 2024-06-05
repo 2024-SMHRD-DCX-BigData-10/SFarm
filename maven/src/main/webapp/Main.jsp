@@ -11,17 +11,17 @@
 	<%
 	// session에 user_info가 있는지 없는지 확인 
 	MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
-	String logresult = (String) session.getAttribute("logresult");
+	
 	
 	if (user_info !=null) {
 	%>
-	<h1>로그인 해주세요</h1>
-	<%
-	} else
-	%>
-	<h1> 환영합니다.
+	<h1><%=user_info.getMb_name() %> 환영합니다.
 	</h1>
-
+	<%
+	} else{
+	%>
+	<h1>로그인 해주세요</h1>
+<%} %>
 
 	<h1>회원가입</h1>
 	<form action="S_JoinCon" method="post">
@@ -44,10 +44,11 @@
 				placeholder="농가 정보를 입력해주세요">
 		</p>
 		<p>
-			회원 가입일짜 : <input name="join_at" type="date">
+			회원 구분 : <input name="mb_type" type="text" placeholder="농가회원  or 소비자">
 		</p>
-		<p>
-			회원 구분 : <input name="mb_type" type="text" placeholder="">
+				<p>
+		<input type="submit" type="submit" value="JoinUs"
+					class="button fit">
 		</p>
 	</form>
 	
@@ -61,7 +62,8 @@
 			회원 비밀번호 : <input name="mb_pw" type="password"
 				placeholder="비밀번호를 입력해주세요">
 		</p>
-
+<p>	<input type="submit" type="submit" value="JoinUs"
+					class="button fit"></p>
 	</form>
 </body>
 </html>

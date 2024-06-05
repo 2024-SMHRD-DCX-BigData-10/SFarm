@@ -2,6 +2,7 @@ package com.smhrd.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -29,7 +30,7 @@ public class JoinCon extends HttpServlet {
 		String mb_name=request.getParameter("mb_name");
 		String mb_phone=request.getParameter("mb_phone");
 		String farm_info=request.getParameter("farm_info");
-		Date join_at=new Date(request.getParameter("join_at"));
+		Date join_at= new Date();
 		String mb_type=request.getParameter("mb_type");
 		
 		// 3. 데이터 캡슐화
