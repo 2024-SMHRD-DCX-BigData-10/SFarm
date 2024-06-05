@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>maintest2</h1>
+<h1>회원가입</h1>	
+<form action="joinmembership.jsp" method="post"> 
+<li>회원 아이디 : <input name="mb_id" type="text" placeholder="아이디를 입력해주세요"> </li>
+</form>
 </body>
 </html>
