@@ -35,6 +35,7 @@
             <input type="submit" value="JoinUs" class="button fit">
         </p>
     </form>
+    
     <button type="button" id="namecard">명함발급</button>
     <hr>
     <%

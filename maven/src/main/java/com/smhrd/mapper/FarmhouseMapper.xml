@@ -12,8 +12,8 @@
 		select * from tb_member where mb_id=#{mb_id} and
 		mb_pw=#{mb_pw}
 	</select>
-	<select id="getFarmhouse" resultType="FarmhouseDTO">
-		select * from tb_farmhouse where mb_id=#{mb_id}
+	<select id="getFarmhouse" parameterType="String" resultType="FarmhouseDTO">
+		select * from tb_farmhouse where mb_id=#{mb_id, jdbcType=VARCHAR} order by #{fh_name}
 	</select>
 
 

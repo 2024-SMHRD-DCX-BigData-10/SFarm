@@ -22,19 +22,23 @@ public class NameCardCon extends HttpServlet {
         System.out.println("NameCardCon");
 
         request.setCharacterEncoding("UTF-8");
-        String moveURL = "Main.jsp";
+        String moveURL = null;
 
         HttpSession session = request.getSession();
         MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
         System.out.println(user_info.getMb_id());
-        if (user_info != null) {
-            String mb_id = user_info.getMb_id();
-            
-            moveURL = "namecard.jsp";
+        
+        if (user_info == null) {
+        	moveURL = "Main.jsp";
+            System.out.println("명함발금안됨");
+        	
           
         } 
+        else {request.setAttribute("mb_id",user_info.getMb_id());
+        moveURL = "namecard.jsp";
+        System.out.println("명함발급..!");}
         
         RequestDispatcher rd = request.getRequestDispatcher(moveURL);
-        rd.forward(request, response);
+		rd.forward(request, response);
     }
 }

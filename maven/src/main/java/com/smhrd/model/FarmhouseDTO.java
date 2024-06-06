@@ -31,8 +31,7 @@ public class FarmhouseDTO  {
     // 품목
     @NonNull private String agri_name;
 
-    // 명함 ID 
-    private String fh_namecard_id;
+
 
 
 	
