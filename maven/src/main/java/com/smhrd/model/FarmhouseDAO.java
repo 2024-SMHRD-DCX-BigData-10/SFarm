@@ -17,10 +17,10 @@ public class FarmhouseDAO {
 		return row;
 }
 	
-	public ArrayList<FarmhouseDTO> getFarmhouseDTO(String id) {
+	public ArrayList<FarmhouseDTO> getFarmhouseDTO(String mb_id) {
 		
 		SqlSession session = sqlSessionFactory.openSession(true);
-		ArrayList<FarmhouseDTO>  fh_dto =(ArrayList)session.selectList("getFarmhouse");
+		ArrayList<FarmhouseDTO> fh_dto =(ArrayList)session.selectList("getFarmhouse");
 		session.close();
 	
 		return fh_dto;

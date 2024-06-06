@@ -12,7 +12,7 @@
 		select * from tb_member where mb_id=#{mb_id} and
 		mb_pw=#{mb_pw}
 	</select>
-	<select id="getFarmhouse" parameterType="FarmhouseDTO" resultType="FarmhouseDTO">
+	<select id="getFarmhouse" resultType="FarmhouseDTO">
 		select * from tb_farmhouse where mb_id=#{mb_id}
 	</select>
 

@@ -22,22 +22,19 @@ public class NameCardCon extends HttpServlet {
         System.out.println("NameCardCon");
 
         request.setCharacterEncoding("UTF-8");
+        String moveURL = "Main.jsp";
 
         HttpSession session = request.getSession();
         MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
-
+        System.out.println(user_info.getMb_id());
         if (user_info != null) {
             String mb_id = user_info.getMb_id();
-            ArrayList<FarmhouseDTO> fh_dto = new FarmhouseDAO().getFarmhouseDTO(mb_id);
-
-            request.setAttribute("fh_dto", fh_dto);
-            String moveURL = "namecard.jsp";
-            RequestDispatcher rd = request.getRequestDispatcher(moveURL);
-            rd.forward(request, response);
+            
+            moveURL = "namecard.jsp";
+          
         } 
         
-        else {
-            response.sendRedirect("Main.jsp");
-        }
+        RequestDispatcher rd = request.getRequestDispatcher(moveURL);
+        rd.forward(request, response);
     }
 }
