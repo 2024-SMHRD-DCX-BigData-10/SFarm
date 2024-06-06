@@ -34,7 +34,9 @@ public class NameCardCon extends HttpServlet {
             String moveURL = "namecard.jsp";
             RequestDispatcher rd = request.getRequestDispatcher(moveURL);
             rd.forward(request, response);
-        } else {
+        } 
+        
+        else {
             response.sendRedirect("Main.jsp");
         }
     }
