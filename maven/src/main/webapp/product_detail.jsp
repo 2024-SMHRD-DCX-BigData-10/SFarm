@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.ProductDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.smhrd.model.ProductDTO"%>
@@ -13,8 +14,8 @@
     <%
     ProductDAO dao = new ProductDAO();
     String agri_name=request.getParameter("agri_name");
-    ArrayList<ProductDTO> product = dao.getProductsByFarmhouse(agri_name);
-    	System.out.println(product.size());
+    List<ProductDTO> product = dao.getProductsByFarmhouse(agri_name);
+    	System.out.println(agri_name+product.size());
         if (product != null) {
         	for(ProductDTO pd : product) { %>
             <h2>농산품 상세 정보</h2>
@@ -28,7 +29,8 @@
             <p>사진2: <img src="<%= pd.getAgri_img2() %>" alt="사진2"></p>
             <p>사진3: <img src="<%= pd.getAgri_img3() %>" alt="사진3"></p>
     <%
-    }} else {
+    }} else if(product ==null){System.out.print("null");}
+    else{
     %>
     <h3>농산품 정보를 찾을 수 없습니다.</h3>
     <%

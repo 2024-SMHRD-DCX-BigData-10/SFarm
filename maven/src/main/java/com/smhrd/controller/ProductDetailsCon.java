@@ -29,7 +29,7 @@ public class ProductDetailsCon extends HttpServlet {
                 
                 
 
-                request.setAttribute("agri_name", agri_name);
+                request.setAttribute("agri_name",agri_name);
                 System.out.println("detailcon end");
                 request.getRequestDispatcher("product_detail.jsp").forward(request, response);
             } catch (NumberFormatException e) {

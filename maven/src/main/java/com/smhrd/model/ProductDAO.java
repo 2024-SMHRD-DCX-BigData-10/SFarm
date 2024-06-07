@@ -1,6 +1,8 @@
 package com.smhrd.model;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import com.smhrd.mybatis.SqlSessionManager;
@@ -15,9 +17,9 @@ public class ProductDAO {
         return product;
     }
 
-    public ArrayList<ProductDTO> getProductsByFarmhouse(String agri_name) {
+    public List<ProductDTO> getProductsByFarmhouse(String agri_name) {
         SqlSession session = sqlSessionFactory.openSession(true);
-        ArrayList<ProductDTO> productList = (ArrayList) session.selectList("getProductsByFarmhouse", agri_name);
+        List<ProductDTO> productList = session.selectList("com.smhrd.mapper.ProductMapper.getProductsByFarmhouse",agri_name);
         session.close();
         return productList;
     

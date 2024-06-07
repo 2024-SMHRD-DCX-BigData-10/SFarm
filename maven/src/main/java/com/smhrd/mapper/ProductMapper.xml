@@ -2,18 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="com.smhrd.mapper.MemberMapper">
-	<insert id="join" parameterType="MemberDTO">
-		insert into tb_member
-		values(#{mb_id},#{mb_pw},#{mb_name},#{mb_phone},#{mb_farmhouse_info},#{joined_at},#{mb_type})
-	</insert>
-	<select id="Login" parameterType="MemberDTO" resultType="MemberDTO">
-		select * from tb_member where mb_id=#{mb_id} and
-		mb_pw=#{mb_pw}
-	</select>
-
-
-
-
+<mapper namespace="com.smhrd.mapper.ProductMapper">
+    <select id="getProductsByFarmhouse" parameterType="String" resultType="com.smhrd.model.ProductDTO">
+        select * from tb_agriculture_product where agri_name=#{agri_name}
+    </select>
 </mapper>

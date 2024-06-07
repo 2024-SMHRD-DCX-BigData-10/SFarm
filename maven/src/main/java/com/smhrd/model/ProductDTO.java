@@ -9,14 +9,15 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @AllArgsConstructor
-
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Getter
 
 public class ProductDTO {
 	// 농산품 식별자
 	private Double agri_idx;
 	// 농산품 명
-	private String agri_name;
+	@NonNull private String agri_name;
 	// 영양성분
 	private String nutrition_fact;
 	// 손질법
