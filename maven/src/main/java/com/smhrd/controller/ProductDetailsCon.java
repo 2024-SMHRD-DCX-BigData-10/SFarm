@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.smhrd.model.ProductDAO;
 import com.smhrd.model.ProductDTO;
+import com.smhrd.model.ProductDAO;
 
 @WebServlet("/ProductDetailsCon")
 public class ProductDetailsCon extends HttpServlet {
@@ -17,18 +17,24 @@ public class ProductDetailsCon extends HttpServlet {
         System.out.println("ProductDetailsCon");
 
         request.setCharacterEncoding("UTF-8");
-        String agri_idx_str = request.getParameter("agri_idx");
-        Double agri_idx = Double.parseDouble(agri_idx_str);
 
-        ProductDAO dao = new ProductDAO();
-        ProductDTO product = dao.getProductDetails(agri_idx);
+        String agriIdxStr = request.getParameter("agri_idx");
 
-        if (product != null) {
-            request.setAttribute("product", product);
-            request.getRequestDispatcher("product_details.jsp").forward(request, response);
+        if (agriIdxStr != null && !agriIdxStr.trim().isEmpty()) {
+            try {
+                double agri_idx = Double.parseDouble(agriIdxStr.trim());
+                ProductDAO dao = new ProductDAO();
+                ProductDTO product = dao.getProductDetails(agri_idx);
+
+                request.setAttribute("product", product);
+                request.getRequestDispatcher("product_details.jsp").forward(request, response);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                response.sendRedirect("error.jsp");
+            }
         } else {
-            System.out.println("농산품 정보를 찾을 수 없습니다.");
-            response.sendRedirect("Main.jsp");
+            System.out.println("agri_idx 값이 null이거나 비어 있습니다.");
+            response.sendRedirect("error.jsp");
         }
     }
 }

@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.smhrd.model.FarmhouseDAO;
 import com.smhrd.model.FarmhouseDTO;
 
-@WebServlet("/S_AllNameCardsCon")
+@WebServlet("/AllNameCards")
 public class S_AllNameCardsCon extends HttpServlet {
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("AllNameCardsCon");
+        System.out.println("AllNameCardsServlet");
 
         request.setCharacterEncoding("UTF-8");
 

@@ -1,8 +1,9 @@
-<%@page import="com.smhrd.model.FarmhouseDTO"%>
-<%@page import="com.smhrd.model.FarmhouseDAO"%>
-<%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page import="com.smhrd.model.ProductDAO" %>
+<%@ page import="com.smhrd.model.ProductDTO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.smhrd.model.FarmhouseDTO" %>
+<%@ page import="com.smhrd.model.FarmhouseDAO" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,49 +16,46 @@
         String fh_name = request.getParameter("fh_name");
         String qrCodePath = request.getParameter("qrCodePath");
 
-        System.out.println("Received mb_id: " + mb_id);  // 디버깅용 출력
-        System.out.println("Received fh_name: " + fh_name);  // 디버깅용 출력
-        System.out.println("QR Code Path: " + qrCodePath);  // 디버깅용 출력
+        FarmhouseDAO farmhouseDAO = new FarmhouseDAO();
+        ArrayList<FarmhouseDTO> farmhouseList = farmhouseDAO.getFarmhouseDTO(mb_id);
 
-        FarmhouseDAO dao = new FarmhouseDAO();
-        ArrayList<FarmhouseDTO> fh_dto = null;
-
-        if (mb_id != null) {
-            fh_dto = dao.getFarmhouseDTO(mb_id);
-        } else {
-            System.out.println("mb_id is null");
+        FarmhouseDTO farmhouse = null;
+        if (farmhouseList != null && !farmhouseList.isEmpty()) {
+            farmhouse = farmhouseList.get(0);
         }
 
-        if (fh_dto != null && fh_dto.size() > 0) {
-            FarmhouseDTO x = fh_dto.get(0);
+        // 농산물 정보 가져오기
+        ProductDAO productDAO = new ProductDAO();
+        ArrayList<ProductDTO> productList = productDAO.getProductsByFarmhouse(mb_id);
     %>
-        <h2>농가 정보</h2>
-        <p>농가 이름: <%= x.getFh_name() %></p>
-        <p>농장주: <%= x.getFh_owner() %></p>
-        <p>품명: <%= x.getAgri_name() %></p>
-        <p>농가 소개: <%= x.getFh_intro() %></p>
-        <%
-            if (qrCodePath != null) {
-        %>
-            <h3>QR 코드:</h3>
-            <img src="<%= request.getContextPath() + qrCodePath %>" alt="QR Code">
-        <%
-            } else {
-        %>
-            <h3>QR없음</h3>
-        <%
-            }
-        %>
-        <form action="ProductDetailsCon" method="get">
-            
-            <button type="submit">자세히 보기</button>
-        </form>
+    <h2>농가 정보</h2>
+    <p>농가 이름: <%= farmhouse.getFh_name() %></p>
+    <p>농장주: <%= farmhouse.getFh_owner() %></p>
+    <p>농가 소개: <%= farmhouse.getFh_intro() %></p>
+
+    <h3>농산물 정보</h3>
     <%
-        } else {
+        for (ProductDTO product : productList) {
     %>
-        <h3>농가 정보가 없습니다.</h3>
+        <p>품명: <%= product.getAgri_name() %></p>
+        <p>영양성분: <%= product.getNutrition_fact() %></p>
+        <p>손질법: <%= product.getTrimming() %></p>
+        <p>보관법: <%= product.getKeeping() %></p>
+        <p>효능: <%= product.getEffect() %></p>
+        <p>구입요령: <%= product.getPurchase_method() %></p>
+        <img src="<%= request.getContextPath() + "/images/" + product.getAgri_img1() %>" alt="Image 1">
+        <img src="<%= request.getContextPath() + "/images/" + product.getAgri_img2() %>" alt="Image 2">
+        <img src="<%= request.getContextPath() + "/images/" + product.getAgri_img3() %>" alt="Image 3">
+        <hr>
     <%
         }
     %>
+
+    <% if (qrCodePath != null) { %>
+        <h3>QR 코드:</h3>
+        <img src="<%= request.getContextPath() + qrCodePath %>" alt="QR Code">
+    <% } else { %>
+        <h3>QR없음</h3>
+    <% } %>
 </body>
 </html>

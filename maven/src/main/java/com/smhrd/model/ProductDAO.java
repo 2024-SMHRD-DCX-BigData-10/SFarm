@@ -14,4 +14,12 @@ public class ProductDAO {
         session.close();
         return product;
     }
+
+    public ArrayList<ProductDTO> getProductsByFarmhouse(String fh_name) {
+        SqlSession session = sqlSessionFactory.openSession(true);
+        ArrayList<ProductDTO> productList = (ArrayList) session.selectList("getProductsByFarmhouse", fh_name);
+        session.close();
+        return productList;
+    
+    }
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.smhrd.model.ProductDAO">
+
+ <select id="getProductsByFarmhouse" parameterType="String" resultType="com.smhrd.model.ProductDTO">
+        SELECT p.*
+        FROM TB_Agriculture_product p
+        JOIN TB_farmhouse f ON p.agri_name = f.agri_name
+        WHERE f.fh_name = #{fh_name}
+    </select>
+</mapper>
