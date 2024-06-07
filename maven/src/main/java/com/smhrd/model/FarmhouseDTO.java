@@ -31,7 +31,7 @@ public class FarmhouseDTO  {
     // 품목
     @NonNull private String agri_name;
 
-
+    @NonNull private String fh_intro;
 
 
 	

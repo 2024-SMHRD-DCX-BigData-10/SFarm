@@ -25,6 +25,7 @@
         <p>
             대표자 : <input name="fh_owner" type="text" placeholder="대표자 이름 입력">
         </p>
+        
         <p>
             <button type="button" id="addButton">품목추가</button>
         </p>
@@ -32,11 +33,15 @@
             <p>품명 : <input name="agri_names" type="text" placeholder="품명을 입력하세요"></p>
         </div>
         <p>
+            소개메세지 : <input name="fh_intro" type="text" placeholder="간단한 소개">
+        </p>
+        <p>
             <input type="submit" value="JoinUs" class="button fit">
         </p>
     </form>
     
     <button type="button" id="namecard">명함발급</button>
+    <button type="button" id="allNamecards">모든 명함 보기</button>
     <hr>
     <%
     } else {
@@ -91,6 +96,7 @@
             const contentDiv = document.getElementById('content');
             const logoutButton = document.getElementById('LogoutButton'); // 로그아웃 버튼
             const nameCardButton = document.getElementById('namecard'); // 명함 발급 버튼
+            const allNamecardsButton = document.getElementById('allNamecards'); // 모든 명함 보기 버튼
 
             addButton.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -104,7 +110,11 @@
             });
 
             nameCardButton.addEventListener('click', () => { // 명함 발급 버튼 클릭 이벤트
-                window.location.href = 'S_NameCardCon';
+                window.location.href = 'S_NameCardCon?mb_id=<%= user_info.getMb_id() %>&fh_name=<%= user_info.getMb_id() %>'; // 사용자 정보로 설정
+            });
+
+            allNamecardsButton.addEventListener('click', () => { // 모든 명함 보기 버튼 클릭 이벤트
+                window.location.href = 'S_AllFarmhousesCon';
             });
         });
     </script>

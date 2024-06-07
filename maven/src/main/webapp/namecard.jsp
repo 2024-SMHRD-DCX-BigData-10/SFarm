@@ -1,4 +1,3 @@
-<%@page import="com.smhrd.model.MemberDTO"%>
 <%@page import="com.smhrd.model.FarmhouseDTO"%>
 <%@page import="com.smhrd.model.FarmhouseDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -12,39 +11,49 @@
 </head>
 <body>
     <%
-        String mb_id = (String) request.getAttribute("mb_id");
-        String fh_name = (String) request.getAttribute("fh_name");
-        String qrCodePath = (String) request.getAttribute("qrCodePath");
-        
+        String mb_id = request.getParameter("mb_id");
+        String fh_name = request.getParameter("fh_name");
+        String qrCodePath = request.getParameter("qrCodePath");
+
         System.out.println("Received mb_id: " + mb_id);  // 디버깅용 출력
         System.out.println("Received fh_name: " + fh_name);  // 디버깅용 출력
         System.out.println("QR Code Path: " + qrCodePath);  // 디버깅용 출력
 
         FarmhouseDAO dao = new FarmhouseDAO();
-        ArrayList<FarmhouseDTO> fh_dto = dao.getFarmhouseDTO(mb_id);
-        System.out.println("Fetched FarmhouseDTO size: " + fh_dto.size());  // 디버깅용 출력
+        ArrayList<FarmhouseDTO> fh_dto = null;
 
-        // 이전 값을 저장할 변수
-        String prevFhName = "";
-        String prevFhOwner = "";
-        String prevAgriName = "";
+        if (mb_id != null) {
+            fh_dto = dao.getFarmhouseDTO(mb_id);
+        } else {
+            System.out.println("mb_id is null");
+        }
+
+        if (fh_dto != null && fh_dto.size() > 0) {
+            FarmhouseDTO x = fh_dto.get(0);
     %>
-    <h2>농가 정보</h2>
-    <% for(FarmhouseDTO x : fh_dto) { %>
-        <p>농가 이름: <%= x.getFh_name().equals(prevFhName) ? "" : x.getFh_name() %></p>
-        <p>농장주: <%= x.getFh_owner().equals(prevFhOwner) ? "" : x.getFh_owner() %></p>
-        <p>품명: <%= x.getAgri_name().equals(prevAgriName) ? "" : x.getAgri_name() %></p>
-        <hr/>
+        <h2>농가 정보</h2>
+        <p>농가 이름: <%= x.getFh_name() %></p>
+        <p>농장주: <%= x.getFh_owner() %></p>
+        <p>품명: <%= x.getAgri_name() %></p>
+        <p>농가 소개: <%= x.getFh_intro() %></p>
         <%
-            // 현재 값을 이전 값 변수에 저장
-            prevFhName = x.getFh_name();
-            prevFhOwner = x.getFh_owner();
-            prevAgriName = x.getAgri_name();
+            if (qrCodePath != null) {
         %>
-    <% } %>
-    <% if (qrCodePath != null) { %>
-        <h3>QR 코드:</h3>
-        <img src="<%= qrCodePath %>" alt="QR Code">
-    <% } %>
+            <h3>QR 코드:</h3>
+            <img src="<%= request.getContextPath() + qrCodePath %>" alt="QR Code">
+        <%
+            } else {
+        %>
+            <h3>QR없음</h3>
+        <%
+            }
+        %>
+    <%
+        } else {
+    %>
+        <h3>농가 정보가 없습니다.</h3>
+    <%
+        }
+    %>
 </body>
 </html>

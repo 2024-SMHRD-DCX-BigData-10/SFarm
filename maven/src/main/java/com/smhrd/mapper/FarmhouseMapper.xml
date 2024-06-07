@@ -5,8 +5,8 @@
 
 <mapper namespace="com.smhrd.mapper.FarmhouseMapper">
 	<insert id="fh_join" parameterType="FarmhouseDTO">
-		insert into tb_farmhouse (mb_id, fh_name, fh_owner, agri_name)
-		values(#{mb_id},#{fh_name},#{fh_owner},#{agri_name})
+		insert into tb_farmhouse (mb_id, fh_name, fh_owner, agri_name, fh_intro)
+		values(#{mb_id},#{fh_name},#{fh_owner},#{agri_name},#{fh_intro})
 	</insert>
 	<select id="fh_Login" parameterType="FarmhouseDTO" resultType="FarmhouseDTO">
 		select * from tb_member where mb_id=#{mb_id} and
@@ -15,6 +15,9 @@
 	<select id="getFarmhouse" parameterType="String" resultType="FarmhouseDTO">
 		select * from tb_farmhouse where mb_id=#{mb_id, jdbcType=VARCHAR} order by #{fh_name}
 	</select>
+	<select id="getAllFarmhouses" resultType="FarmhouseDTO">
+        SELECT * FROM tb_farmhouse ORDER BY fh_name
+    </select>
 
 
 

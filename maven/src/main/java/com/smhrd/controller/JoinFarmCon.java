@@ -30,6 +30,7 @@ public class JoinFarmCon extends HttpServlet {
 		String mb_id = user_info.getMb_id();
 		String fh_name = request.getParameter("fh_name");
 		String fh_owner = request.getParameter("fh_owner");
+		String fh_intro = request.getParameter("fh_intro");
 		String[] agri_names = request.getParameterValues("agri_names");
 
 	
@@ -37,7 +38,7 @@ public class JoinFarmCon extends HttpServlet {
 		String moveURL = null;
 		String message = null;
 		for (String agri_name : agri_names) {
-			FarmhouseDTO dto = new FarmhouseDTO(mb_id, fh_name, fh_owner, agri_name);
+			FarmhouseDTO dto = new FarmhouseDTO(mb_id, fh_name, fh_owner, agri_name,fh_intro);
 			int row = new FarmhouseDAO().fh_join(dto);
 
 			if (row > 0) {

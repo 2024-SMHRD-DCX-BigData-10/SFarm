@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
@@ -19,7 +18,6 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.smhrd.model.FarmhouseDAO;
 import com.smhrd.model.FarmhouseDTO;
-import com.smhrd.model.MemberDTO;
 
 import java.util.ArrayList;
 
@@ -30,28 +28,25 @@ public class NameCardCon extends HttpServlet {
         System.out.println("NameCardCon");
 
         request.setCharacterEncoding("UTF-8");
-        String moveURL = null;
+        
+        String mb_id = request.getParameter("mb_id");
+        String fh_name = request.getParameter("fh_name");
 
-        HttpSession session = request.getSession();
-        MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
-        System.out.println(user_info.getMb_id());
-
-        if (user_info == null) {
-            moveURL = "Main.jsp";
-            System.out.println("명함발급안됨");
-            response.sendRedirect(moveURL);
+        if (mb_id == null || fh_name == null) {
+            System.out.println("명함 발급을 위한 필요한 정보가 없습니다.");
+            response.sendRedirect("Main.jsp");
         } else {
-            String mb_id = user_info.getMb_id();
             FarmhouseDAO dao = new FarmhouseDAO();
             ArrayList<FarmhouseDTO> fh_dto = dao.getFarmhouseDTO(mb_id);
 
             if (fh_dto.size() > 0) {
-                String fh_name = fh_dto.get(0).getFh_name();
-                String url = "http://192.168.0.25:8081/namecard.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name;
+                String url = "http://192.168.0.25:8081/maven/namecard.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name;
 
                 ServletContext context = getServletContext();
-                String realPath = context.getRealPath("/images/qrcode.png");
                 
+                String qr_path = "/images/" + fh_name + ".png";
+                String realPath = context.getRealPath(qr_path);
+
                 // Ensure the directory exists
                 Path imagePath = Paths.get(context.getRealPath("/images"));
                 if (!Files.exists(imagePath)) {
@@ -60,19 +55,17 @@ public class NameCardCon extends HttpServlet {
 
                 try {
                     generateQRCodeImage(url, 300, 300, realPath);
-                    request.setAttribute("qrCodePath", "images/qrcode.png");
-                    request.setAttribute("mb_id", mb_id);
-                    request.setAttribute("fh_name", fh_name);
-                    moveURL = "namecard.jsp";
+                    // QR 코드 경로를 쿼리 스트링에 추가
+                    String redirectUrl = "http://192.168.0.25:8081/maven/namecard.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name + "&qrCodePath=" + qr_path;
+                    response.sendRedirect(redirectUrl);
                 } catch (WriterException e) {
                     e.printStackTrace();
-                    moveURL = "Main.jsp";
+                    response.sendRedirect("Main.jsp");
                 }
             } else {
-                moveURL = "Main.jsp";
                 System.out.println("농가 정보가 없습니다.");
+                response.sendRedirect("Main.jsp");
             }
-            request.getRequestDispatcher(moveURL).forward(request, response);
         }
     }
 
