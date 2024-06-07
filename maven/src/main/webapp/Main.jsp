@@ -119,7 +119,7 @@
             });
 
             allNamecardsButton.addEventListener('click', () => { // 모든 명함 보기 버튼 클릭 이벤트
-                window.location.href = 'S_AllNameCardsCon';
+                window.location.href = 'AllNameCards';
             });
         });
     </script>

@@ -19,7 +19,7 @@
                 String fh_name = dto.getFh_name();
     %>
                 <p>
-                    <a href="S_NameCardCon?mb_id=<%= mb_id %>&fh_name=<%= fh_name %>"><%= fh_name %></a>
+                    <iframe src="S_NameCardCon?mb_id=<%= mb_id %>&fh_name=<%= fh_name %>"><%= fh_name %>""></iframe>
                 </p>
     <%
             }

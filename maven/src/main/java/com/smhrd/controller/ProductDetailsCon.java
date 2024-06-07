@@ -22,18 +22,19 @@ public class ProductDetailsCon extends HttpServlet {
 
         String agri_name = request.getParameter("agri_name");
 
-        ProductDAO dao = new ProductDAO();
-        ArrayList<ProductDTO> product = dao.getProductsByFarmhouse(agri_name);
+        
         System.out.println(agri_name);
-        if (agri_name != null && !agri_name.trim().isEmpty()) {
+        if (agri_name != null) {
             try {
                 
                 
 
-                request.setAttribute("product", product);
+                request.setAttribute("agri_name", agri_name);
+                System.out.println("detailcon end");
                 request.getRequestDispatcher("product_detail.jsp").forward(request, response);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
+                
                 response.sendRedirect("error.jsp");
             }
         } else {

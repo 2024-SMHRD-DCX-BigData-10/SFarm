@@ -22,7 +22,7 @@ public class S_AllNameCardsCon extends HttpServlet {
         FarmhouseDAO dao = new FarmhouseDAO();
         ArrayList<FarmhouseDTO> allFarmhouses = dao.getAllFarmhouses();
 
-        request.setAttribute("allFarmhouses", allFarmhouses);
-        request.getRequestDispatcher("all_namecards.jsp").forward(request, response);
+        request.setAttribute("fh_dto_list", allFarmhouses);
+        request.getRequestDispatcher("namecard_list.jsp").forward(request, response);
     }
 }

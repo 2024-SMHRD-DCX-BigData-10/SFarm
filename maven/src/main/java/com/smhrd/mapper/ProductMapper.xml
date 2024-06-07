@@ -3,16 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.smhrd.model.ProductDAO">
+<mapper namespace="com.smhrd.mapper.MemberMapper">
+	<insert id="join" parameterType="MemberDTO">
+		insert into tb_member
+		values(#{mb_id},#{mb_pw},#{mb_name},#{mb_phone},#{mb_farmhouse_info},#{joined_at},#{mb_type})
+	</insert>
+	<select id="Login" parameterType="MemberDTO" resultType="MemberDTO">
+		select * from tb_member where mb_id=#{mb_id} and
+		mb_pw=#{mb_pw}
+	</select>
 
- <select id="getProductsByFarmhouse" parameterType="String" resultType="ProductDTO">
-        SELECT p.*
-        FROM TB_Agriculture_product p
-        JOIN TB_farmhouse f ON p.agri_name = f.agri_name
-        WHERE f.fh_name = #{fh_name}
-    </select>
-   <select id="getProductDetails" parameterType="String" resultType="ProductDTO">
-    SELECT * FROM TB_Agriculture_product WHERE agri_name = #{agri_name}
-</select>
-    
+
+
+
 </mapper>
