@@ -40,6 +40,12 @@
   	<description></description>
   	<servlet-class>com.smhrd.controller.NameCardCon</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>S_ProductDetailsCon</servlet-name>
+  	<display-name>S_ProductDetailsCon</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.S_ProductDetailsCon</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>f</servlet-name>
   	<url-pattern>/f</url-pattern>
@@ -63,5 +69,9 @@
   <servlet-mapping>
   	<servlet-name>NameCardCon</servlet-name>
   	<url-pattern>/NameCardCon</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>S_ProductDetailsCon</servlet-name>
+  	<url-pattern>/S_ProductDetailsCon</url-pattern>
   </servlet-mapping>
 </web-app>
