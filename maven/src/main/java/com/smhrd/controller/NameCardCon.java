@@ -47,7 +47,7 @@ public class NameCardCon extends HttpServlet {
 
             if (fh_dto.size() > 0) {
                 String fh_name = fh_dto.get(0).getFh_name();
-                String url = "http://192.168.0.25:8081//namecard.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name;
+                String url = "http://192.168.0.25:8081/namecard.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name;
 
                 ServletContext context = getServletContext();
                 String realPath = context.getRealPath("/images/qrcode.png");
