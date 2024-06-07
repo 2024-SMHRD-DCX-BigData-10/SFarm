@@ -1,6 +1,8 @@
 package com.smhrd.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,16 +20,18 @@ public class ProductDetailsCon extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        String agriIdxStr = request.getParameter("agri_idx");
+        String agri_name = request.getParameter("agri_name");
 
-        if (agriIdxStr != null && !agriIdxStr.trim().isEmpty()) {
+        ProductDAO dao = new ProductDAO();
+        ArrayList<ProductDTO> product = dao.getProductsByFarmhouse(agri_name);
+        System.out.println(agri_name);
+        if (agri_name != null && !agri_name.trim().isEmpty()) {
             try {
-                double agri_idx = Double.parseDouble(agriIdxStr.trim());
-                ProductDAO dao = new ProductDAO();
-                ProductDTO product = dao.getProductDetails(agri_idx);
+                
+                
 
                 request.setAttribute("product", product);
-                request.getRequestDispatcher("product_details.jsp").forward(request, response);
+                request.getRequestDispatcher("product_detail.jsp").forward(request, response);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
                 response.sendRedirect("error.jsp");

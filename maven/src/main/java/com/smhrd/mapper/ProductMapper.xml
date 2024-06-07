@@ -5,10 +5,14 @@
 
 <mapper namespace="com.smhrd.model.ProductDAO">
 
- <select id="getProductsByFarmhouse" parameterType="String" resultType="com.smhrd.model.ProductDTO">
+ <select id="getProductsByFarmhouse" parameterType="String" resultType="ProductDTO">
         SELECT p.*
         FROM TB_Agriculture_product p
         JOIN TB_farmhouse f ON p.agri_name = f.agri_name
         WHERE f.fh_name = #{fh_name}
     </select>
+   <select id="getProductDetails" parameterType="String" resultType="ProductDTO">
+    SELECT * FROM TB_Agriculture_product WHERE agri_name = #{agri_name}
+</select>
+    
 </mapper>
