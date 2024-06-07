@@ -1,11 +1,10 @@
 <%@page import="com.smhrd.model.MemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>Main Page</title>
 </head>
 <body>
     <%
@@ -90,7 +89,7 @@
     }
     %>
 
-<script>
+    <script>
         document.addEventListener("DOMContentLoaded", () => {
             const addButton = document.getElementById('addButton');
             const contentDiv = document.getElementById('content');
@@ -110,11 +109,17 @@
             });
 
             nameCardButton.addEventListener('click', () => { // 명함 발급 버튼 클릭 이벤트
-                window.location.href = 'S_NameCardCon?mb_id=<%= user_info.getMb_id() %>&fh_name=<%= user_info.getMb_id() %>'; // 사용자 정보로 설정
+                const mb_id = '<%= user_info != null ? user_info.getMb_id() : "" %>';
+                const fh_name = '<%= user_info != null ? user_info.getMb_id() : "" %>'; // 예시로 사용자 ID를 사용
+                if (mb_id && fh_name) {
+                    window.location.href = 'S_NameCardCon?mb_id=' + mb_id + '&fh_name=' + fh_name;
+                } else {
+                    alert('로그인 후 이용해 주세요.');
+                }
             });
 
             allNamecardsButton.addEventListener('click', () => { // 모든 명함 보기 버튼 클릭 이벤트
-                window.location.href = 'S_AllFarmhousesCon';
+                window.location.href = 'S_AllNameCardsCon';
             });
         });
     </script>

@@ -30,7 +30,7 @@ public class AllFarmhousesCon extends HttpServlet {
             response.sendRedirect("Main.jsp");
         } else {
             FarmhouseDAO dao = new FarmhouseDAO();
-            ArrayList<FarmhouseDTO> fh_dto_list = dao.getAllFarmhouseDTO();
+            ArrayList<FarmhouseDTO> fh_dto_list = dao.getAllFarmhouses();
 
             if (fh_dto_list != null && !fh_dto_list.isEmpty()) {
                 request.setAttribute("fh_dto_list", fh_dto_list);

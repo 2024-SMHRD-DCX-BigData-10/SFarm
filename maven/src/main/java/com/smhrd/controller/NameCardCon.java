@@ -18,6 +18,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.smhrd.model.FarmhouseDAO;
 import com.smhrd.model.FarmhouseDTO;
+import com.smhrd.model.MemberDTO;
 
 import java.util.ArrayList;
 

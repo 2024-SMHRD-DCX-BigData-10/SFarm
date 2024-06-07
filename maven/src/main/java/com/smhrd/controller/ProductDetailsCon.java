@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.smhrd.model.ProductDAO;
 import com.smhrd.model.ProductDTO;
 
-@WebServlet("/S_ProductDetailsCon")
+@WebServlet("/ProductDetailsCon")
 public class ProductDetailsCon extends HttpServlet {
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

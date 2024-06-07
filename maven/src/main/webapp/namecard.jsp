@@ -48,7 +48,7 @@
         <%
             }
         %>
-        <form action="S_ProductDetailsCon" method="get">
+        <form action="ProductDetailsCon" method="get">
             
             <button type="submit">자세히 보기</button>
         </form>
