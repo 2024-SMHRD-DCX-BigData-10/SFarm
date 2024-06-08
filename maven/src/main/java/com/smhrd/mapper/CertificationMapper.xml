@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.smhrd.model.CertificationMapper">
+<mapper namespace="com.smhrd.mapper.CertificationMapper">
     <select id="getCertifications" parameterType="String" resultType="com.smhrd.model.CertificationDTO">
         SELECT cert_type, cert_img FROM tb_certification WHERE fh_name = #{fh_name}
     </select>

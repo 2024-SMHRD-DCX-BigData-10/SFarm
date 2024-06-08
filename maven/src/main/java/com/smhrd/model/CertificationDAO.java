@@ -10,7 +10,7 @@ public class CertificationDAO {
 
     public ArrayList<CertificationDTO> getCertifications(String fh_name) {
         SqlSession session = sqlSessionFactory.openSession(true);
-        ArrayList<CertificationDTO> certi_dto = (ArrayList) session.selectList("com.smhrd.model.CertificationMapper.getCertifications", fh_name);
+        ArrayList<CertificationDTO> certi_dto = (ArrayList) session.selectList("com.smhrd.mapper.CertificationMapper.getCertifications", fh_name);
         session.close();
         return certi_dto;
     }
