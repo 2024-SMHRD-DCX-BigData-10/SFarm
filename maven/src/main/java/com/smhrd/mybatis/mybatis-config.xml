@@ -12,6 +12,7 @@
 		<typeAlias type="com.smhrd.model.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.smhrd.model.FarmhouseDTO" alias="FarmhouseDTO"/>
 		<typeAlias type="com.smhrd.model.ProductDTO" alias="ProductDTO"/>
+		<typeAlias type="com.smhrd.model.CertificationDTO" alias="CertificationDTO"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -28,6 +29,6 @@
 		<mapper resource="com/smhrd/mapper/MemberMapper.xml" />
 		<mapper resource="com/smhrd/mapper/FarmhouseMapper.xml" />
 		<mapper resource="com/smhrd/mapper/ProductMapper.xml" />
-		
+		<mapper resource="com/smhrd/model/CertificationMapper.xml"/>
 	</mappers>
 </configuration>

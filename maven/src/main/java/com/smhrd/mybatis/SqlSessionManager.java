@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class SqlSessionManager {
 		
-	static SqlSessionFactory sqlSessionFactory; // 전역변수로 선언
+	private static SqlSessionFactory sqlSessionFactory; // 전역변수로 선언
 	static {
 		try {
 			String resource = "com/smhrd/mybatis/mybatis-config.xml";

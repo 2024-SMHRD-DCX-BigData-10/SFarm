@@ -18,8 +18,12 @@ public class CertificationDTO {
     private Double cert_idx;
     // 농가 식별자 
     private Double fh_idx;
+    // 농가 식별자 
+    private String fh_name;
     // 인증종류 
     private String cert_type;
+    // 이미지
+    private String cert_img;
     // 인증번호 
     private String cert_num;
     // 인증기간 

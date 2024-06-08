@@ -3,7 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.mapper.ProductMapper">
-    <select id="getProductsByFarmhouse" parameterType="String" resultType="com.smhrd.model.ProductDTO">
+    <select id="getProductsByFarmhouse" parameterType="ProductDTO" resultType="ProductDTO">
+        select * from tb_agriculture_product where agri_name=#{agri_name}
+    </select>
+    <select id="getProductDetails" parameterType="ProductDTO" resultType="ProductDTO">
         select * from tb_agriculture_product where agri_name=#{agri_name}
     </select>
 </mapper>

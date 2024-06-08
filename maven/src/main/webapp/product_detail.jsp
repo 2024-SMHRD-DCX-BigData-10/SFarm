@@ -14,10 +14,10 @@
     <%
     ProductDAO dao = new ProductDAO();
     String agri_name=request.getParameter("agri_name");
-    List<ProductDTO> product = dao.getProductsByFarmhouse(agri_name);
-    	System.out.println(agri_name+product.size());
-        if (product != null) {
-        	for(ProductDTO pd : product) { %>
+    List<ProductDTO> productList = dao.getProductsByFarmhouse(agri_name);
+    	System.out.println(agri_name+productList.size());
+        if (productList != null) {
+        	for(ProductDTO pd : productList) { %>
             <h2>농산품 상세 정보</h2>
             <p>농산품 명: <%= pd.getAgri_name() %></p>
             <p>영양성분: <%= pd.getNutrition_fact() %></p>
@@ -29,7 +29,7 @@
             <p>사진2: <img src="<%= pd.getAgri_img2() %>" alt="사진2"></p>
             <p>사진3: <img src="<%= pd.getAgri_img3() %>" alt="사진3"></p>
     <%
-    }} else if(product ==null){System.out.print("null");}
+    }} else if(productList ==null){System.out.print("null");}
     else{
     %>
     <h3>농산품 정보를 찾을 수 없습니다.</h3>

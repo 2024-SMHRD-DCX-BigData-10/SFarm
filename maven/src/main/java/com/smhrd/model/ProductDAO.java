@@ -19,8 +19,9 @@ public class ProductDAO {
 
     public List<ProductDTO> getProductsByFarmhouse(String agri_name) {
         SqlSession session = sqlSessionFactory.openSession(true);
-        List<ProductDTO> productList = session.selectList("com.smhrd.mapper.ProductMapper.getProductsByFarmhouse",agri_name);
+        List<ProductDTO> productList = session.selectList("getProductsByFarmhouse",agri_name);
         session.close();
+        System.out.println("dao  "+agri_name+" "+productList.size());
         return productList;
     
     }

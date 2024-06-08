@@ -41,7 +41,7 @@ public class NameCardCon extends HttpServlet {
             ArrayList<FarmhouseDTO> fh_dto = dao.getFarmhouseDTO(mb_id);
 
             if (fh_dto.size() > 0) {
-                String url = "http://192.168.0.25:8081/maven/namecard.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name;
+                String url = "http://localhost:8081/maven/namecard.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name;
 
                 ServletContext context = getServletContext();
                 
@@ -57,7 +57,7 @@ public class NameCardCon extends HttpServlet {
                 try {
                     generateQRCodeImage(url, 300, 300, realPath);
                     // QR 코드 경로를 쿼리 스트링에 추가
-                    String redirectUrl = "http://192.168.0.25:8081/maven/namecard.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name + "&qrCodePath=" + qr_path;
+                    String redirectUrl = "http://localhost:8081/maven/namecard.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name + "&qrCodePath=" + qr_path;
                     response.sendRedirect(redirectUrl);
                 } catch (WriterException e) {
                     e.printStackTrace();
