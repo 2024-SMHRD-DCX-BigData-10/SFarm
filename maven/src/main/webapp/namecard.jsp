@@ -46,6 +46,10 @@
         String fh_name = request.getParameter("fh_name");
         String qrCodePath = request.getParameter("qrCodePath");
 
+        System.out.println("Received mb_id: " + mb_id);  // 디버깅용 출력
+        System.out.println("Received fh_name: " + fh_name);  // 디버깅용 출력
+        System.out.println("QR Code Path: " + qrCodePath);  // 디버깅용 출력
+
         FarmhouseDAO farmhouseDao = new FarmhouseDAO();
         CertificationDAO certificationDao = new CertificationDAO();
         ArrayList<FarmhouseDTO> fh_dto = null;
@@ -54,6 +58,8 @@
         if (mb_id != null) {
             fh_dto = farmhouseDao.getFarmhouseDTO(mb_id);
             certificationList = certificationDao.getCertifications(fh_name);
+            System.out.println("Farmhouse DTO List: " + fh_dto);  // 디버깅용 출력
+            System.out.println("Certification List: " + certificationList);  // 디버깅용 출력
         } else {
             System.out.println("mb_id is null");
         }

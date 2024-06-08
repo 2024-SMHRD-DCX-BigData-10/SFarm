@@ -16,8 +16,7 @@ public class CertificationDTO {
 
 	// 인증 식별자 
     private Double cert_idx;
-    // 농가 식별자 
-    private Double fh_idx;
+
     // 농가 식별자 
     private String fh_name;
     // 인증종류 

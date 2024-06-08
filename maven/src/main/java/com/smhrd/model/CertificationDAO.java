@@ -9,9 +9,19 @@ public class CertificationDAO {
     private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 
     public ArrayList<CertificationDTO> getCertifications(String fh_name) {
-        SqlSession session = sqlSessionFactory.openSession(true);
-        ArrayList<CertificationDTO> certi_dto = (ArrayList) session.selectList("com.smhrd.mapper.CertificationMapper.getCertifications", fh_name);
-        session.close();
+        SqlSession session = null;
+        ArrayList<CertificationDTO> certi_dto = null;
+        try {
+            session = sqlSessionFactory.openSession(true);
+            certi_dto = (ArrayList) session.selectList("com.smhrd.model.CertificationMapper.getCertifications", fh_name);
+            System.out.println("Certification List from DAO: " + certi_dto);  // 디버깅용 출력
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
         return certi_dto;
     }
 }
