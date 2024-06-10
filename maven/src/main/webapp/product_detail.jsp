@@ -5,12 +5,123 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>농산품 상세 정보</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        body{
+            margin: 0px;
+            
+        }
+        div{
+            box-sizing: border-box;
+        }
+        .navbar-brand{
+          padding: 10px;
+          margin-left: 15px;
+          font-size: 40px;
+          font-family: Georgia, 'Times New Roman', Times, serif;
+          color:cadetblue;
+        }
+        .nav-img img{
+            width: 50px;
+            
+        }
+        .cope-text{
+            font-size: 11px;
+            color:darkslategray;
+            font-weight: bolder;
+            padding: 5px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-align: left;
+            position: relative;
+            right: 12px;
+        }
+        .nav-img{
+            margin: 15px;
+            width: 76px;  
+        }
+        .wrap{
+            width: 100%;
+        }
+        .col-md-4{
+            width: 100%;
+        }
+        .card-title{
+          float:left;
+          position: relative;
+          padding: 1px;
+          top: 40px;
+        }
+       
+        .qr-img{
+          float: left;
+          padding: 6px;
+          width: 100px;
+          height: 100px;
+        }
+        .card-body1{
+          float: left;
+          height: 425px; 
+          
+        }
+        .col-10 h4{
+          font-size: 30px;
+          color: slategrey;
+          padding: 2px;
+        }
+        .col-10 h5{
+          padding: 7px;
+          margin-top: 30px;
+          font-size: 20px;
+        }
+        .video-container{
+          width: 100px;
+          height: 50px;
+        }
+        #video-iframe {
+          width: 50%;
+          height: 600px;
+          position: relative;
+          left: 1300px;
+          bottom: 450px;
+          display: none;
+        }
+        .footer{
+        width: 100%;
+        height: 130px;
+        background-color:darkcyan;
+        }
+        .acs-img{
+          width: 200px;
+          position: relative;
+          top: 40px;
+          left: 50px;
+          border-radius: 30px;
+        }
+        @media (max-width: 768px) {
+          #video-iframe {
+            width: 100%;
+            height: auto;
+          }
+        } 
+    </style>
 </head>
 <body>
+
+     <!-- 네비바 -->
+     <nav class="navbar bg-body-tertiary" style="background-color:mintcream; margin-bottom: 20px;">
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand">SFarm</a>
+        <div class="nav-img">
+          <img src="./img/복사하기.png" >
+          <h4 class="cope-text">포스터 복사</h4>
+        </div>
+      </div>
+    </nav>
     <%
     ProductDAO dao = new ProductDAO();
     String agri_name=request.getParameter("agri_name");

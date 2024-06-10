@@ -8,20 +8,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+    	*{
+    	margin: 0;
+    	padding: 0;
+    	}
         .body{
             margin: 0px;
             
+            
         }
+        .main-backgronund{
+        }
+
         .div{
             box-sizing: border-box;
+            border :none;
         }
         .nav-container{
+         	position: fixed;
             display: flex;
             height: 70px;
             align-items: center;
             padding: 5px;
             background-color:white;
             border: 1px solid #154726 ;
+            width: 100%;
+            z-index : 1000;
             
         }
         .nav-title a{
@@ -53,12 +65,12 @@
         }
 
         .main-backgronund{
-            padding: 1px;
+            padding: 60px;
             width:100%;
             height: 800px;
             background-image: url(./img/main-banner.png);
             background-repeat: no-repeat;
-            background: cover;
+            background-size: cover;
             filter: brightness(85%);
         }
         .main-title{
@@ -143,6 +155,7 @@
         <div class="nav-item"><a href="#">웹 소개</a></div>
         <div class="nav-item"><a href="#">지역 명소 추천</a></div>
         <div class="nav-item"><a href="#">고객 지원</a></div>
+         <div class="nav-item">  <a href="AllNameCards">농가 목록</button></a></div>
         <div style="flex-grow: 0.7;"></div>
         <%if (user_info != null) {%>
         <div class="nav-join"><%= user_info.getMb_name() %>님 환영합니다.</a></div>
@@ -159,15 +172,19 @@
     	<div class="main-expainbox"> 
         	<h4 class="main-title"> storytelling</h4>
             <p class="main-content">건강한 로컬푸드 의<br>농가 이야기 를 소개합니다.</p>
-            <button class="main-button">농가<br>알아보기</button>
+             <div><a href="AllNameCards"><button class="main-button">농가<br>알아보기</button></a></div>
         </div>
+        <br><br><br><br>
        <%if (user_info != null) {%>
-        <a href="S_NameCardCon"><button class="main-button">명함 발급하기</button></a><br><br><br>
+        <div><a href="S_NameCardCon"><button class="main-button">명함<br> 발급하기</button></a></div>
+        
+      
         <%
         
+        
         } %>
-         <a href="AllNameCards"><button class="main-button">농가 목록</button></a>
-         <br><br><br>
+      
+  
    
     </div>
     <!-- footer -->

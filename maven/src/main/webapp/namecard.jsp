@@ -67,17 +67,17 @@
         if (fh_dto != null && fh_dto.size() > 0) {
             FarmhouseDTO x = fh_dto.get(0);
     %>
-    <div class="container">
-        <div class="left">
-            <h2>농가 정보</h2>
-            <p>농가 이름: <%= x.getFh_name() %></p>
-            <p>농장주: <%= x.getFh_owner() %></p>
-            <p>농가 소개: <%= x.getFh_intro() %></p>
-            <%
-                if (qrCodePath != null) {
-            %>
-                <h3>품명:</h3>
-                <ul>
+        <div class="wrap" >
+
+      <!-- 농가명함 시작 -->
+        <div class="col">
+            <div class="card" style=" border-color:black; width: 18rem; float:left; padding: 5px; margin-top: 90px; margin-left: 10px; margin-right: 10px;">
+                
+              <img src="./img/수박포도.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%= x.getFh_name() %></h5>
+                <p>농장주: <%= x.getFh_owner() %></p>
+                 <ul>
                 <%
                     for (FarmhouseDTO dto : fh_dto) {
                         String agri_name = dto.getAgri_name();
@@ -87,6 +87,12 @@
                     }
                 %>
                 </ul>
+                <div>
+                   <%
+                if (qrCodePath != null) {
+            %>
+             
+               
                 <h3>QR 코드:</h3>
                 <img src="<%= request.getContextPath() + qrCodePath %>" alt="QR Code" class="qr-code">
             <%
@@ -96,7 +102,16 @@
             <%
                 }
             %>
-        </div>
+                </div>
+                <div style="clear: both;"></div>
+                <p class="card-text"><%= x.getFh_intro() %> 
+                </p>
+                <p>Tell.010-0000-0000</p>
+              </div>
+            </div>
+          </div>
+    <!-- 농가명함 끝 -->
+    
         <div class="right">
             <h3>인증 정보</h3>
             <%

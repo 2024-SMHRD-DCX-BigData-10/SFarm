@@ -9,6 +9,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>농가 목록</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
     <style>
         body {
             margin: 0px;
@@ -175,13 +177,13 @@
                     if (!dto.getFh_name().equals(currentFhName)) {
                         if (currentFarmhouse != null) {
         %>
-        <div class="col">
+        <div class="col-md-4">
             <div class="card">
                 <img src="./img/수박포도.jpg" class="card-img-top" alt="농장이미지">
                 <div class="card-body">
                     <h5 class="card-title"><%= currentFarmhouse.getFh_name() %></h5>
                     <div>
-                        <img class="qr-img" src="./img/qr.png">
+                    
                     </div>
                     <div style="clear: both;"></div>
                     <p class="card-text"><%= currentFarmhouse.getFh_intro() %></p>
@@ -201,22 +203,7 @@
                 }
                 if (currentFarmhouse != null) {
         %>
-        <div class="col">
-            <div class="card">
-                <img src="./img/수박포도.jpg" class="card-img-top" alt="농장이미지">
-                <div class="card-body">
-                    <h5 class="card-title"><%= currentFarmhouse.getFh_name() %></h5>
-                    <div>
-                        <img class="qr-img" src="./img/qr.png">
-                    </div>
-                    <div style="clear: both;"></div>
-                    <p class="card-text"><%= currentFarmhouse.getFh_intro() %></p>
-                    <p>Tell. <%= currentFarmhouse.getFh_owner() %></p>
-                    <p>농산물: <%= String.join(", ", agriNamesList) %></p> <!-- 농산물 이름들 표시 -->
-                    <a href="S_NameCardCon?mb_id=<%= currentFarmhouse.getMb_id() %>&fh_name=<%= currentFarmhouse.getFh_name() %>" class="btn">들어가기</a>
-                </div>
-            </div>
-        </div>
+        
         <%
                 }
             } else {
@@ -234,6 +221,7 @@
       <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지">
     </div>
   </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
 </html>
