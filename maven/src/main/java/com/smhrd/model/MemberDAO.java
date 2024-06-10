@@ -18,9 +18,9 @@ public int join(MemberDTO dto) {
 	return row;
 }
 
-public boolean idCheck(String email) {
+public boolean idCheck(String mb_id) {
 	SqlSession session = sqlSessionFactory.openSession(true);
-	String name= session.selectOne("idCheck", email);
+	String name= session.selectOne("idCheck", mb_id);
 	session.close();
 	
 	if(name != null) return true;

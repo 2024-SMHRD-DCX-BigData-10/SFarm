@@ -11,7 +11,9 @@
 	<select id="Login" parameterType="MemberDTO" resultType="MemberDTO">
 		select * from tb_member where mb_id=#{mb_id} and mb_pw=#{mb_pw}
 	</select>
-
+<select id="idCheck" parameterType="String"  resultType="String">
+		select email from tb_member where mb_id=#{mb_id}
+	</select>
 
 
 
