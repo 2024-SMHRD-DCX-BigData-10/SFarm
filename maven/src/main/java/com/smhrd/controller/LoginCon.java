@@ -50,7 +50,7 @@ public class LoginCon extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.print(logresult);
 		response.setContentType("application/text; charset=utf-8");
-		response.sendRedirect("Main.jsp");
+		response.sendRedirect("SFarm_main.jsp");
 	}
 
 }

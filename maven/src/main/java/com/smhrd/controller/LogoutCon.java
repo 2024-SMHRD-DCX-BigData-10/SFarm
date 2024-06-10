@@ -14,7 +14,7 @@ public class LogoutCon extends HttpServlet {
 
         request.getSession().removeAttribute("user_info");
 
-        response.sendRedirect("Main.jsp");
+        response.sendRedirect("SFarm_main.jsp");
     }
 }
 

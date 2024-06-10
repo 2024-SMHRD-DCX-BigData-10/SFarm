@@ -107,7 +107,12 @@
 </head>
 <body >
 
-    
+        <%
+    // session에 user_info가 있는지 없는지 확인 
+    MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
+        %>
+    if (user_info != null) {
+   
 
     <nav class="nav-container">
         <div style="flex-grow: 0.05;"></div>
@@ -117,14 +122,27 @@
         <div class="nav-item"><a href="#">지역 명소 추천</a></div>
         <div class="nav-item"><a href="#">고객 지원</a></div>
         <div style="flex-grow: 0.7;"></div>
+        <%if (user_info != null) {%>
+        <div class="nav-join"><%= user_info.getMb_name() %>님 환영합니다.</a></div>
+       <a href="S_LogoutCon"> <button class="nav-but" >로그아웃</button></a>
+        <%
+        
+        }else{ %>
         <a href="SFarm_JoinPage.jsp"><button class="nav-but">회원 가입</button></a>
         <a href="SFarm_LoginPage.jsp"><button class="nav-but" style="margin-left: 10px;">로그인</button></a>
+        <%} %>
     </nav>
 
     <div class="main-backgronund"> 
         <h4 class="main-title"> storytelling</h4>
         <p class="main-content">건강한 로컬푸드 의<br>농가 스토리 텔링을 소개합니다</p>
-        <button class="main-button">농가 목록</button>
+       <%if (user_info != null) {%>
+        <a href="S_NameCardCon"><button class="main-button">명함 발급하기</button></a><br><br><br>
+        <%
+        
+        } %>
+         <a href="AllNameCards"><button class="main-button">농가 목록</button></a>
+         <br><br><br>
         <div class="explain-box">
             <h4>Farm!</h4>
             <p>hi our web site wellcome~</p>
@@ -133,6 +151,8 @@
     <footer>
         <div class="footer"></div>
     </footer>
+<Script> 
 
+    </Script>
 </body>
 </html>

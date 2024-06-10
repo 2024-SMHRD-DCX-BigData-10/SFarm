@@ -43,12 +43,12 @@ public class JoinCon extends HttpServlet {
 		 String moveURL;
 		 if(row> 0) {
 			 System.out.println("회원가입 성공");
-			 moveURL="Main.jsp";
+			 moveURL="SFarm_main.jsp";
 			 request.setAttribute("mb_id",mb_id);
 		 }
 		 else {
 			 System.out.println("회원가입 실패");
-			 moveURL = "Main.jsp";
+			 moveURL = "SFarm_main.jsp";
 			 request.setAttribute("mb_id","fail");
 		 }
 		
