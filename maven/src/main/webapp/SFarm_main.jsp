@@ -111,7 +111,6 @@
     // session에 user_info가 있는지 없는지 확인 
     MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
         %>
-    if (user_info != null) {
    
 
     <nav class="nav-container">
