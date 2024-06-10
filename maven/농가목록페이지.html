@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+       body{
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        .navbar-brand{
+          padding: 10px;
+          margin-left: 15px;
+          font-size: 40px;
+          font-family: Georgia, 'Times New Roman', Times, serif;
+          color:cadetblue;
+        }
+        .d-flex{
+          margin-right: 50px;
+        }
+        .wrap{
+          width: 100%;
+          height: 80%;
+          background-color:whitesmoke;
+        }
+        div.col{
+          padding: 15px;
+        }
+        .card{
+          padding: 10px;
+          border-color:darkgray;
+        }
+        .footer{
+        width: 100%;
+        height: 130px;
+        background-color:darkcyan;
+        }
+        .acs-img{
+          width: 200px;
+          position: relative;
+          top: 40px;
+          left: 50px;
+          border-radius: 30px;
+        }
+        .card-title{
+          float:left;
+          position: relative;
+          padding: 1px;
+          top: 40px;
+        }
+       
+        .qr-img{
+          float: left;
+          padding: 6px;
+          width: 100px;
+          height: 100px;
+        }
+        
+       
+    </style>
+</head>
+<body>
+  <!-- 네비바 -->
+      <nav class="navbar bg-body-tertiary" style="background-color:mintcream;">
+        <div class="container-fluid">
+          <a href="#" class="navbar-brand">SFarm</a>
+          <!-- 농장 정보를 입력받는 목록 정보  -->
+          <form class="d-flex" role="search">
+            <!-- 해당 농장 버튼 클릭시 이동 -->
+            <input class="form-control me-2" type="search" placeholder="농장을 검색해주세요." aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    
+
+
+      <!--해당 농가 정보 목록 페이지  -->
+      <!-- 컬럼 기본 생성 페이지 -->
+    <!-- <div class="wrap">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col">
+            card값
+          </div>
+          <div class="col">
+            card값
+          </div>
+          <div class="col">
+            card값
+          </div>
+        </div>
+      </div>
+    </div>   -->
+   
+   
+   
+   
+    <!-- 카드 기본 틀 -->
+   
+    <!--
+    <div class="card" style="width: 18rem;">
+      <img src="./img/수박포도.jpg" class="card-img-top" alt="농장이미지">
+      <div class="card-body">
+        <h5 class="card-title">우천이네 농장</h5>
+        <div>
+          <img class="qr-img" src="./img/qr.png">
+        </div>
+        <div style="clear: both;"></div>
+        <p class="card-text">우리 농장은 사과/배/마늘 등을 재배하는 농장입니다 농장 소개글 샬라샬라~~
+
+        </p>
+        <p>Tell.010-0000-0000</p>
+        <p></p>
+        <a href="#" class="btn btn-primary">들어가기</a>
+      </div>
+    </div> 
+    -->
+
+    
+
+  <div class="wrap">
+
+      <div class="container text-center">
+        <div class="row">
+          <!-- 카드시작 코드 -->
+           
+          <div class="col">
+            <div class="card" style="width: 18rem;">
+              <img src="./img/수박포도.jpg" class="card-img-top" alt="농장이미지">
+              <div class="card-body">
+                <h5 class="card-title">우천이네 농장</h5>
+                <div>
+                  <img class="qr-img" src="./img/qr.png">
+                </div>
+                <div style="clear: both;"></div>
+                <p class="card-text">우리 농장은 사과/배/마늘 등을 재배하는 농장입니다 
+                </p>
+                <p>Tell.010-0000-0000</p>
+                <p></p>
+                <a href="#" class="btn btn-primary">들어가기</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card" style="width: 18rem;">
+              <img src="./img/수박포도.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">상원이네 농장</h5>
+                <div>
+                  <img class="qr-img" src="./img/qr.png">
+                </div>
+                <div style="clear: both;"></div>
+                <p class="card-text">우리 농장은 사과/배/마늘 등을 재배하는 농장입니다 
+
+                </p>
+                <p>Tell.010-0000-0000</p>
+                <p></p>
+                <a href="#" class="btn btn-primary">들어가기</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card" style="width: 18rem;">
+              <img src="./img/수박포도.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">선우네 농장</h5>
+                <div>
+                  <img class="qr-img" src="./img/qr.png">
+                </div>
+                <div style="clear: both;"></div>
+                <p class="card-text">우리 농장은 사과/배/마늘 등을 재배하는 농장입니다 
+
+                </p>
+                <p>Tell.010-0000-0000</p>
+                <p></p>
+                <a href="#" class="btn btn-primary">들어가기</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+
+        <!-- -------------------------------------------------------------------------- -->
+         <!-- 농장을 생성할때마다 해당 페이지가 하나씩 생성되야됨! -->
+         
+         
+          <div class="container text-center">
+            <div class="row">
+              <div class="col">
+                <div class="card" style="width: 18rem;">
+                  <img src="./img/수박포도.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">우천이네 농장</h5>
+                    <p class="card-text">우리 농장은 사과/배/마늘 등을 재배하는 농장입니다 농장 소개글</p>
+                    <a href="#" class="btn btn-primary">들어가기</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card" style="width: 18rem;">
+                  <img src="./img/수박포도.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">선우네 농장</h5>
+                    <p class="card-text">우리 농장은 사과/배/마늘 등을 재배하는 농장입니다 농장 소개글</p>
+                    <a href="#" class="btn btn-primary">들어가기</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card" style="width: 18rem;">
+                  <img src="./img/수박포도.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">상원이네 농장</h5>
+                    <p class="card-text">우리 농장은 사과/배/마늘 등을 재배하는 농장입니다 농장 소개글</p>
+                    <a href="#" class="btn btn-primary">들어가기</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        
+        <!-- ---------------------------------------------------------------------- -->
+
+        
+          <div class="container text-center">
+            <div class="row">
+              <div class="col">
+                <div class="card" style="width: 18rem;">
+                  <img src="./img/수박포도.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">우천이네 농장</h5>
+                    <p class="card-text">우리 농장은 사과/배/마늘 등을 재배하는 농장입니다 농장 소개글</p>
+                    <a href="#" class="btn btn-primary">들어가기</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card" style="width: 18rem;">
+                  <img src="./img/수박포도.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">선우네 농장</h5>
+                    <p class="card-text">우리 농장은 사과/배/마늘 등을 재배하는 농장입니다 농장 소개글</p>
+                    <a href="#" class="btn btn-primary">들어가기</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card" style="width: 18rem;">
+                  <img src="./img/수박포도.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">상원이네 농장</h5>
+                    <p class="card-text">우리 농장은 사과/배/마늘 등을 재배하는 농장입니다 농장 소개글</p>
+                    <a href="#" class="btn btn-primary">들어가기</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      <!-- footer -->
+      <footer class="footer">
+        <div class="footer-container">
+          <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지" >
+        </div>
+      </footer>    
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
