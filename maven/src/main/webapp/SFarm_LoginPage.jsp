@@ -18,9 +18,11 @@
             position: relative;
             text-align: center;
             font-size:2rem;
-            color: cadetblue;
+            font-family:'impact';
+            color:#154726;
             padding-bottom: 20px;
         }
+        
         .longin-form{
         font-family: "Noto Sans KR", sans-serif;
         display: flex;
@@ -54,13 +56,13 @@
         }
         .int-area input:focus + label{
             top: 0;
-            font-size: 0.9rem;
-            color: var(--basis-font-color);
+            font-size: 1rem;
+            color: #154726;
         }
         .int-area input:valid + label{
             top: 0;
-            font-size: 0.9rem;
-            color: var(--basis-font-color);
+            font-size: 1rem;
+            color: #154726;
         }
         .btn-area {
             margin-top: 30px;
@@ -82,6 +84,7 @@
             color: var(--basis-font-color);
             text-decoration: none;
         }
+        
     </style>
 </head>
 <body>
@@ -91,12 +94,12 @@
             <h1>SFarm</h1>
             <div class="int-area">
                 <input name="mb_id" type="text"  required>
-                <label for="id">아이디</label>
+                <label for="id" style="color: black;">아이디</label>
             </div>
             <div class="int-area">
             
                 <input name="mb_pw" type="password" id="password" required>
-                <label for="password">비밀번호</label>
+                <label for="password" style="color: black;">비밀번호</label>
             </div>
             <div class="btn-area">
                 <button type="submit" id="btn">로그인</button>

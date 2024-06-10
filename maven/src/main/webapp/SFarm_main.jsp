@@ -7,19 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
+    <style>                
+
     	*{
-    	margin: 0;
-    	padding: 0;
+    	margin:0;
+    	padding:0;
     	}
         .body{
             margin: 0px;
             
-            
         }
-        .main-backgronund{
-        }
-
         .div{
             box-sizing: border-box;
             border :none;
@@ -38,7 +35,6 @@
         }
         .nav-title a{
             margin-right: 35px;
-           
             font-size: 40px;
             font-family:'impact';
             color:#154726;
@@ -65,9 +61,9 @@
         }
 
         .main-backgronund{
-            padding: 60px;
+            padding: 1px;
             width:100%;
-            height: 800px;
+            height: 1000px;
             background-image: url(./img/main-banner.png);
             background-repeat: no-repeat;
             background-size: cover;
@@ -79,8 +75,11 @@
             padding: 10px;
             font-size: 20px;
             margin-top:300px;
+            margin-left:30px;
+            padding-top:30px;
             text-align: left;
         }
+       
         .main-content{
             color: white;
             font-size: 50px;
@@ -88,6 +87,9 @@
             font-style: italic;
             margin-bottom: 25px;
             text-align: left;
+            margin-left:30px;
+            
+            
         }
         .main-button{
             
@@ -105,6 +107,9 @@
             color:white;
             border-color: aliceblue;
             cursor: pointer;
+            margin-left:30px;
+            
+            
                        
         }
         .footer{
@@ -138,6 +143,8 @@
             width: 100%;
          }  
         }
+        
+        
     </style>
 </head>
 <body >
@@ -147,7 +154,7 @@
     MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
         %>
    
-
+<div class="wrap" style="display: block;">
     <nav class="nav-container">
         <div style="flex-grow: 0.05;"></div>
         <div class="nav-title" style="margin-left:10px ;"><a href="#">SFarm</a></div>
@@ -172,20 +179,17 @@
     	<div class="main-expainbox"> 
         	<h4 class="main-title"> storytelling</h4>
             <p class="main-content">건강한 로컬푸드 의<br>농가 이야기 를 소개합니다.</p>
-             <div><a href="AllNameCards"><button class="main-button">농가<br>알아보기</button></a></div>
+            <div><a href="AllNameCards"><button class="main-button">농가<br>알아보기</button></a></div>
         </div>
-        <br><br><br><br>
+        
        <%if (user_info != null) {%>
         <div><a href="S_NameCardCon"><button class="main-button">명함<br> 발급하기</button></a></div>
-        
-      
         <%
         
         
         } %>
-      
+
   
-   
     </div>
     <!-- footer -->
    <footer class="footer">
@@ -193,6 +197,6 @@
       <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지" >
     </div>
   </footer>
-
+</div>
 </body>
 </html>
