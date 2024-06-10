@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
+        .body{
             margin: 0px;
             
         }
-        div{
+        .div{
             box-sizing: border-box;
         }
         .nav-container{
@@ -20,42 +20,62 @@
             height: 70px;
             align-items: center;
             padding: 5px;
-            background-color:darkslategrey;
-            border-bottom-left-radius:10px ;
-            border-bottom-right-radius:10px ;
+            background-color:white;
+            border: 1px solid #154726 ;
+            
+        }
+        .nav-title a{
+            margin-right: 35px;
+           
+            font-size: 40px;
+            font-family:'impact';
+            color:#154726;
+            text-decoration: none;
         }
         .nav-item a{
             margin-right: 15px;
-            color: beige;
+            font-weight: bolder;
+            font-size: 18px;
+            color:#154726;
             text-decoration: none;
 
         }
-        .nav-but{         
-            border-radius: 10px;
-            background-color:whitesmoke;
+        .nav-but{   
+            width: 120px;
+            height: 40px;     
+            border-radius: 20px;
+            background-color:#154726;
+            color:white;
+            border-color: cornflowerblue;
+            box-shadow: 1px 5px whitesmoke;
+            cursor: pointer;
+            
         }
+
         .main-backgronund{
             padding: 1px;
-            width:800x;
-            height:900px;
-            background-image: url(./img/farm.jpg);
+            width:100%;
+            height: 800px;
+            background-image: url(./img/main-banner.png);
             background-repeat: no-repeat;
             background: cover;
-            background-position: left;
-            background-attachment: fixed;
-            filter: brightness(80%);
+            filter: brightness(85%);
         }
         .main-title{
             color: white;
-            font-size: 80px;
-            margin-top:350px;
-            text-align: center;
+            font-weight: lighter;
+            padding: 10px;
+            font-size: 20px;
+            margin-top:300px;
+            text-align: left;
         }
         .main-content{
-            color: #eee;
-            font-size: 30px;
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
             font-style: italic;
-            text-align: center;
+            margin-bottom: 25px;
+            text-align: left;
         }
         .main-button{
             
@@ -64,25 +84,28 @@
             background: white;
             border-radius: 8px;
             position: absolute;
-            left: 0;
-            right: 0;
             margin: auto;
-            width: 140px           
-        }
-        .explain-box{
-            width: 80%;
-            max-width: 600px;
-            padding: 10px;
-            margin: auto;
-            text-align: center;
-            background-color: #eee;
-            position: relative;
-            top: 50px;
+            padding: 7px;
+            width: 130px;
+            height: 70px;     
+            border-radius: 30px;
+            background-color:#154726;
+            color:white;
+            border-color: aliceblue;
+            cursor: pointer;
+                       
         }
         .footer{
-            width: 100%;
-            height: 100px;
-            background-color: darkslategray;
+        width: 100%;
+        height: 150px;
+        background-color:#154726;
+        }
+        .acs-img{
+          width: 200px;
+          position: relative;
+          top: 60px;
+          left: 50px;
+          border-radius: 30px;
         }
         /* 미디어 쿼리는 맨밑에 있어야 작동잘됨! */
         @media screen and (max-width:1200px) {
@@ -94,7 +117,7 @@
         @media screen and (max-width:768px) {
          .main-backgronund h4,p{
             font-size: 20px;
-         }  
+         }      
         }
         /* 모바일 사이즈 */
         @media screen and (max-width:576px) {
@@ -116,7 +139,7 @@
 
     <nav class="nav-container">
         <div style="flex-grow: 0.05;"></div>
-        <div class="nav-item" style="margin-left:10px ;"><a href="#">SFarm</a></div>
+        <div class="nav-title" style="margin-left:10px ;"><a href="#">SFarm</a></div>
         <div style="flex-grow: 0.1;"></div>
         <div class="nav-item"><a href="#">웹 소개</a></div>
         <div class="nav-item"><a href="#">지역 명소 추천</a></div>
@@ -133,9 +156,12 @@
         <%} %>
     </nav>
 
-    <div class="main-backgronund"> 
-        <h4 class="main-title"> storytelling</h4>
-        <p class="main-content">건강한 로컬푸드 의<br>농가 스토리 텔링을 소개합니다</p>
+    <div class="main-backgronund">
+    	<div class="main-expainbox"> 
+        	<h4 class="main-title"> storytelling</h4>
+            <p class="main-content">건강한 로컬푸드 의<br>농가 이야기 를 소개합니다.</p>
+            <button class="main-button">농가<br>알아보기</button>
+        </div>
        <%if (user_info != null) {%>
         <a href="S_NameCardCon"><button class="main-button">명함 발급하기</button></a><br><br><br>
         <%
@@ -143,16 +169,14 @@
         } %>
          <a href="AllNameCards"><button class="main-button">농가 목록</button></a>
          <br><br><br>
-        <div class="explain-box">
-            <h4>Farm!</h4>
-            <p>hi our web site wellcome~</p>
-        </div>
+   
     </div>
-    <footer>
-        <div class="footer"></div>
-    </footer>
-<Script> 
+    <!-- footer -->
+   <footer class="footer">
+    <div class="footer-container">
+      <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지" >
+    </div>
+  </footer>
 
-    </Script>
 </body>
 </html>
