@@ -10,35 +10,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<<<<<<< HEAD
-    <style>                
-
-    	*{
-    	margin:0;
-    	padding:0;
-    	}
-        .body{
-=======
     <style>
         * {
             margin: 0;
             padding: 0;
         }
         body {
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
             margin: 0px;
-<<<<<<< HEAD
-            
-=======
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
         }
-<<<<<<< HEAD
-        .div{
-=======
         .main-backgronund {
         }
         .div {
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
             box-sizing: border-box;
             border: none;
         }
@@ -77,13 +59,6 @@
             box-shadow: 1px 5px whitesmoke;
             cursor: pointer;
         }
-<<<<<<< HEAD
-
-        .main-backgronund{
-            padding: 1px;
-            width:100%;
-            height: 1000px;
-=======
         .nav-but:hover {
             background-color: #123d2e; /* 호버 시 색상 변경 */
             transform: scale(1.1); /* 호버 시 크기 확대 */
@@ -92,7 +67,6 @@
             padding: 60px;
             width: 100%;
             height: 800px;
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
             background-image: url(./img/main-banner.png);
             background-repeat: no-repeat;
             background-size: cover;
@@ -103,30 +77,16 @@
             font-weight: lighter;
             padding: 10px;
             font-size: 20px;
-<<<<<<< HEAD
-            margin-top:300px;
-            margin-left:30px;
-            padding-top:30px;
-=======
             margin-top: 300px;
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
             text-align: left;
         }
-<<<<<<< HEAD
-       
-        .main-content{
-=======
         .main-content {
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
             color: white;
             font-size: 50px;
             font-weight: bold;
             font-style: italic;
             margin-bottom: 25px;
             text-align: left;
-            margin-left:30px;
-            
-            
         }
         .main-button {
             padding: 1px;
@@ -143,14 +103,7 @@
             color: white;
             border-color: aliceblue;
             cursor: pointer;
-<<<<<<< HEAD
-            margin-left:30px;
-            
-            
-                       
-=======
             transition: background-color 0.3s, transform 0.3s; /* 트랜지션 추가 */
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
         }
         .main-button:hover {
             background-color: #123d2e; /* 호버 시 색상 변경 */
@@ -187,27 +140,14 @@
                 width: 100%;
             }
         }
-        
-        
     </style>
 </head>
-<<<<<<< HEAD
-<body >
-
-        <%
-    // session에 user_info가 있는지 없는지 확인 
-    MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
-        %>
-   
-<div class="wrap" style="display: block;">
-=======
 <body>
     <%
         // session에 user_info가 있는지 없는지 확인 
         MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
     %>
 
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
     <nav class="nav-container">
         <div style="flex-grow: 0.05;"></div>
         <div class="nav-title" style="margin-left:10px ;"><a href="#">SFarm</a></div>
@@ -232,17 +172,6 @@
             <p class="main-content">건강한 로컬푸드 의<br>농가 이야기 를 소개합니다.</p>
             <div><a href="AllNameCards"><button class="main-button">농가<br>알아보기</button></a></div>
         </div>
-<<<<<<< HEAD
-        
-       <%if (user_info != null) {%>
-        <div><a href="S_NameCardCon"><button class="main-button">명함<br> 발급하기</button></a></div>
-        <%
-        
-        
-        } %>
-
-  
-=======
         <br><br><br><br>
         <% if (user_info != null) {
             FarmhouseDAO f_dao = new FarmhouseDAO();
@@ -253,22 +182,12 @@
             <br><br><br><br>
             <div><a href="SFarm_registerPage.jsp"><button class="main-button">농장<br> 등록하기</button></a></div>
         <% } %>
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
     </div>
     <!-- footer -->
-<<<<<<< HEAD
-   <footer class="footer">
-    <div class="footer-container">
-      <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지" >
-    </div>
-  </footer>
-</div>
-=======
     <footer class="footer">
         <div class="footer-container">
             <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지">
         </div>
     </footer>
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
 </body>
 </html>
