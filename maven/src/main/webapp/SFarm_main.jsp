@@ -10,35 +10,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<<<<<<< HEAD
-    <style>                
 
-    	*{
-    	margin:0;
-    	padding:0;
-    	}
-        .body{
-=======
     <style>
         * {
             margin: 0;
             padding: 0;
         }
         body {
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
+
             margin: 0px;
-<<<<<<< HEAD
-            
-=======
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
-        }
-<<<<<<< HEAD
-        .div{
-=======
-        .main-backgronund {
-        }
+
+			}
+
+  
         .div {
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
+
             box-sizing: border-box;
             border: none;
         }
