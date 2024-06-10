@@ -18,9 +18,9 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.smhrd.model.FarmhouseDAO;
 import com.smhrd.model.FarmhouseDTO;
-import com.smhrd.model.MemberDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/S_NameCardCon")
 public class NameCardCon extends HttpServlet {
@@ -31,43 +31,43 @@ public class NameCardCon extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         
         String mb_id = request.getParameter("mb_id");
-        String fh_name = request.getParameter("fh_name");
+        FarmhouseDAO f_dao = new FarmhouseDAO();
+        ArrayList<FarmhouseDTO> farm_name = f_dao.getFarmhouseDTO(mb_id);
+        System.out.println(mb_id);
+        System.out.println(farm_name);
 
-        if (mb_id == null || fh_name == null) {
+        if (mb_id == null || farm_name == null || farm_name.isEmpty()) {
             System.out.println("명함 발급을 위한 필요한 정보가 없습니다.");
-            response.sendRedirect("Main.jsp");
-        } else {
-            FarmhouseDAO dao = new FarmhouseDAO();
-            ArrayList<FarmhouseDTO> fh_dto = dao.getFarmhouseDTO(mb_id);
+            response.sendRedirect("SFarm_main.jsp");
+            return;
+        }
 
-            if (fh_dto.size() > 0) {
-                String url = "http://localhost:8081/maven/namecard.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name;
+        List<String> qrPaths = new ArrayList<>();
+        for (FarmhouseDTO fh_dto : farm_name) {
+            String fh_name = fh_dto.getFh_name();
+            String url = "http://localhost:8081/maven/namecard.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name;
 
-                ServletContext context = getServletContext();
-                
-                String qr_path = "/images/" + fh_name + ".png";
-                String realPath = context.getRealPath(qr_path);
+            ServletContext context = getServletContext();
+            String qr_path = "/images/" + fh_name + ".png";
+            String realPath = context.getRealPath(qr_path);
 
-                // Ensure the directory exists
-                Path imagePath = Paths.get(context.getRealPath("/images"));
-                if (!Files.exists(imagePath)) {
-                    Files.createDirectories(imagePath);
-                }
+            // Ensure the directory exists
+            Path imagePath = Paths.get(context.getRealPath("/images"));
+            if (!Files.exists(imagePath)) {
+                Files.createDirectories(imagePath);
+            }
 
-                try {
-                    generateQRCodeImage(url, 300, 300, realPath);
-                    // QR 코드 경로를 쿼리 스트링에 추가
-                    String redirectUrl = "http://localhost:8081/maven/namecard.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name + "&qrCodePath=" + qr_path;
-                    response.sendRedirect(redirectUrl);
-                } catch (WriterException e) {
-                    e.printStackTrace();
-                    response.sendRedirect("Main.jsp");
-                }
-            } else {
-                System.out.println("농가 정보가 없습니다.");
-                response.sendRedirect("Main.jsp");
+            try {
+                generateQRCodeImage(url, 300, 300, realPath);
+                qrPaths.add(qr_path);
+            } catch (WriterException e) {
+                e.printStackTrace();
             }
         }
+
+        request.setAttribute("farm_name", farm_name);
+        request.setAttribute("qrPaths", qrPaths);
+        request.getRequestDispatcher("namecard.jsp").forward(request, response);
     }
 
     private void generateQRCodeImage(String text, int width, int height, String filePath)

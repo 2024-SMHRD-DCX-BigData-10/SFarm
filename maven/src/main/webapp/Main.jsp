@@ -41,6 +41,7 @@
     
     <button type="button" id="namecard">명함발급</button>
     <button type="button" id="allNamecards">모든 명함 보기</button>
+    
     <hr>
     <%
     } else {

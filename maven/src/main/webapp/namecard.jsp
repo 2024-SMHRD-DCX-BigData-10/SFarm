@@ -1,11 +1,8 @@
 <%@page import="com.smhrd.model.FarmhouseDTO"%>
-<%@page import="com.smhrd.model.FarmhouseDAO"%>
 <%@page import="com.smhrd.model.CertificationDTO"%>
-<%@page import="com.smhrd.model.CertificationDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +11,54 @@
 <style>
     .container {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
-    .left {
-        flex: 70%;
+    .card {
+        width: 300px; /* 명함의 너비 */
+        height: auto; /* 명함의 높이를 콘텐츠에 맞게 자동 조정 */
+        margin: 10px;
+        border: 1px solid darkgray;
+        padding: 10px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        background-color: white;
+        box-sizing: border-box;
+        transition: background-color 0.3s;
     }
-    .right {
-        flex: 30%;
-        padding-left: 20px;
+    .card:hover {
+        background-color: #f0f0f0;
+    }
+    .card h5 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    .card p {
+        margin: 2px 0;
     }
     .qr-code {
-        width: 100px;  /* QR 코드의 크기를 줄입니다. */
-        height: 100px;
+        width: 50px; /* QR 코드의 크기를 줄입니다. */
+        height: 50px;
+        float: right;
+        margin-left: 10px;
+        object-fit: contain; /* 이미지가 주어진 영역에 맞춰지도록 합니다. */
+    }
+    .card ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin: 5px 0;
+    }
+    .card ul li {
+        display: inline;
+        margin-right: 5px;
+    }
+    .certification {
+        margin-top: 10px;
+    }
+    .certification img {
+        width: 50px; /* 인증 이미지 크기 */
+        height: 50px;
+        margin-right: 5px;
     }
 </style>
 <script>
@@ -41,104 +75,75 @@
 </script>
 </head>
 <body>
-    <%
-        String mb_id = request.getParameter("mb_id");
-        String fh_name = request.getParameter("fh_name");
-        String qrCodePath = request.getParameter("qrCodePath");
+    <div class="container">
+        <%
+            List<FarmhouseDTO> farm_name = (List<FarmhouseDTO>) request.getAttribute("farm_name");
+            List<String> qrPaths = (List<String>) request.getAttribute("qrPaths");
+            List<CertificationDTO> certificationList = (List<CertificationDTO>) request.getAttribute("certificationList");
 
-        System.out.println("Received mb_id: " + mb_id);  // 디버깅용 출력
-        System.out.println("Received fh_name: " + fh_name);  // 디버깅용 출력
-        System.out.println("QR Code Path: " + qrCodePath);  // 디버깅용 출력
-
-        FarmhouseDAO farmhouseDao = new FarmhouseDAO();
-        CertificationDAO certificationDao = new CertificationDAO();
-        ArrayList<FarmhouseDTO> fh_dto = null;
-        ArrayList<CertificationDTO> certificationList = null;
-
-        if (mb_id != null) {
-            fh_dto = farmhouseDao.getFarmhouseDTO(mb_id);
-            certificationList = certificationDao.getCertifications(fh_name);
-            System.out.println("Farmhouse DTO List: " + fh_dto);  // 디버깅용 출력
-            System.out.println("Certification List: " + certificationList);  // 디버깅용 출력
-        } else {
-            System.out.println("mb_id is null");
-        }
-
-        if (fh_dto != null && fh_dto.size() > 0) {
-            FarmhouseDTO x = fh_dto.get(0);
-    %>
-        <div class="wrap" >
-
-      <!-- 농가명함 시작 -->
-        <div class="col">
-            <div class="card" style=" border-color:black; width: 18rem; float:left; padding: 5px; margin-top: 90px; margin-left: 10px; margin-right: 10px;">
-                
-              <img src="./img/수박포도.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title"><%= x.getFh_name() %></h5>
-                <p>농장주: <%= x.getFh_owner() %></p>
-                 <ul>
-                <%
-                    for (FarmhouseDTO dto : fh_dto) {
-                        String agri_name = dto.getAgri_name();
-                %>
-                    <li><a href="javascript:void(0)" onclick="showProductDetails('<%= agri_name %>')"><%= agri_name %></a></li>
-                <%
-                    }
-                %>
-                </ul>
-                <div>
-                   <%
-                if (qrCodePath != null) {
-            %>
-             
-               
-                <h3>QR 코드:</h3>
-                <img src="<%= request.getContextPath() + qrCodePath %>" alt="QR Code" class="qr-code">
-            <%
-                } else {
-            %>
-                <h3>QR 없음</h3>
-            <%
+            if (farm_name != null && qrPaths != null) {
+                for (int i = 0; i < farm_name.size(); i++) {
+                    FarmhouseDTO x = farm_name.get(i);
+                    String qrCodePath = qrPaths.get(i);
+        %>
+                    <div class="card">
+                        <h5 class="card-title"><%= x.getFh_name() %></h5>
+                        <p>농장주: <%= x.getFh_owner() %></p>
+                        <ul>
+                        <%
+                            for (FarmhouseDTO dto : farm_name) {
+                                if (dto.getFh_name().equals(x.getFh_name())) {
+                                    String agri_name = dto.getAgri_name();
+                        %>
+                                    <li><a href="javascript:void(0)" onclick="showProductDetails('<%= agri_name %>')"><%= agri_name %></a></li>
+                        <%
+                                }
+                            }
+                        %>
+                        </ul>
+                        <div>
+                        <%
+                            if (qrCodePath != null) {
+                        %>
+                                <img src="<%= request.getContextPath() + qrCodePath %>" alt="QR Code" class="qr-code">
+                        <%
+                            } else {
+                        %>
+                                <h3>QR 없음</h3>
+                        <%
+                            }
+                        %>
+                        </div>
+                        <p class="card-text"><%= x.getFh_intro() %></p>
+                        <div class="certification">
+                            <h5>인증 정보</h5>
+                            <%
+                                if (certificationList != null && !certificationList.isEmpty()) {
+                                    for (CertificationDTO cert : certificationList) {
+                                        if (cert.getFh_name().equals(x.getFh_name())) {
+                            %>
+                                            <p>인증 종류: <%= cert.getCert_type() %></p>
+                                            <img src="<%= cert.getCert_img() %>" alt="인증 이미지">
+                            <%
+                                        }
+                                    }
+                                } else {
+                            %>
+                                    <p>인증 정보를 찾을 수 없습니다.</p>
+                            <%
+                                }
+                            %>
+                        </div>
+                    </div>
+        <%
                 }
-            %>
-                </div>
-                <div style="clear: both;"></div>
-                <p class="card-text"><%= x.getFh_intro() %> 
-                </p>
-                <p>Tell.010-0000-0000</p>
-              </div>
-            </div>
-          </div>
-    <!-- 농가명함 끝 -->
-    
-        <div class="right">
-            <h3>인증 정보</h3>
-            <%
-                if (certificationList != null && !certificationList.isEmpty()) {
-                    for (CertificationDTO cert : certificationList) {
-            %>
-                <p>인증 종류: <%= cert.getCert_type() %></p>
-                <p>인증 이미지: <img src="<%= cert.getCert_img() %>" alt="인증 이미지" class="qr-code"></p>
-                <hr>
-            <%
-                    }
-                } else {
-            %>
-                <p>인증 정보를 찾을 수 없습니다.</p>
-            <%
-                }
-            %>
-        </div>
+            } else {
+        %>
+                <h3>농가 정보가 없습니다.</h3>
+        <%
+            }
+        %>
     </div>
-    <%
-        } else {
-    %>
-        <h3>농가 정보가 없습니다.</h3>
-    <%
-        }
-    %>
-
     <div id="productDetails">
         <!-- 여기에 농산품 정보가 표시됩니다. -->
     </div>
