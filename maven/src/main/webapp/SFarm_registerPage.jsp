@@ -12,13 +12,13 @@
             padding: 0;
         }
         body {
-            background-image: url(./img/농장등록이미지.jpg);
+            background-image: url(./img/농가등록페이지최종.jpg);
             background-size: cover;
             background-repeat: no-repeat;
             
         }
         .wrap {
-            width: 60%;
+            width: 40%;
             background: #fff;
             margin: 0 auto;
             margin-top: 200px;

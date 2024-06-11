@@ -29,7 +29,6 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background-image:url(./img/·Î±×ÀÎ8.jpg);
         background-size: cover;
         }
         .int-area{
