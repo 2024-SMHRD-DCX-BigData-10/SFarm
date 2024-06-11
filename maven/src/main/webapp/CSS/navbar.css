@@ -9,10 +9,11 @@ body {
 }
 .nav-container {
     position: fixed;
+    top: 0;
+    left: 0;
     display: flex;
-    height: 70px;
     align-items: center;
-    padding: 5px;
+    padding: 10px;
     background-color: white;
     border: 1px solid #154726;
     width: 100%;
@@ -42,13 +43,44 @@ body {
     color: #123d2e; /* 호버 시 색상 변경 */
     transform: scale(1.1); /* 호버 시 크기 확대 */
 }
-.nav-but {
-    width: 120px;
-    height: 40px;
-    border-radius: 20px;
-    background-color: #154726;
-    color: white;
+.search-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+.search-bar select, .search-bar input[type="search"], .search-bar button {
+    padding: 5px;
+    font-size: 16px;
+    margin-right: 5px;
+}
+.search-bar button {
     border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.search-bar button:hover {
+    background-color: #45a049;
+}
+.nav-join {
+    font-size: 23px;
+    color: rgb(90, 90, 90);
+    font-family: fantasy;
+    margin-right: 20px;
+}
+.nav-but {
+    margin-left: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #154726;
+    border: none;
+    border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
 }

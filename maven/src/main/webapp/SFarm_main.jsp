@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="CSS/navbar.css">
     <style>
         * {
             margin: 0;
@@ -152,15 +153,19 @@
         <div><a href="AllNameCards"><button class="main-button">농가<br>알아보기</button></a></div>
     </div>
     <br><br><br><br>
-    <% if (user_info != null) {
-        FarmhouseDAO f_dao = new FarmhouseDAO();
-        String mb_id = user_info.getMb_id();
-        System.out.println("메인페이지" + mb_id);
+    <%
+         user_info = (MemberDTO) session.getAttribute("user_info");
+        if (user_info != null) {
+            FarmhouseDAO f_dao = new FarmhouseDAO();
+            String mb_id = user_info.getMb_id();
+            System.out.println("메인페이지" + mb_id);
     %>
         <div><a href="S_NameCardCon?mb_id=<%= mb_id %>"><button class="main-button">명함<br> 발급하기</button></a></div>
         <br><br><br><br>
         <div><a href="SFarm_registerPage.jsp"><button class="main-button">농장<br> 등록하기</button></a></div>
-    <% } %>
+    <%
+        }
+    %>
 </div>
 <!-- footer -->
 <footer class="footer">
@@ -169,4 +174,4 @@
     </div>
 </footer>
 </body>
-</html> 
+</html>
