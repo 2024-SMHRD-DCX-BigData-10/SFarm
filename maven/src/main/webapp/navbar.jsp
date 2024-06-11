@@ -69,7 +69,7 @@
     %>
     <nav class="nav-container">
         <div style="flex-grow: 0.05;"></div>
-        <div class="nav-title" style="margin-left:10px;"><a href="#">SFarm</a></div>
+        <div class="nav-title" style="margin-left:10px;"><a href="SFarm_main.jsp">SFarm</a></div>
         <div style="flex-grow: 0.1;"></div>
         <div class="nav-item"><a href="#">웹 소개</a></div>
         <div class="nav-item"><a href="#">지역 명소 추천</a></div>

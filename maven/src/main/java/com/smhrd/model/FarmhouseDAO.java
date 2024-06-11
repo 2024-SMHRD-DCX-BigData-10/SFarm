@@ -21,6 +21,7 @@ public class FarmhouseDAO {
         session.close();
         return fh_dto;
     }
+    
 
     public ArrayList<FarmhouseDTO> getAllFarmhouses() {
         SqlSession session = sqlSessionFactory.openSession(true);

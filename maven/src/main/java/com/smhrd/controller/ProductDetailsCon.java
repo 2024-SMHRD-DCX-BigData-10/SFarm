@@ -13,6 +13,7 @@ public class ProductDetailsCon extends HttpServlet {
 
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
         System.out.println("ProductDetailsCon");
 
         request.setCharacterEncoding("UTF-8");
