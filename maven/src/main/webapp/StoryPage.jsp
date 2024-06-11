@@ -69,7 +69,7 @@
                         <div>
                         
                         <%
-                            }
+                            
                         %>
                         </div>
                         <p class="card-text"><%= x.getFh_intro() %></p>
@@ -95,7 +95,7 @@
                     </div>
         <%
               
-            }else {
+            }}else {
         %>
                 <h3>농가 정보가 없습니다.</h3>
         <%

@@ -79,6 +79,7 @@
         <% if (user_info != null) { %>
             <div class="nav-join"><%= user_info.getMb_name() %>님 환영합니다.</div>
             <a href="S_LogoutCon"><button class="nav-but">로그아웃</button></a>
+            
         <% } else { %>
             <a href="SFarm_JoinPage.jsp"><button class="nav-but">회원 가입</button></a>
             <a href="SFarm_LoginPage.jsp"><button class="nav-but" style="margin-left: 10px;">로그인</button></a>

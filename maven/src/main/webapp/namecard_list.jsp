@@ -66,7 +66,7 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-        .col {
+        .col-md-4 {
             flex: 1 1 30%;
             max-width: 30%;
             box-sizing: border-box;
@@ -149,6 +149,9 @@
                 max-width: 100%;
             }
         }
+        .col-md-4{
+        margin:20px
+        }
     </style>
 </head>
 <body>
@@ -209,7 +212,7 @@
         %>
         <div class="col-md-4">
             <div class="card">
-                <img src="./img/수박포도.jpg" class="card-img-top" alt="농장이미지">
+                <img src="https://www.foodnuri.go.kr/cmmn/file/getImage.do?atchFileId=FILE_000000000008233&fileSn=1" class="card-img-top" alt="농장이미지">
                 <div class="card-body">
                     <h5 class="card-title"><%= currentFarmhouse.getFh_name() %></h5>
                     <div>
@@ -219,7 +222,7 @@
                     <p class="card-text"><%= currentFarmhouse.getFh_intro() %></p>
                     <p>Tell. <%= currentFarmhouse.getFh_owner() %></p>
                     <p>농산물: <%= String.join(", ", agriNamesList) %></p> <!-- 농산물 이름들 표시 -->
-                    <a href="S_NameCardCon?mb_id=<%= currentFarmhouse.getMb_id() %>&fh_name=<%= currentFarmhouse.getFh_name() %>" class="btn">들어가기</a>
+                    <a href="SFarmStoryCon?mb_id=<%= currentFarmhouse.getMb_id() %>&fh_name=<%= currentFarmhouse.getFh_name() %>" class="btn">들어가기</a>
                 </div>
             </div>
         </div>
