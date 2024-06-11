@@ -1,7 +1,10 @@
-<%@page import="com.smhrd.model.CertificationDTO"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="com.smhrd.model.FarmhouseDAO"%>
+<%@page import="com.smhrd.model.CertificationDTO"%>
 <%@page import="com.smhrd.model.FarmhouseDTO"%>
 <%@page import="java.util.List"%>
+<%@page import="com.smhrd.model.MemberDTO"%>
+<%@page import="com.smhrd.model.ProductDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,23 +41,6 @@
             margin: 20px 0;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        function sendProductName(name) {
-            $.ajax({
-                url: 'ProductDetailsCon', // 요청을 처리할 서블릿 경로
-                type: 'POST',
-                data: { productName: name },
-                success: function(response) {
-                    // 응답을 받았을 때의 처리
-                    $('#productDetails').html(response);
-                },
-                error: function(xhr, status, error) {
-                    console.error('AJAX 요청 실패: ' + error);
-                }
-            });
-        }
-    </script>
 </head>
 <body>
 
@@ -118,12 +104,39 @@
 </div>
 
 <div>
-    <% for (String al : agri_list) { %>
-        <button onclick="sendProductName('<%= al %>')"><%= al %></button>
-    <% } %>
+    <form id="productForm" action="ProductDetailsCon" method="post">
+        <input type="hidden" id="productName" name="productName">
+        <% for (String al : agri_list) { %>
+            <button type="submit" onclick="document.getElementById('productName').value='<%= al %>'"><%= al %></button>
+        <% } %>
+    </form>
 </div>
 
-<div id="productDetails"></div>
+<div id="productDetails">
+    <%
+        List<ProductDTO> productList = (List<ProductDTO>) request.getAttribute("productList");
+        if (productList != null) {
+            for (ProductDTO pd : productList) {
+    %>
+                <h2>농산품 상세 정보</h2>
+                <p>농산품 명: <%= pd.getAgri_name() %></p>
+                <p>영양성분: <%= pd.getNutrition_fact() %></p>
+                <p>손질법: <%= pd.getTrimming() %></p>
+                <p>보관법: <%= pd.getKeeping() %></p>
+                <p>효능: <%= pd.getEffect() %></p>
+                <p>구입요령: <%= pd.getPurchase_method() %></p>
+                <p>사진1: <img src="<%= pd.getAgri_img1() %>" alt="사진1"></p>
+                <p>사진2: <img src="<%= pd.getAgri_img2() %>" alt="사진2"></p>
+                <p>사진3: <img src="<%= pd.getAgri_img3() %>" alt="사진3"></p>
+    <%
+            }
+        } else if (request.getParameter("productName") != null) {
+    %>
+            <h3>농산품 정보를 찾을 수 없습니다.</h3>
+    <%
+        }
+    %>
+</div>
 
 <div class="footer">
     <p>농가 스토리텔링 페이지 - 모든 권리 보유</p>
