@@ -15,8 +15,8 @@
         justify-content: center;
     }
     .card {
-        width: 300px; /* 명함의 너비 */
-        height: auto; /* 명함의 높이를 콘텐츠에 맞게 자동 조정 */
+        width: 300px;
+        height: auto;
         margin: 10px;
         border: 1px solid darkgray;
         padding: 10px;
@@ -25,7 +25,7 @@
         background-color: white;
         box-sizing: border-box;
         transition: background-color 0.3s;
-        cursor: pointer; /* 클릭 가능한 영역임을 표시 */
+        cursor: pointer;
     }
     .card:hover {
         background-color: #f0f0f0;
@@ -38,11 +38,11 @@
         margin: 2px 0;
     }
     .qr-code {
-        width: 50px; /* QR 코드의 크기를 줄입니다. */
+        width: 50px;
         height: 50px;
         float: right;
         margin-left: 10px;
-        object-fit: contain; /* 이미지가 주어진 영역에 맞춰지도록 합니다. */
+        object-fit: contain;
     }
     .card ul {
         list-style-type: none;
@@ -57,14 +57,14 @@
         margin-top: 10px;
     }
     .certification img {
-        width: 50px; /* 인증 이미지 크기 */
+        width: 50px;
         height: 50px;
         margin-right: 5px;
     }
 </style>
 <script>
     function moveToPoster(fhName) {
-        window.location.href = "poster.jsp?fh_name=" + encodeURIComponent(fhName);
+        window.location.href = "StoryPage.jsp?fh_name=" + encodeURIComponent(fhName);
     }
 </script>
 </head>
@@ -138,9 +138,6 @@
         <%
             }
         %>
-    </div>
-    <div id="productDetails">
-        <!-- 여기에 농산품 정보가 표시됩니다. -->
     </div>
 </body>
 </html>

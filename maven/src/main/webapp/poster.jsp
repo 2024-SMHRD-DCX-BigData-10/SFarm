@@ -1,5 +1,3 @@
-<%@page import="com.smhrd.model.CertificationDTO"%>
-<%@page import="com.smhrd.model.FarmhouseDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.ProductDAO"%>
 <%@page import="com.smhrd.model.ProductDTO"%>
@@ -117,23 +115,14 @@
       
     <div class="wrap">
 
-        <%
-            List<FarmhouseDTO> farm_name = (List<FarmhouseDTO>) request.getAttribute("farm_name");
-            
-            List<CertificationDTO> certificationList = (List<CertificationDTO>) request.getAttribute("certificationList");
 
-            if (farm_name != null ) {
-                for (int i = 0; i < farm_name.size(); i++) {
-                    FarmhouseDTO x = farm_name.get(i);
-                   
-        %>
       <!-- 농가명함 시작 -->
         <div class="col">
             <div class="card" style=" border-color:black; width: 18rem; float:left; padding: 5px; margin-top: 90px; margin-left: 10px; margin-right: 10px;">
                 
               <img src="./img/수박포도.jpg" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title"><%=x.getFh_name() %></h5>
+                <h5 class="card-title">우천이네 농장</h5>
                 <div>
                   <img class="qr-img" src="./img/qr.png">
                 </div>
@@ -159,7 +148,7 @@
             </div>
             
           </div>
-          <%}} %>
+          
     <!-- 농가명함 끝 -->
      
     <!-- 정보 카드틀 시작 -->
