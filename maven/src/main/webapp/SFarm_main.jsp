@@ -79,6 +79,16 @@
             left: 50px;
             border-radius: 30px;
         }
+        .nav-join {
+        font-size: 23px;
+        color: rgb(90, 90, 90);
+        font-family:fantasy;
+        margin-left: 130px;
+        }
+        .nav-but{
+        margin-left: 50px;
+        margin-right: 50PX;
+        }  
         @media screen and (max-width: 1200px) {
             .nav-title a {
                 font-size: 30px;

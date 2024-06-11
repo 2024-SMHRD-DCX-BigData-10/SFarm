@@ -135,8 +135,7 @@
         .nav-but{
         margin-left: 50px;
         margin-right: 50PX;
-        }
-        
+        }  
         @media (max-width: 1200px) {
             .col {
                 flex: 1 1 45%;
