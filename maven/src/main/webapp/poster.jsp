@@ -111,6 +111,7 @@
 <body>
 <%@ include file="navbar.jsp" %>
 
+<<<<<<< HEAD
 <<<<<<< master
 =======
      <!-- 네비바 -->
@@ -126,6 +127,8 @@
   
     <!-- ---------------------------------------------------------- -->
 >>>>>>> 3aa34a1 0610마무리
+=======
+>>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
       
     <div class="wrap">
 

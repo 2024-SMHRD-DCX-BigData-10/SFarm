@@ -9,13 +9,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Document</title>
+=======
+
+    <title>Document</title>
+
+
+  
+>>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
 
     <style>
         * {
             margin: 0;
             padding: 0;
         }
+<<<<<<< HEAD
         body {
 
             margin: 0px;
@@ -26,6 +35,11 @@
   
 
       
+=======
+        body {
+            margin: 0px;
+			}
+>>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
         .div {
 
             box-sizing: border-box;
@@ -39,6 +53,7 @@
             padding: 5px;
             background-color: white;
             border: 1px solid #154726;
+<<<<<<< HEAD
             width: 100%;
             z-index: 1000;
         }
@@ -72,6 +87,11 @@
         }
         .main-backgronund {
             padding:1px;
+=======
+
+        .main-background {
+            padding: 1px;
+>>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
             width: 100%;
             height: 1000px;
             background-image: url(./img/main-banner.png);
@@ -158,9 +178,28 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <%
         // session에 user_info가 있는지 없는지 확인 
         MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
+=======
+
+<%@ include file="navbar.jsp" %>
+
+<div class="main-background">
+    <div class="main-expainbox">
+        <h4 class="main-title">storytelling</h4>
+        <p class="main-content">건강한 로컬푸드의<br>농가 이야기를 소개합니다.</p>
+        <div><a href="AllNameCards"><button class="main-button">농가<br>알아보기</button></a></div>
+    </div>
+    <br><br><br><br>
+    <%MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
+ 
+    if (user_info != null) {
+        FarmhouseDAO f_dao = new FarmhouseDAO();
+        String mb_id = user_info.getMb_id();
+        System.out.println("메인페이지" + mb_id);
+>>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
     %>
 <div class="wrap" style="display: block;">
     <nav class="nav-container">
@@ -188,6 +227,7 @@
             <div><a href="AllNameCards"><button class="main-button">농가<br>알아보기</button></a></div>
         </div>
         <br><br><br><br>
+<<<<<<< HEAD
         <% if (user_info != null) {
             FarmhouseDAO f_dao = new FarmhouseDAO();
             String mb_id = user_info.getMb_id();
@@ -197,6 +237,17 @@
             <br><br><br><br>
             <div><a href="SFarm_registerPage.jsp"><button class="main-button">농장<br> 등록하기</button></a></div>
         <% } %>
+=======
+        <div><a href="SFarm_registerPage.jsp"><button class="main-button">농장<br> 등록하기</button></a></div>
+    <% } %>
+</div>
+
+
+<!-- footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지">
+>>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
     </div>
     <!-- footer -->
     <footer class="footer">

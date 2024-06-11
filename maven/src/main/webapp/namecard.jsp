@@ -65,6 +65,7 @@
 <<<<<<< master
     function moveToPoster(fhName) {
         window.location.href = "poster.jsp?fh_name=" + encodeURIComponent(fhName);
+<<<<<<< HEAD
 =======
     function showProductDetails(agriName) {
         var xhr = new XMLHttpRequest();
@@ -76,6 +77,8 @@
         };
         xhr.send();
 >>>>>>> 3aa34a1 0610마무리
+=======
+>>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
     }
 </script>
 </head>
