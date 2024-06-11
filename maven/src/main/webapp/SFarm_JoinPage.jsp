@@ -1,208 +1,142 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>join</title>
-    <style>
-    .body{
-        margin: 0px;
-        font-size: 0px;       
-    }
-    .div{
-        box-sizing: border-box;
-    }
-    .navbar-brand{
-        padding: 10px;
-        margin-left: 15px;
-        font-size: 40px;
-        font-family: Georgia, 'Times New Roman', Times, serif;
-        color:cadetblue;
-        text-decoration: none;
-        float: left;   
-    }
-    .login-link{
-        float: left;
-        margin-left: 1700px;
-        padding: 10px;
-    }
-    .login-link a{
-        text-decoration: none;
-        font-size: 20px;
-        font-weight: bold;
-    }
-    div,input,textarea{
-            box-sizing: border-box;
-        }
-        .sign-up_title{
-            text-align: center;
-        }
-
-        .form-background{
-            background-color:honeydew;
-            padding: 30px;
-           
-        }
-        .form-wite{
-            background-image: url(./img/회원가입배너.jpg);
-            border-radius: 15px;
-            margin-left: 580px;
-            background-repeat: no-repeat;
-            background: cover;
-            width: 50%;
-            height: 800px;          
-            font-size: 15px;
-            margin-bottom: 15px;
-
-        }
-        .form-input{
-            width: 60%;
-            height: 50px;
-            padding: 10px;
-            font-size: 20px;
-            border: 1px solid black;
-            border-radius: 10px;
     
-        }
-        .fi{
-            padding: 60px;
-            border-radius:15px;
-            border-color:aqua ;
-        }
-        .w-50{
-            width: 60%; 
-            padding: 10px;
-            font-size: 10px;
-            font-weight: bold;
-            border-radius: 25px;
-            
-        }
-        .btn input{
-            border-radius: 15px;
-            color:steelblue;
-            background-color:ghostwhite;
-            border-color:turquoise;
-            padding: 10px;
-            margin-top: 20px;
-            margin-left: 5px;
-        }
-      
-        .footer{
-        width: 100%;
-        height: 130px;
-        background-color:darkcyan;
-        }
-        .acs-img{
-          width: 200px;
-          position: relative;
-          top: 40px;
-          left: 50px;
-          border-radius: 30px;
-        }
+    <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   
+   <style>
+   
+    body {
+      min-height: 100vh;
 
+      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
+      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
+    }
 
+    .input-form {
+      max-width: 680px;
 
-    </style>
+      margin-top: 80px;
+      padding: 32px;
+
+      background: #fff;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+    }
+    
+  </style>
 
 </head>
 <body>
 
-    <!-- 네비바 -->
-    <nav class="navbar bg-body-tertiary" style="background-color:mintcream;">
-        <div class="container-fluid">
-          <a href="#" class="navbar-brand">SFarm</a>
-            <div class="login-link">
-             Already a Member? <a href="">로그인 하기</a>
+    
+<body>
+  <div class="container">
+    <div class="input-form-backgroud row">
+      <div class="input-form col-md-12 mx-auto">
+        <h4 class="mb-3">회원가입</h4>
+        <form class="validation-form" novalidate>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="mb_name">이름</label>
+              <input type="text" class="form-control" name="mb_name" placeholder="이름을 입력해주세요."  required>
+              <div class="invalid-feedback">
+                이름을 입력해주세요.
+              </div>
             </div>
-        </div>
-    </nav>
+          </div>
 
-      <div style="clear: both;"></div>
-
-
-    <div class="form-background">
-
-            <div class="form-wite">
-                <h2 class="sign-up_title">Please be a member of SFarm</h2>
-                <form form action="S_JoinCon" method="post">
-                    <fieldset class="fi">
-                        <legend  class="w-100" style="text-align: center; font-weight: bold;" >회원가입 </legend>
-                        <div class="w-50">
-                            <p>회원 아이디</p>
-                            <input class="w-50" type="text" name="mb_id" placeholder="아이디를 입력해주세요.">
-                        </div>
-                         <div class="w-50">
-                            
-                            <button type="button" id="btnCheck">아이디 중복 확인</button>
-                        </div>
-                        
-                        <div class="w-50" >
-                            <p>회원 비밀번호</p>
-                            <input class="w-50" type="password" name="mb_pw" placeholder="비밀번호를 입력해주세요." >
-                        </div>
-                        <div class="w-50">
-                            <p>회원 이름</p>
-                            <input class="w-50" type="text" name="mb_name" placeholder="이름을 입력해주세요.">
-                        </div>
-                        <div class="w-50" >
-                            <p>회원 연락처</p>
-                            <input class="w-50" type="text" name="mb_phone" placeholder="번호를 입력해주세요." >
-                        </div>
-                        <div class="w-50">
-                            <p>회원 구분</p>
-                            <input class="w-50" type="text" name="mb_type" placeholder="농가회원 or 소비자">
-                        </div>
-                        <div class="w-50">
-                            <p>농가 정보</p>
-                            <input class="form-input" name="farm_info" type="text" placeholder="농가정보를 입력해주세요.">
-                        </div>
-                        <div class="btn">
-                            <input type="submit" value="회원가입">
-                        </div>
-                    </fieldset>
-                </form>
+          <div class="mb-3">
+            <label for="mb_id">회원 아이디</label>
+            <input type="text" class="form-control" name="mb_id" placeholder="아이디를 입력해주세요." required>
+            <div class="invalid-feedback">
+              아이디를 입력해주세요.
             </div>
+          </div>
 
-            
+          <div class="mb-3">
+            <label for="mb_pw">비밀번호</label>
+            <input type="password" class="form-control" name="mb_pw" placeholder=" 비밀번호를 입력해주세요." required>
+            <div class="invalid-feedback">
+              비밀번호를 입력해주세요.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="mb_phone">회원 연락처<span class="text-muted">&nbsp;(필수 아님)</span></label>
+            <input type="text" class="form-control"  name="mb_phone" placeholder="연락처를 입력해주세요.">
+          </div>
+
+          <div class="mb-3">
+            <label for="farm_info">농가 정보</label>
+            <input type="text" class="form-control" name="farm_info" placeholder=" 농가정보를 입력해주세요." required>
+            <div class="invalid-feedback">
+              농가정보를 입력해주세요.
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8 mb-3">
+              <label for="root">회원 구분</label>
+              <select class="custom-select d-block w-100" id="root">
+                <option value=""></option>
+                <option>농가회원</option>
+                <option>소비자</option>
+              </select>
+              <div class="invalid-feedback">
+                회원구분을 선택해주세요.
+              </div>
+            </div>
+          </div>
+          <hr class="mb-4">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="aggrement" required>
+            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+          </div>
+          <div class="mb-4"></div>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+        </form>
+      </div>
     </div>
+    <footer class="my-3 text-center text-small">
+      <p class="mb-1">&copy; 2024 SFarm</p>
+    </footer>
+  </div>
 
 
-     <!-- footer -->
-     <footer class="footer">
-        <div class="footer-container">
-          <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지" >
-        </div>
-      </footer>
-      <script>$('#btnCheck').on('click', function() {
-			//1. 사용자가 입력한 id를 가져오기
-			// name='email'인 input태그 값 가져옴, 인덱스 1번
+  <script>
+    window.addEventListener('load', () => {
+      const forms = document.getElementsByClassName('validation-form');
 
-			var mb_id = $('input[name=mb_id]').eq('0').val();
-			console.log(mb_id);
+      Array.prototype.filter.call(forms, (form) => {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
 
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  </script>
+    
 
-			$.ajax({
-				url : "idCheckCon", /* 요청할주소 */
-				type : "get", /* 방식 */
-				data : {
-					mb_id : mb_id
-				},
-				dataType : "text",
-				success : function(result) {
-					console.log(result)
-					alert(result)
-					$('#idCheck').html(result)
-				},
-				error : function(e) {
-					console.log(e)
-
-				}
-
-			});
-
-		});</script>
 
 </body>
 </html>
