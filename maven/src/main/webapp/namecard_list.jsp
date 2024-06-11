@@ -130,47 +130,21 @@
                 max-width: 100%;
             }
         }
-            <style>
-        .search-bar {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-        }
-        .search-bar input[type="search"], .search-bar select {
-            padding: 5px;
-            margin-right: 5px;
-        }
-        .search-bar button {
-            padding: 5px 10px;
-        }
-    </style>
     </style>
 </head>
 <body>
   <!-- 네비바 -->
-  <%@ include file="navbar.jsp" %>
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var navContainer = document.querySelector('.nav-container');
-
-            var searchDiv = document.createElement('div');
-            searchDiv.className = 'search-container';
-
-            searchDiv.innerHTML = `
-                <form class="search-bar" method="get" action="namecard_list.jsp">
-                    <select name="filterType">
-                        <option value="fh_name">농장명</option>
-                        <option value="agri_name">품목명</option>
-                    </select>
-                    <input type="search" name="searchKeyword" placeholder="검색어를 입력해주세요." aria-label="Search">
-                    <button type="submit">Search</button>
-                </form>
-            `;
-
-            navContainer.appendChild(searchDiv);
-        });
-    </script>
-
+  <nav class="navbar">
+    <a href="SFarm_main.jsp" class="navbar-brand">SFarm</a>
+    <form class="search-bar" method="get" action="namecard_list.jsp">
+        <select name="filterType">
+            <option value="fh_name">농장명</option>
+            <option value="agri_name">품목명</option>
+        </select>
+        <input type="search" name="searchKeyword" placeholder="검색어를 입력해주세요." aria-label="Search">
+        <button type="submit">Search</button>
+    </form>
+  </nav>
 
   <div class="wrap">
     <div class="container">

@@ -25,7 +25,6 @@
         background-color: white;
         box-sizing: border-box;
         transition: background-color 0.3s;
-        cursor: pointer; /* 클릭 가능한 영역임을 표시 */
     }
     .card:hover {
         background-color: #f0f0f0;
@@ -61,40 +60,26 @@
         height: 50px;
         margin-right: 5px;
     }
-            .navbar-brand{
-          padding: 10px;
-          margin-left: 15px;
-          font-size: 40px;
-          font-family: Georgia, 'Times New Roman', Times, serif;
-          color:cadetblue;
-        }
-        .nav-img img{
-            width: 50px;
-            
-        }
-        .cope-text{
-            font-size: 11px;
-            color:darkslategray;
-            font-weight: bolder;
-            padding: 5px;
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            text-align: left;
-            position: relative;
-            right: 12px;
-        }
-        .nav-img{
-            margin: 15px;
-            width: 76px;  
 </style>
 <script>
+<<<<<<< master
     function moveToPoster(fhName) {
-        window.location.href = "농가상세포스터.html?fh_name=" + encodeURIComponent(fhName);
+        window.location.href = "poster.jsp?fh_name=" + encodeURIComponent(fhName);
+=======
+    function showProductDetails(agriName) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "ProductDetailsCon?agri_name=" + encodeURIComponent(agriName), true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                document.getElementById("productDetails").innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send();
+>>>>>>> 3aa34a1 0610마무리
     }
 </script>
 </head>
 <body>
-     <!-- 네비바 -->
-<%@ include file="navbar.jsp" %>
     <div class="container">
         <%
             List<FarmhouseDTO> farm_name = (List<FarmhouseDTO>) request.getAttribute("farm_name");
@@ -106,7 +91,7 @@
                     FarmhouseDTO x = farm_name.get(i);
                     String qrCodePath = qrPaths.get(i);
         %>
-                    <div class="card" onclick="moveToPoster('<%= x.getFh_name() %>')">
+                    <div class="card">
                         <h5 class="card-title"><%= x.getFh_name() %></h5>
                         <p>농장주: <%= x.getFh_owner() %></p>
                         <ul>
@@ -115,7 +100,7 @@
                                 if (dto.getFh_name().equals(x.getFh_name())) {
                                     String agri_name = dto.getAgri_name();
                         %>
-                                    <li><%= agri_name %></li>
+                                    <li><a href="javascript:void(0)" onclick="showProductDetails('<%= agri_name %>')"><%= agri_name %></a></li>
                         <%
                                 }
                             }
