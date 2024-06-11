@@ -161,7 +161,9 @@
         <div><a href="AllNameCards"><button class="main-button">농가<br>알아보기</button></a></div>
     </div>
     <br><br><br><br>
-    <% if (user_info != null) {
+    <%MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
+ 
+    if (user_info != null) {
         FarmhouseDAO f_dao = new FarmhouseDAO();
         String mb_id = user_info.getMb_id();
         System.out.println("메인페이지" + mb_id);
