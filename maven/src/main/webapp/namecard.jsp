@@ -9,8 +9,20 @@
 <meta charset="UTF-8">
 <title>농가 및 농산품 정보</title>
 <style>
+	 *{
+         margin: 0;
+         padding: 0;
+      }
+    	
+    .body {
+         margin: 0px;
+         box-sizing: border-box;
+         font-family: Arial, sans-serif;
+     }
     .container {
+    	padding: 1px;
         display: flex;
+        padding-top:120px;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -61,6 +73,16 @@
         height: 50px;
         margin-right: 5px;
     }
+     .nav-join {
+        font-size: 23px;
+        color: rgb(90, 90, 90);
+        font-family:fantasy;
+        margin-left: 130px;
+        }
+        .nav-but{
+        margin-left: 50px;
+        margin-right: 50PX;
+        }
 </style>
 <script>
     function moveToPoster(fhName) {
