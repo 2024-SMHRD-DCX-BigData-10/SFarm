@@ -9,15 +9,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Document</title>
+
+
+  
+
     <style>
         * {
             margin: 0;
             padding: 0;
         }
         body {
-            margin: 0;
+            margin: 0px;
+			}
+        .div {
+
+            box-sizing: border-box;
+            border: none;
         }
+        .nav-container {
+            position: fixed;
+            display: flex;
+            height: 70px;
+            align-items: center;
+            padding: 5px;
+            background-color: white;
+            border: 1px solid #154726;
+
         .main-background {
             padding: 1px;
             width: 100%;
@@ -152,6 +171,8 @@
         <div><a href="SFarm_registerPage.jsp"><button class="main-button">농장<br> 등록하기</button></a></div>
     <% } %>
 </div>
+
+
 <!-- footer -->
 <footer class="footer">
     <div class="footer-container">
