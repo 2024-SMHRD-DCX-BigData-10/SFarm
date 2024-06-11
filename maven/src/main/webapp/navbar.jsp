@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <link rel="stylesheet" type="text/css" href="CSS/navbar.css">
     <meta charset="UTF-8">
 </head>
 <body>
@@ -14,7 +15,7 @@
         <div class="nav-item"><a href="#">웹 소개</a></div>
         <div class="nav-item"><a href="#">지역 명소 추천</a></div>
         <div class="nav-item"><a href="#">고객 지원</a></div>
-        <div class="nav-item"><a href="AllNameCards">농가 목록</a></div>
+        <div class="nav-item"><a href="namecard_list.jsp">농가 목록</a></div>
         <% if (request.getAttribute("showSearchBar") != null && (boolean)request.getAttribute("showSearchBar")) { %>
             <div class="search-container">
                 <form class="search-bar" method="get" action="namecard_list.jsp">
@@ -30,10 +31,10 @@
         <div style="flex-grow: 1;"></div>
         <% if (user_info != null) { %>
             <div class="nav-join"><%= user_info.getMb_name() %>님 환영합니다.</div>
-            <a href="S_LogoutCon"><button class="nav-but">로그아웃</button></a>
+            <a href="S_LogoutCon" class="logout-btn"><button class="nav-but">로그아웃</button></a>
         <% } else { %>
-            <a href="SFarm_JoinPage.jsp"><button class="nav-but">회원 가입</button></a>
-            <a href="SFarm_LoginPage.jsp"><button class="nav-but" style="margin-left: 10px;">로그인</button></a>
+            <button class="nav-but"><a href="SFarm_JoinPage.jsp" style="color:white; text-decoration:none;">회원 가입</a></button>
+            <button class="nav-but" style="margin-left: 10px;"><a href="SFarm_LoginPage.jsp" style="color:white; text-decoration:none;">로그인</a></button>
         <% } %>
     </nav>
 </body>

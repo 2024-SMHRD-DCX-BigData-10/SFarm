@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.smhrd.model.FarmhouseDAO;
 import com.smhrd.model.FarmhouseDTO;
+import com.smhrd.model.ProductDAO;
+import com.smhrd.model.ProductDTO;
+import java.util.List;
 
 @WebServlet("/SFarmStoryCon")
 public class SFarmStoryCon extends HttpServlet {
@@ -25,8 +28,20 @@ public class SFarmStoryCon extends HttpServlet {
         String fh_name = request.getParameter("fh_name");
         FarmhouseDAO farmdao = new FarmhouseDAO();
         ArrayList<FarmhouseDTO> farmDTO = farmdao.FarmhouseDTO(fh_name);
+
+        ProductDAO productDAO = new ProductDAO();
+        List<ProductDTO> productList = null;
+
+        // Check if a product name is provided for product details
+        String productName = request.getParameter("productName");
+        if (productName != null && !productName.isEmpty()) {
+            productList = productDAO.getProductsByFarmhouse(productName);
+        }
+
         request.setAttribute("farmDTO", farmDTO);
-        RequestDispatcher rd = request.getRequestDispatcher("/StroyPage.jsp");
+        request.setAttribute("productList", productList);
+
+        RequestDispatcher rd = request.getRequestDispatcher("/StoryPage.jsp");
         rd.forward(request, response);
     }
 }

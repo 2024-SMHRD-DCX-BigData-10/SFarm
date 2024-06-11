@@ -83,6 +83,11 @@
             color: var(--basis-font-color);
             text-decoration: none;
         }
+        .login-form{
+        	width : 100px;
+        	height : 500px;
+        	box-sizing: border-box;
+        	}
         
     </style>
 </head>

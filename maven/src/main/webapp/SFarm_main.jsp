@@ -1,15 +1,11 @@
-<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
-<%@page import="com.smhrd.model.FarmhouseDTO"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="com.smhrd.model.FarmhouseDAO"%>
-<%@page import="com.smhrd.model.MemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SFarm 메인 페이지</title>
     <link rel="stylesheet" type="text/css" href="CSS/navbar.css">
     <style>
         * {
@@ -20,6 +16,7 @@
             margin: 0;
         }
         .main-background {
+            position: relative;
             padding: 1px;
             width: 100%;
             height: 1000px;
@@ -39,11 +36,12 @@
             text-align: left;
         }
         .main-content {
+        	border : 0px;
             color: white;
             font-size: 50px;
             font-weight: bold;
             font-style: italic;
-            margin-bottom: 25px;
+            
             text-align: left;
             margin-left: 30px;
         }
@@ -53,7 +51,6 @@
             background: white;
             border-radius: 30px;
             position: absolute;
-            margin: auto;
             padding: 7px;
             width: 130px;
             height: 70px;
@@ -61,7 +58,6 @@
             color: white;
             border-color: aliceblue;
             cursor: pointer;
-            margin-left: 30px;
             transition: background-color 0.3s, transform 0.3s;
         }
         .main-button:hover {
@@ -81,15 +77,31 @@
             border-radius: 30px;
         }
         .nav-join {
-        font-size: 23px;
-        color: rgb(90, 90, 90);
-        font-family:fantasy;
-        margin-left: 130px;
+            font-size: 23px;
+            color: rgb(90, 90, 90);
+            font-family: fantasy;
+            margin-left: 130px;
         }
-        .nav-but{
-        margin-left: 50px;
-        margin-right: 50PX;
-        }  
+        .nav-but {
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+        .content-area {
+        	border:0px;
+            position: absolute;
+            top: 100px;
+            right: 30px;
+            width: 50%; /* 폭을 넓혔습니다. */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0); /* 초기 상태에서 배경 투명 */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+        }
+        .loaded-content {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
         @media screen and (max-width: 1200px) {
             .nav-title a {
                 font-size: 30px;
@@ -141,6 +153,38 @@
             }
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 네비게이션 링크 클릭 이벤트 처리
+
+
+            // 회원가입 및 로그인 버튼 클릭 이벤트 처리
+            $('.nav-but a').click(function(event) {
+                event.preventDefault(); // 링크 기본 동작 방지
+                var href = $(this).attr('href'); // 링크의 href 속성 가져오기
+
+                // AJAX 요청 보내기
+                $.ajax({
+                    url: href,
+                    method: 'GET',
+                    success: function(data) {
+                        $('#main-content').html(data).addClass('loaded-content'); // 응답 데이터를 메인 컨텐츠 영역에 삽입하고 스타일 적용
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX 요청 실패: ' + error);
+                    }
+                });
+            });
+
+            // 로그아웃 버튼 클릭 이벤트 처리
+            $('.logout-btn').click(function(event) {
+                event.preventDefault(); // 링크 기본 동작 방지
+                var href = $(this).attr('href'); // 링크의 href 속성 가져오기
+                window.location.href = href; // 로그아웃 링크를 실제로 이동
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -150,7 +194,7 @@
     <div class="main-expainbox">
         <h4 class="main-title">storytelling</h4>
         <p class="main-content">건강한 로컬푸드의<br>농가 이야기를 소개합니다.</p>
-        <div><a href="AllNameCards"><button class="main-button">농가<br>알아보기</button></a></div>
+        <div><a href="namecard_list.jsp"><button class="main-button">농가<br>알아보기</button></a></div>
     </div>
     <br><br><br><br>
     <%
@@ -167,6 +211,12 @@
         }
     %>
 </div>
+
+<!-- 오른쪽 부분에 배경 이미지 위로 내용 삽입 -->
+<div class="content-area" id="main-content">
+    <!-- 여기에 AJAX 요청으로 로드된 내용이 삽입됩니다. -->
+</div>
+
 <!-- footer -->
 <footer class="footer">
     <div class="footer-container">

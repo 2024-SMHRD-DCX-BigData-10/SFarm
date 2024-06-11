@@ -12,7 +12,7 @@
 		select * from tb_member where mb_id=#{mb_id} and mb_pw=#{mb_pw}
 	</select>
 <select id="idCheck" parameterType="String"  resultType="String">
-		select email from tb_member where mb_id=#{mb_id}
+		select mb_id from tb_member where mb_id=#{mb_id}
 	</select>
 
 

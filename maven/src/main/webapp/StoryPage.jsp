@@ -17,28 +17,103 @@
             margin: 0;
             padding-top: 80px; /* 네비게이션 바 높이 만큼의 패딩 추가 */
             font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            background-image: url('path/to/your/background/image.jpg');
+            background-size: cover;
+            background-attachment: fixed;
         }
         .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
         }
-        .card {
-            width: 300px;
+        .story-card {
+            background: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .story-card h2, .story-card h3, .story-card p {
+            margin-bottom: 15px;
+        }
+        .story-card img {
+            max-width: 100%;
             height: auto;
-            margin: 20px;
-            border: 1px solid darkgray;
-            padding: 10px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 10px 0;
             border-radius: 5px;
-            background-color: white;
-            box-sizing: border-box;
         }
-        .section-title {
-            width: 100%;
+        .farm-info, .product-info {
+            margin-bottom: 40px;
+        }
+        .certification-info {
+            margin-top: 20px;
+        }
+        .certification-info img {
+            max-width: 50px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .footer {
+            padding: 20px;
+            background: #333;
+            color: #fff;
             text-align: center;
-            font-size: 24px;
-            margin: 20px 0;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .link-button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background: none;
+            color: #007BFF;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .link-button:hover {
+            color: #0056b3;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+            .story-card {
+                padding: 15px;
+            }
+            .link-button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding-top: 50px;
+            }
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+            .story-card {
+                padding: 10px;
+            }
+            .link-button {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
         }
     </style>
 </head>
@@ -47,95 +122,75 @@
 <%@ include file="navbar.jsp" %>
 
 <div class="container">
-    <%
-        ArrayList<FarmhouseDTO> farmDTO = (ArrayList<FarmhouseDTO>) request.getAttribute("farmDTO");
-        List<CertificationDTO> certificationList = (List<CertificationDTO>) request.getAttribute("certificationList");
-        ArrayList<String> agri_list = new ArrayList<String>();
-        if (farmDTO != null) {
-            FarmhouseDTO x = farmDTO.get(0); // 첫 번째 농가 정보를 가져옵니다.
-    %>
-            <div class="card">
-                <h5 class="card-title"><%= x.getFh_name() %></h5>
-                <p>농장주: <%= x.getFh_owner() %></p>
-                <ul>
+    <% if (request.getAttribute("farmDTO") != null) { %>
+        <div class="story-card farm-info">
+            <%
+                ArrayList<FarmhouseDTO> farmDTO = (ArrayList<FarmhouseDTO>) request.getAttribute("farmDTO");
+                FarmhouseDTO x = farmDTO.get(0); // 첫 번째 농가 정보를 가져옵니다.
+            %>
+            <h2><%= x.getFh_name() %></h2>
+            <p>농장주 <strong><%= x.getFh_owner() %></strong>님은 항상 자연을 생각하며 농사를 지으십니다. <strong><%= x.getFh_name() %></strong> 농장은 <%= x.getFh_intro() %>.</p>
+            <h3>주요 농산물</h3>
+            <p>저희 농장에서 재배하는 농산물은 다음과 같습니다:</p>
+            <ul>
+                <% for (FarmhouseDTO dto : farmDTO) { %>
+                    <li><%= dto.getAgri_name() %></li>
+                <% } %>
+            </ul>
+            <div class="certification-info">
+                <h3>인증 정보</h3>
                 <%
-                    for (FarmhouseDTO dto : farmDTO) {
-                        if (dto.getFh_name().equals(x.getFh_name())) {
-                            String agri_name = dto.getAgri_name();
-                            agri_list.add(agri_name);
+                    List<CertificationDTO> certificationList = (List<CertificationDTO>) request.getAttribute("certificationList");
+                    if (certificationList != null && !certificationList.isEmpty()) {
+                        for (CertificationDTO cert : certificationList) {
+                            if (cert.getFh_name().equals(x.getFh_name())) {
                 %>
-                            <li><%= agri_name %></li>
-                <%
-                        }
-                    }
-                %>
-                </ul>
-                <p class="card-text"><%= x.getFh_intro() %></p>
-                <div class="certification">
-                    <h5>인증 정보</h5>
-                    <%
-                        boolean certFound = false;
-                        if (certificationList != null && !certificationList.isEmpty()) {
-                            for (CertificationDTO cert : certificationList) {
-                                if (cert.getFh_name().equals(x.getFh_name())) {
-                                    certFound = true;
-                    %>
-                                    <p>인증 종류: <%= cert.getCert_type() %></p>
-                                    <img src="<%= cert.getCert_img() %>" alt="인증 이미지">
-                    <%
-                                }
+                                <p>우리 농장은 <strong><%= cert.getCert_type() %></strong> 인증을 받았습니다. 이는 저희가 제공하는 모든 농산물이 최고 품질임을 보장합니다.</p>
+                                <img src="<%= cert.getCert_img() %>" alt="인증 이미지">
+                <% 
                             }
                         }
-                        if (!certFound) {
-                    %>
-                            <p>인증 정보를 찾을 수 없습니다.</p>
-                    <%
-                        }
-                    %>
-                </div>
+                    } else {
+                %>
+                        <p>현재 인증 정보가 없습니다.</p>
+                <% } %>
             </div>
-    <%
-        } else {
-    %>
-            <h3>농가 정보가 없습니다.</h3>
-    <%
-        }
-    %>
-</div>
+        </div>
+    <% } else { %>
+        <h3>농가 정보가 없습니다.</h3>
+    <% } %>
 
-<div>
-    <form id="productForm" action="ProductDetailsCon" method="post">
-        <input type="hidden" id="productName" name="productName">
-        <% for (String al : agri_list) { %>
-            <button type="submit" onclick="document.getElementById('productName').value='<%= al %>'"><%= al %></button>
-        <% } %>
-    </form>
-</div>
+    <div class="button-container">
+        <form id="productForm" action="ProductDetailsCon" method="post">
+            <input type="hidden" id="productName" name="productName">
+            <input type="hidden" id="fh_name" name="fh_name" value="<%= request.getParameter("fh_name") %>">
+            <% if (request.getAttribute("farmDTO") != null) {
+                ArrayList<FarmhouseDTO> farmDTO = (ArrayList<FarmhouseDTO>) request.getAttribute("farmDTO");
+                for (FarmhouseDTO dto : farmDTO) { %>
+                    <button type="submit" class="link-button" onclick="document.getElementById('productName').value='<%= dto.getAgri_name() %>'">우리 농가의 <%= dto.getAgri_name() %> 더 알아보기</button>
+            <% }} %>
+        </form>
+    </div>
 
-<div id="productDetails">
-    <%
-        List<ProductDTO> productList = (List<ProductDTO>) request.getAttribute("productList");
-        if (productList != null) {
-            for (ProductDTO pd : productList) {
-    %>
-                <h2>농산품 상세 정보</h2>
-                <p>농산품 명: <%= pd.getAgri_name() %></p>
-                <p>영양성분: <%= pd.getNutrition_fact() %></p>
-                <p>손질법: <%= pd.getTrimming() %></p>
-                <p>보관법: <%= pd.getKeeping() %></p>
-                <p>효능: <%= pd.getEffect() %></p>
-                <p>구입요령: <%= pd.getPurchase_method() %></p>
-                <p>사진1: <img src="<%= pd.getAgri_img1() %>" alt="사진1"></p>
-                <p>사진2: <img src="<%= pd.getAgri_img2() %>" alt="사진2"></p>
-                <p>사진3: <img src="<%= pd.getAgri_img3() %>" alt="사진3"></p>
-    <%
-            }
-        } else if (request.getParameter("productName") != null) {
-    %>
-            <h3>농산품 정보를 찾을 수 없습니다.</h3>
-    <%
-        }
-    %>
+    <% if (request.getAttribute("productList") != null) { %>
+        <div class="story-card product-info">
+            <h2>농산품 소개</h2>
+            <%
+                List<ProductDTO> productList = (List<ProductDTO>) request.getAttribute("productList");
+                for (ProductDTO pd : productList) {
+            %>
+                <h3><%= pd.getAgri_name() %></h3>
+                <p><%= pd.getAgri_name() %>는 <%= pd.getNutrition_fact() %>를 함유하고 있어 건강에 매우 유익합니다. <%= pd.getTrimming() %> 방법으로 손질하면, <%= pd.getKeeping() %> 방법으로 오랫동안 보관할 수 있습니다. <%= pd.getEffect() %>와 같은 효능이 있으며, <%= pd.getPurchase_method() %> 방법으로 구입하시면 좋습니다.</p>
+                <div>
+                    <img src="<%= pd.getAgri_img1() %>" alt="<%= pd.getAgri_name() %> 이미지1">
+                    <img src="<%= pd.getAgri_img2() %>" alt="<%= pd.getAgri_name() %> 이미지2">
+                    <img src="<%= pd.getAgri_img3() %>" alt="<%= pd.getAgri_name() %> 이미지3">
+                </div>
+            <% } %>
+        </div>
+    <% } else if (request.getParameter("productName") != null) { %>
+        <h3>농산품 정보를 찾을 수 없습니다.</h3>
+    <% } %>
 </div>
 
 <div class="footer">
