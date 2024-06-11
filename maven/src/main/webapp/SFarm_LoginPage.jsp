@@ -20,7 +20,7 @@
             font-size:2rem;
             font-family:'impact';
             color:#154726;
-            padding-bottom: 20px;
+            padding-bottom: 25px;
         }
         
         .longin-form{
@@ -29,7 +29,7 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background-image:url(./img/로그인배경.jpg);
+        background-image:url(./img/로그인8.jpg);
         background-size: cover;
         }
         .int-area{
@@ -43,7 +43,7 @@
             border: none;
             border-bottom: 1px solid #999;
             font-size: 1.2rem;
-            color: white;
+            color:black;
             outline: none;
         }
         .int-area label{
@@ -57,12 +57,12 @@
         .int-area input:focus + label{
             top: 0;
             font-size: 1rem;
-            color: #154726;
+            color: var(--basis-font-color);
         }
         .int-area input:valid + label{
             top: 0;
             font-size: 1rem;
-            color: #154726;
+           	color: var(--basis-font-color);
         }
         .btn-area {
             margin-top: 30px;
@@ -70,7 +70,7 @@
         .btn-area button{
             width: 100%;
             height: 50px;
-            background-color: cornflowerblue;
+            background-color: #154726;
             color: white;
             font-size: 1.5rem;
             border-radius: 25px;
