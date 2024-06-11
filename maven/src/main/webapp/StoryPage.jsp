@@ -1,9 +1,7 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.smhrd.model.FarmhouseDAO"%>
 <%@page import="com.smhrd.model.CertificationDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.smhrd.model.FarmhouseDTO"%>
 <%@page import="java.util.List"%>
-<%@page import="com.smhrd.model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -43,17 +41,18 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function sendProductName(name) {
-        	$.ajax({
-        	    url: 'ProductDetailsCon', // 서블릿 경로 확인
-        	    type: 'POST',
-        	    data: { productName: name },
-        	    success: function(response) {
-        	        $('#productDetails').html(response);
-        	    },
-        	    error: function(xhr, status, error) {
-        	        console.error('AJAX 요청 실패: ' + error);
-        	    }
-        	});
+            $.ajax({
+                url: 'ProductDetailsCon', // 요청을 처리할 서블릿 경로
+                type: 'POST',
+                data: { productName: name },
+                success: function(response) {
+                    // 응답을 받았을 때의 처리
+                    $('#productDetails').html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX 요청 실패: ' + error);
+                }
+            });
         }
     </script>
 </head>
