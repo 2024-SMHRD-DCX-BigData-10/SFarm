@@ -92,7 +92,7 @@
             width: 200px;
             border-radius: 30px;
         }
-<<<<<<< HEAD
+
         .nav-join {
         font-size: 23px;
         color: rgb(90, 90, 90);
@@ -103,8 +103,7 @@
         margin-left: 50px;
         margin-right: 50PX;
         }  
-=======
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
+
         @media (max-width: 1200px) {
             .col-md-4 {
                 flex: 1 1 45%;
