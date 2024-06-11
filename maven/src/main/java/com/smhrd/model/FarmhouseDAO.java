@@ -22,7 +22,12 @@ public class FarmhouseDAO {
         return fh_dto;
     }
     
-
+    public ArrayList<FarmhouseDTO> FarmhouseDTO(String fh_name) {
+        SqlSession session = sqlSessionFactory.openSession(true);
+        ArrayList<FarmhouseDTO> fh_dto = (ArrayList) session.selectList("FarmhouseDTO", fh_name);
+        session.close();
+        return fh_dto;
+    }
     public ArrayList<FarmhouseDTO> getAllFarmhouses() {
         SqlSession session = sqlSessionFactory.openSession(true);
         ArrayList<FarmhouseDTO> allFarmhouses = (ArrayList) session.selectList("getAllFarmhouses");

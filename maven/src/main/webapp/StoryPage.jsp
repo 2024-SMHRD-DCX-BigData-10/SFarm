@@ -40,28 +40,26 @@
 <body>
 
 <%@ include file="navbar.jsp" %>
+<%
+        ArrayList<FarmhouseDTO>farmDTO = new ArrayList<>();
+		farmDTO =  (ArrayList<FarmhouseDTO>)request.getAttribute("farmDTO"); 
+		
+           List<CertificationDTO> certificationList = (List<CertificationDTO>) request.getAttribute("certificationList");
 
-<div class="container">
-        <%
-            List<FarmhouseDTO> farm_name = (List<FarmhouseDTO>) request.getAttribute("fh_name");
-           
-            List<CertificationDTO> certificationList = (List<CertificationDTO>) request.getAttribute("certificationList");
-			ArrayList<String> agri_list = new ArrayList<>();
-            if (farm_name != null ) {
-                for (int i = 0; i < farm_name.size(); i++) {
-                    FarmhouseDTO x = farm_name.get(i);
-                   
+            if (farmDTO != null ) {
+                for (int i = 0; i < farmDTO.size(); i++) {
+                    FarmhouseDTO x = farmDTO.get(i);
+                    
         %>
                     <div class="card" onclick="moveToPoster('<%= x.getFh_name() %>')">
                         <h5 class="card-title"><%= x.getFh_name() %></h5>
                         <p>농장주: <%= x.getFh_owner() %></p>
                         <ul>
                         <%
-                            for (FarmhouseDTO dto : farm_name) {
+                            for (FarmhouseDTO dto : farmDTO) {
                                 if (dto.getFh_name().equals(x.getFh_name())) {
                                     String agri_name = dto.getAgri_name();
-                                    agri_list.add(agri_name);
-                        %>			
+                        %>
                                     <li><%= agri_name %></li>
                         <%
                                 }
@@ -69,14 +67,7 @@
                         %>
                         </ul>
                         <div>
-                        <%
-                            if (qrCodePath != null) {
-                        %>
-                                <img src="<%= request.getContextPath() + qrCodePath %>" alt="QR Code" class="qr-code">
-                        <%
-                            } else {
-                        %>
-                                <h3>QR 없음</h3>
+                        
                         <%
                             }
                         %>
@@ -103,55 +94,20 @@
                         </div>
                     </div>
         <%
-                }
-            } else {
+              
+            }else {
         %>
                 <h3>농가 정보가 없습니다.</h3>
         <%
             }
         %>
     </div>
+ 	
+ 
+ 
+ 
 
-    <!-- 농산물 정보 섹션 -->
-    <div class="section-title">농산물 정보</div>
-    <%
-        if (!agri_list.isEmpty()) {
-            ProductDAO dao = new ProductDAO();
-            List<ProductDTO> productList = dao.getProductsByFarmhouse(agri_list.get(0));
-            if (productList != null && !productList.isEmpty()) {
-                for (ProductDTO pd : productList) {
-    %>
-    <div class="card">
-        <h2>농산품 상세 정보</h2>
-        <p>농산품 명: <%= pd.getAgri_name() %></p>
-        <p>영양성분: <%= pd.getNutrition_fact() %></p>
-        <p>손질법: <%= pd.getTrimming() %></p>
-        <p>보관법: <%= pd.getKeeping() %></p>
-        <p>효능: <%= pd.getEffect() %></p>
-        <p>구입요령: <%= pd.getPurchase_method() %></p>
-        <p>사진1: <img src="<%= pd.getAgri_img1() %>" alt="사진1"></p>
-        <p>사진2: <img src="<%= pd.getAgri_img2() %>" alt="사진2"></p>
-        <p>사진3: <img src="<%= pd.getAgri_img3() %>" alt="사진3"></p>
-    </div>
-    <%
-                }
-            } else {
-    %>
-                <h3>농산품 정보를 찾을 수 없습니다.</h3>
-    <%
-            }
-        } else {
-    %>
-        <h3>농산물 목록이 비어 있습니다.</h3>
-    <%
-        }
-    %>
-
-</div>
-
-<div class="footer">
-    <p>농가 스토리텔링 페이지 - 모든 권리 보유</p>
-</div>
-
+<div class="container">
+        
 </body>
 </html>

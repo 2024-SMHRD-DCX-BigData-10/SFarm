@@ -15,6 +15,10 @@
 	<select id="getFarmhouse" parameterType="String" resultType="FarmhouseDTO">
 		select * from tb_farmhouse where mb_id=#{mb_id, jdbcType=VARCHAR} order by fh_name
 	</select>
+	
+	<select id="FarmhouseDTO" parameterType="String" resultType="FarmhouseDTO">
+		select * from tb_farmhouse where fh_name=#{fh_name}
+		</select>
 	<select id="getAllFarmhouses" resultType="FarmhouseDTO">
         SELECT * FROM tb_farmhouse ORDER BY fh_name
     </select>

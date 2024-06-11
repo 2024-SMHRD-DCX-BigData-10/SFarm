@@ -64,7 +64,7 @@
 </style>
 <script>
     function moveToPoster(fhName) {
-        window.location.href = "StoryPage.jsp?fh_name=" + encodeURIComponent(fhName);
+        window.location.href = "StoryCon?fh_name=" + encodeURIComponent(fhName);
     }
 </script>
 </head>
