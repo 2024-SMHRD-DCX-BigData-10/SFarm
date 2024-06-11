@@ -109,19 +109,8 @@
     </style>
 </head>
 <body>
+<%@ include file="navbar.jsp" %>
 
-     <!-- 네비바 -->
-     <nav class="navbar bg-body-tertiary" style="background-color:mintcream; margin-bottom: 20px;">
-      <div class="container-fluid">
-        <a href="SFarm_main.jsp" class="navbar-brand">SFarm</a>
-        <div class="nav-img">
-          <img src="./img/복사하기.png" >
-          <h4 class="cope-text">포스터 복사</h4>
-        </div>
-      </div>
-    </nav>
-  
-    <!-- ---------------------------------------------------------- -->
       
     <div class="wrap">
 

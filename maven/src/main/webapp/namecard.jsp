@@ -88,7 +88,7 @@
 </style>
 <script>
     function moveToPoster(fhName) {
-        window.location.href = "농가상세포스터.html?fh_name=" + encodeURIComponent(fhName);
+        window.location.href = "poster.jsp?fh_name=" + encodeURIComponent(fhName);
     }
 </script>
 </head>
