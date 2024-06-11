@@ -46,7 +46,7 @@
             text-align: left;
             margin-left: 30px;
         }
-        .main-button {
+        .main-button {	
             padding: 1px;
             font-size: 20px;
             background: white;
@@ -63,6 +63,7 @@
             margin-left: 30px;
             transition: background-color 0.3s, transform 0.3s;
         }
+       
         .main-button:hover {
             background-color: #123d2e;
             transform: scale(1.1);
@@ -79,6 +80,18 @@
             left: 50px;
             border-radius: 30px;
         }
+        /*join con css*/
+        .nav-join{
+        font-size: 23px;
+        color: rgb(90, 90, 90);
+        font-family:fantasy;
+        margin-left: 150px;
+        
+        }
+        .nav-but{
+        margin-left: 50px;
+        }
+        
         @media screen and (max-width: 1200px) {
             .nav-title a {
                 font-size: 30px;
@@ -142,6 +155,8 @@
         <div><a href="AllNameCards"><button class="main-button">농가<br>알아보기</button></a></div>
     </div>
     <br><br><br><br>
+    
+    
     <% if (user_info != null) {
         FarmhouseDAO f_dao = new FarmhouseDAO();
         String mb_id = user_info.getMb_id();
@@ -149,7 +164,7 @@
     %>
         <div><a href="S_NameCardCon?mb_id=<%= mb_id %>"><button class="main-button">명함<br> 발급하기</button></a></div>
         <br><br><br><br>
-        <div><a href="SFarm_registerPage.jsp"><button class="main-button">농장<br> 등록하기</button></a></div>
+        <div><a href="SFarm_registerPage.jsp"><button class="main-button" >농장<br> 등록하기</button></a></div>
     <% } %>
 </div>
 <!-- footer -->

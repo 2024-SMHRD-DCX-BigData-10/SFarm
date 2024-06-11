@@ -12,7 +12,12 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
     <style>
-        body {
+    	 * {
+            margin: 0;
+            padding: 0;
+        }
+    	
+        .body {
             margin: 0px;
             box-sizing: border-box;
             font-family: Arial, sans-serif;
@@ -50,11 +55,14 @@
         }
         .wrap {
             width: 100%;
+            
             background-color: whitesmoke;
             padding: 20px 0;
         }
         .container {
+        	padding: 1px;
             display: flex;
+            margin-top:100px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -118,6 +126,17 @@
             width: 200px;
             border-radius: 30px;
         }
+        .nav-join {
+        font-size: 23px;
+        color: rgb(90, 90, 90);
+        font-family:fantasy;
+        margin-left: 130px;
+        }
+        .nav-but{
+        margin-left: 50px;
+        margin-right: 50PX;
+        }
+        
         @media (max-width: 1200px) {
             .col {
                 flex: 1 1 45%;
