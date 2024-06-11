@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.CertificationDTO"%>
+<%@page import="com.smhrd.model.FarmhouseDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.ProductDAO"%>
 <%@page import="com.smhrd.model.ProductDTO"%>
@@ -115,38 +117,23 @@
       
     <div class="wrap">
 
- <%
-    ProductDAO dao = new ProductDAO();
-    String agri_name=request.getParameter("agri_name");
-    List<ProductDTO> productList = dao.getProductsByFarmhouse(agri_name);
-    	System.out.println(agri_name+productList.size());
-        if (productList != null) {
-        	for(ProductDTO pd : productList) { %>
-            <h2>농산품 상세 정보</h2>
-            <p>농산품 명: <%= pd.getAgri_name() %></p>
-            <p>영양성분: <%= pd.getNutrition_fact() %></p>
-            <p>손질법: <%= pd.getTrimming() %></p>
-            <p>보관법: <%= pd.getKeeping() %></p>
-            <p>효능: <%= pd.getEffect() %></p>
-            <p>구입요령: <%= pd.getPurchase_method() %></p>
-            <p>사진1: <img src="<%= pd.getAgri_img1() %>" alt="사진1"></p>
-            <p>사진2: <img src="<%= pd.getAgri_img2() %>" alt="사진2"></p>
-            <p>사진3: <img src="<%= pd.getAgri_img3() %>" alt="사진3"></p>
-    <%
-    }} else if(productList ==null){System.out.print("null");}
-    else{
-    %>
-    <h3>농산품 정보를 찾을 수 없습니다.</h3>
-    <%
-        }
-    %>
+        <%
+            List<FarmhouseDTO> farm_name = (List<FarmhouseDTO>) request.getAttribute("farm_name");
+            
+            List<CertificationDTO> certificationList = (List<CertificationDTO>) request.getAttribute("certificationList");
+
+            if (farm_name != null ) {
+                for (int i = 0; i < farm_name.size(); i++) {
+                    FarmhouseDTO x = farm_name.get(i);
+                   
+        %>
       <!-- 농가명함 시작 -->
         <div class="col">
             <div class="card" style=" border-color:black; width: 18rem; float:left; padding: 5px; margin-top: 90px; margin-left: 10px; margin-right: 10px;">
                 
               <img src="./img/수박포도.jpg" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">우천이네 농장</h5>
+                <h5 class="card-title"><%=x.getFh_name() %></h5>
                 <div>
                   <img class="qr-img" src="./img/qr.png">
                 </div>
@@ -172,7 +159,7 @@
             </div>
             
           </div>
-          
+          <%}} %>
     <!-- 농가명함 끝 -->
      
     <!-- 정보 카드틀 시작 -->
