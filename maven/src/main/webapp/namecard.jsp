@@ -25,6 +25,7 @@
         background-color: white;
         box-sizing: border-box;
         transition: background-color 0.3s;
+        cursor: pointer; /* 클릭 가능한 영역임을 표시 */
     }
     .card:hover {
         background-color: #f0f0f0;
@@ -62,27 +63,13 @@
     }
 </style>
 <script>
-<<<<<<< master
     function moveToPoster(fhName) {
         window.location.href = "poster.jsp?fh_name=" + encodeURIComponent(fhName);
-<<<<<<< HEAD
-=======
-    function showProductDetails(agriName) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "ProductDetailsCon?agri_name=" + encodeURIComponent(agriName), true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                document.getElementById("productDetails").innerHTML = xhr.responseText;
-            }
-        };
-        xhr.send();
->>>>>>> 3aa34a1 0610마무리
-=======
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
     }
 </script>
 </head>
 <body>
+<%@ include file="navbar.jsp" %>
     <div class="container">
         <%
             List<FarmhouseDTO> farm_name = (List<FarmhouseDTO>) request.getAttribute("farm_name");
@@ -94,7 +81,7 @@
                     FarmhouseDTO x = farm_name.get(i);
                     String qrCodePath = qrPaths.get(i);
         %>
-                    <div class="card">
+                    <div class="card" onclick="moveToPoster('<%= x.getFh_name() %>')">
                         <h5 class="card-title"><%= x.getFh_name() %></h5>
                         <p>농장주: <%= x.getFh_owner() %></p>
                         <ul>
@@ -103,7 +90,7 @@
                                 if (dto.getFh_name().equals(x.getFh_name())) {
                                     String agri_name = dto.getAgri_name();
                         %>
-                                    <li><a href="javascript:void(0)" onclick="showProductDetails('<%= agri_name %>')"><%= agri_name %></a></li>
+                                    <li><%= agri_name %></li>
                         <%
                                 }
                             }

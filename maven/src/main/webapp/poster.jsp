@@ -111,27 +111,35 @@
 <body>
 <%@ include file="navbar.jsp" %>
 
-<<<<<<< HEAD
-<<<<<<< master
-=======
-     <!-- 네비바 -->
-     <nav class="navbar bg-body-tertiary" style="background-color:mintcream; margin-bottom: 20px;">
-      <div class="container-fluid">
-        <a href="#" class="navbar-brand">SFarm</a>
-        <div class="nav-img">
-          <img src="./img/복사하기.png" >
-          <h4 class="cope-text">포스터 복사</h4>
-        </div>
-      </div>
-    </nav>
-  
-    <!-- ---------------------------------------------------------- -->
->>>>>>> 3aa34a1 0610마무리
-=======
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-DCX-BigData-10/SFarm.git
+
       
     <div class="wrap">
 
+ <%
+    ProductDAO dao = new ProductDAO();
+    String agri_name=request.getParameter("agri_name");
+    List<ProductDTO> productList = dao.getProductsByFarmhouse(agri_name);
+    	System.out.println(agri_name+productList.size());
+        if (productList != null) {
+        	for(ProductDTO pd : productList) { %>
+            <h2>농산품 상세 정보</h2>
+            <p>농산품 명: <%= pd.getAgri_name() %></p>
+            <p>영양성분: <%= pd.getNutrition_fact() %></p>
+            <p>손질법: <%= pd.getTrimming() %></p>
+            <p>보관법: <%= pd.getKeeping() %></p>
+            <p>효능: <%= pd.getEffect() %></p>
+            <p>구입요령: <%= pd.getPurchase_method() %></p>
+            <p>사진1: <img src="<%= pd.getAgri_img1() %>" alt="사진1"></p>
+            <p>사진2: <img src="<%= pd.getAgri_img2() %>" alt="사진2"></p>
+            <p>사진3: <img src="<%= pd.getAgri_img3() %>" alt="사진3"></p>
+    <%
+    }} else if(productList ==null){System.out.print("null");}
+    else{
+    %>
+    <h3>농산품 정보를 찾을 수 없습니다.</h3>
+    <%
+        }
+    %>
       <!-- 농가명함 시작 -->
         <div class="col">
             <div class="card" style=" border-color:black; width: 18rem; float:left; padding: 5px; margin-top: 90px; margin-left: 10px; margin-right: 10px;">
@@ -147,8 +155,24 @@
                 </p>
                 <p>Tell.010-0000-0000</p>
               </div>
+                <div class="card text-center" style="max-width: 1580px; border-color:teal; margin-left: 10px;">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <button  id="effect-btn" class="nav-link active">사과</button>
+            </li>
+            <li class="nav-item">
+              <button id="hand-btn" class="nav-link active">배</button>
+            </li>
+            <li class="nav-item">
+              <button id="cook-btn" class="nav-link active">마늘</button>
+            </li>
+          </ul>
+        </div>
             </div>
+            
           </div>
+          
     <!-- 농가명함 끝 -->
      
     <!-- 정보 카드틀 시작 -->
