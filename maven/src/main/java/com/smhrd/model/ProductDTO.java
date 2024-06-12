@@ -18,12 +18,12 @@ public class ProductDTO {
 	private Double agri_idx;
 	// 농산품 명
 	@NonNull private String agri_name;
-	// 영양성분
-	private String nutrition_fact;
+	// 제철
+	private String time_production;
 	// 손질법
 	private String trimming;
-	// 보관법
-	private String keeping;
+	// 레시피 
+	private String recipe;
 	// 효능
 	private String effect;
 	// 구입요령

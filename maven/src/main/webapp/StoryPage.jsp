@@ -180,7 +180,8 @@
                 for (ProductDTO pd : productList) {
             %>
                 <h3><%= pd.getAgri_name() %></h3>
-                <p><%= pd.getAgri_name() %>는 <%= pd.getNutrition_fact() %>를 함유하고 있어 건강에 매우 유익합니다. <%= pd.getTrimming() %> 방법으로 손질하면, <%= pd.getKeeping() %> 방법으로 오랫동안 보관할 수 있습니다. <%= pd.getEffect() %>와 같은 효능이 있으며, <%= pd.getPurchase_method() %> 방법으로 구입하시면 좋습니다.</p>
+                <p>우리 농장의 <strong><%= pd.getAgri_name() %></strong>는 <%= pd.getEffect() %>를 함유하고 있어 건강에 매우 유익합니다. <%= pd.getTrimming() %> 방법으로 손질하면, <%= pd.getTime_production() %> 방법으로 오랫동안 보관할 수 있습니다. <%= pd.getPurchase_method() %> 방법으로 구입하시면 좋습니다.</p>
+                <p>이 농산품으로 만들 수 있는 레시피는 다음과 같습니다: <%= pd.getRecipe() %>.</p>
                 <div>
                     <img src="<%= pd.getAgri_img1() %>" alt="<%= pd.getAgri_name() %> 이미지1">
                     <img src="<%= pd.getAgri_img2() %>" alt="<%= pd.getAgri_name() %> 이미지2">

@@ -25,10 +25,11 @@ public class CertificationDTO {
     private String cert_img;
     // 인증번호 
     private String cert_num;
+    // 작물 
+    private String cert_pruduct;
     // 인증기간 
     private String cert_period;
-    // 인증여부 
-    private String cert_yn;
+
     // 인증기관 
     private String cert_org;
     // 인증일자 
