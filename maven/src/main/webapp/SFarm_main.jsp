@@ -50,7 +50,7 @@
             font-size: 20px;
             background: white;
             border-radius: 30px;
-            position: absolute;
+           
             padding: 7px;
             margin-top:30px;
             margin-left:30px;
@@ -93,7 +93,7 @@
             position: absolute;
             top: 100px;
             right: 30px;
-            width: 30%; /* 폭을 넓혔습니다. */
+            width: 30%; 
             padding: 20px;
             background-color: rgba(255, 255, 255, 0); /* 초기 상태에서 배경 투명 */
             border-radius: 10px;
@@ -103,6 +103,7 @@
             background: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
+            height: 1000px;
         }
         @media screen and (max-width: 1200px) {
             .nav-title a {
@@ -190,6 +191,45 @@
                 window.location.href = href; // 로그아웃 링크를 실제로 이동
             });
         });
+        
+      
+           	
+        	 $(document).ready(function() {
+        	        // h4.main-title 회전 애니메이션 (속도를 3초로 설정)
+        	        $('.main-title').css({ 
+        	            'opacity': '0',
+        	            'transform': 'rotate(-180deg)'
+        	        }).animate({ 
+        	            'opacity': '1',
+        	            'transform': 'rotate(0deg)'
+        	        }, {
+        	            duration: 3000, // 3초로 애니메이션 지속 시간을 설정
+        	            step: function(now, fx) {
+        	                if (fx.prop === 'opacity') {
+        	                    var rotateValue = -180 + (180 * now);
+        	                    $(this).css('transform', 'rotate(' + rotateValue + 'deg)');
+        	                }
+        	            }
+        	        });
+        	    });
+        	
+         $(document).ready(function() {
+            // p.main-content 애니메이션
+            $('.main-content').css({ 
+                'opacity': '0'
+            }).animate({ 
+                'opacity': '1'
+            }, {
+                duration: 3000,
+                step: function(now, fx) {
+                    if (fx.prop === 'opacity') {
+                        $(this).css('transform', 'translateY(' + (50 - 50 * now) + 'px)');
+                    }
+                }
+            });
+        });
+        
+        
     </script>
 </head>
 <body>
@@ -210,8 +250,7 @@
             String mb_id = user_info.getMb_id();
             System.out.println("메인페이지" + mb_id);
     %>
-        <div><a href="S_NameCardCon?mb_id=<%= mb_id %>"><button class="main-button">명함<br> 발급하기</button></a></div>
-        <br><br><br><br>
+        
         <div><a href="SFarm_registerPage.jsp"><button class="main-button">농장<br> 등록하기</button></a></div>
     <%
         }
