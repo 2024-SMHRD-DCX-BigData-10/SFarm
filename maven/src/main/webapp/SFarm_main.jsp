@@ -8,7 +8,7 @@
     <title>SFarm 메인 페이지</title>
     <link rel="stylesheet" type="text/css" href="CSS/navbar.css">
     <style>
-        * {
+        *{
             margin: 0;
             padding: 0;
         }

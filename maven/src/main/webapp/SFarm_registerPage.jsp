@@ -12,32 +12,42 @@
             padding: 0;
         }
         body {
+        	width: 90%;
             background-image: url(./img/농가등록페이지최종.jpg);
             background-size: cover;
             background-repeat: no-repeat;
             
         }
+        .content{
+         margin: 0 auto;
+        }
         .wrap {
-            width: 40%;
+        	text-align : center;
+        	height: 800px;
+            width: 90%;
             background: #fff;
             margin: 0 auto;
-            margin-top: 200px;
-            padding: 50px;
+            margin-left : 10px;
+            margin-right : 10px;
+            margin-top: 100px;
+			border-radius : 10px;
             box-sizing: border-box;
+            
         }
         .wrap h1 {
+        	width: 100%;
             font-size: 32px;
             padding-bottom: 12px;
             border-bottom: 3px solid #000;
             letter-spacing: -2px;
         }
-        .wrap form {
-            margin-top: 20px;
-        }
+       
+        
         .wrap dl {
             display: flex;
             align-items: center;
             margin-top: 20px;
+            padding : 10px;
         }
         .wrap dt {
             width: 20%;
@@ -70,8 +80,8 @@
         }
         .wrap input[type="submit"] {
             display: block;
-            margin: 30px auto 0 auto;
-            padding: 16px 50px;
+            margin: 15px auto 0 auto;
+            padding: 8px 25px;
             border-radius: 100px;
             background: #325cb2;
             font-weight: 600;
@@ -88,7 +98,7 @@
     // session에 user_info가 있는지 없는지 확인 
     MemberDTO user_info = (MemberDTO) session.getAttribute("user_info");
 %>
-    <div>
+    <div class='content'>
         <form action="S_JoinFarmCon" method="post" class="wrap">
             <h1>농장등록</h1>
             <dl>
@@ -128,23 +138,9 @@
                 agriContainer.appendChild(newInput);
             });
 
-            logoutButton.addEventListener('click', () => { // 로그아웃 버튼 클릭 이벤트
-                window.location.href = 'S_LogoutCon';
-            });
+            
 
-            nameCardButton.addEventListener('click', () => { // 명함 발급 버튼 클릭 이벤트
-                const mb_id = '<%= user_info != null ? user_info.getMb_id() : "" %>';
-                const fh_name = '<%= user_info != null ? user_info.getMb_id() : "" %>'; // 예시로 사용자 ID를 사용
-                if (mb_id && fh_name) {
-                    window.location.href = 'S_NameCardCon?mb_id=' + mb_id + '&fh_name=' + fh_name;
-                } else {
-                    alert('로그인 후 이용해 주세요.');
-                }
-            });
-
-            allNamecardsButton.addEventListener('click', () => { // 모든 명함 보기 버튼 클릭 이벤트
-                window.location.href = 'AllNameCards';
-            });
+            
         });
     </script>
 </body>
