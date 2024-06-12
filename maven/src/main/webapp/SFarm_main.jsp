@@ -148,7 +148,7 @@
                 font-size: 10px;
             }
             .nav-item a{
-                font-size: 5px;
+                font-size: 5px !import ;
             }
             .main-title {
                 font-size: 16px;
