@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.ProductDAO"%>
+<%@page import="com.smhrd.model.ProductDTO"%>
 <%@page import="com.smhrd.model.FarmhouseDTO"%>
 <%@page import="com.smhrd.model.FarmhouseDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -146,10 +148,14 @@
                     for (FarmhouseDTO dto : filteredList) {
                         if (!dto.getFh_name().equals(currentFhName)) {
                             if (currentFarmhouse != null) {
+                                ProductDAO pd_dao = new ProductDAO();
+                                ProductDTO pd = pd_dao.getProductDetails(agriNamesList.get(0)); 
             %>
             <div class="col-md-4 bg-light bg-opacity-75">
                 <div class="card">
-                    <img src="https://www.foodnuri.go.kr/cmmn/file/getImage.do?atchFileId=FILE_000000000008233&fileSn=1" class="card-img-top" alt="농장이미지">
+                    <% if (pd != null && pd.getAgri_img1() != null) { %>
+                    <img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
+                    <% } %>
                     <div class="card-body">
                         <h5 class="card-title"><%= currentFarmhouse.getFh_name() %></h5>
                         <div>
@@ -174,10 +180,14 @@
                         agriNamesList.add(dto.getAgri_name());
                     }
                     if (currentFarmhouse != null) {
+                        ProductDAO pd_dao = new ProductDAO();
+                        ProductDTO pd = pd_dao.getProductDetails(agriNamesList.get(0)); 
             %>
             <div class="col-md-4">
                 <div class="card">
-                    <img src="https://www.foodnuri.go.kr/cmmn/file/getImage.do?atchFileId=FILE_000000000008233&fileSn=1" class="card-img-top" alt="농장이미지">
+                    <% if (pd != null && pd.getAgri_img1() != null) { %>
+                    <img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
+                    <% } %>
                     <div class="card-body">
                         <h5 class="card-title"><%= currentFarmhouse.getFh_name() %></h5>
                         <div>
@@ -201,9 +211,9 @@
         </div>
     </div>
     
-				<div class="content-area" id="main-content">
-				    <!-- 여기에 AJAX 요청으로 로드된 내용이 삽입됩니다. -->
-				</div>
+    <div class="content-area" id="main-content">
+        <!-- 여기에 AJAX 요청으로 로드된 내용이 삽입됩니다. -->
+    </div>
 
     <!-- footer -->
     <footer class="footer">

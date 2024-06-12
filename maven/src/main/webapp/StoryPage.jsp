@@ -116,16 +116,39 @@
             }
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.link-button').click(function(event) {
+                event.preventDefault();
+                var productName = $(this).data('product-name');
+                var fhName = $(this).data('fh-name');
+                $.ajax({
+                    url: 'ProductDetailsCon',
+                    type: 'POST',
+                    data: { productName: productName, fh_name: fhName },
+                    success: function(response) {
+                        $('#additional-info').append(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX 요청 실패: ' + error);
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 
 <%@ include file="navbar.jsp" %>
 
 <div class="container">
-    <% if (request.getAttribute("farmDTO") != null) { %>
+    <% 
+        ArrayList<FarmhouseDTO> farmDTO = (ArrayList<FarmhouseDTO>) request.getAttribute("farmDTO");
+        if (farmDTO != null && !farmDTO.isEmpty()) { 
+    %>
         <div class="story-card farm-info">
             <%
-                ArrayList<FarmhouseDTO> farmDTO = (ArrayList<FarmhouseDTO>) request.getAttribute("farmDTO");
                 FarmhouseDTO x = farmDTO.get(0); // 첫 번째 농가 정보를 가져옵니다.
             %>
             <h2><%= x.getFh_name() %></h2>
@@ -146,7 +169,7 @@
                             if (cert.getFh_name().equals(x.getFh_name())) {
                 %>
                                 <p>우리 농장은 <strong><%= cert.getCert_type() %></strong> 인증을 받았습니다. 이는 저희가 제공하는 모든 농산물이 최고 품질임을 보장합니다.</p>
-                                <img src="<%= cert.getCert_img() %>" alt="인증 이미지">
+                                <img src="<%=cert.getCert_img()%>" alt="인증 이미지">
                 <% 
                             }
                         }
@@ -161,15 +184,10 @@
     <% } %>
 
     <div class="button-container">
-        <form id="productForm" action="ProductDetailsCon" method="post">
-            <input type="hidden" id="productName" name="productName">
-            <input type="hidden" id="fh_name" name="fh_name" value="<%= request.getParameter("fh_name") %>">
-            <% if (request.getAttribute("farmDTO") != null) {
-                ArrayList<FarmhouseDTO> farmDTO = (ArrayList<FarmhouseDTO>) request.getAttribute("farmDTO");
-                for (FarmhouseDTO dto : farmDTO) { %>
-                    <button type="submit" class="link-button" onclick="document.getElementById('productName').value='<%= dto.getAgri_name() %>'">우리 농가의 <%= dto.getAgri_name() %> 더 알아보기</button>
-            <% }} %>
-        </form>
+        <% if (farmDTO != null && !farmDTO.isEmpty()) {
+            for (FarmhouseDTO dto : farmDTO) { %>
+                <button class="link-button" data-product-name="<%= dto.getAgri_name() %>" data-fh-name="<%= dto.getFh_name() %>">우리 농가의 <%= dto.getAgri_name() %> 더 알아보기</button>
+        <% }} %>
     </div>
 
     <% if (request.getAttribute("productList") != null) { %>
@@ -192,6 +210,9 @@
     <% } else if (request.getParameter("productName") != null) { %>
         <h3>농산품 정보를 찾을 수 없습니다.</h3>
     <% } %>
+
+    <div id="additional-info"></div> <!-- AJAX 요청으로 추가할 데이터 영역 -->
+
 </div>
 
 <div class="footer">
