@@ -11,19 +11,21 @@
         *{
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
         body {
             margin: 0;
         }
         .main-background {
-            position: relative;
+            position:absolute;
             padding: 1px;
             width: 100%;
-            height: 1000px;
+            height:900px;
             background-image: url(./img/main-banner.png);
             background-repeat: no-repeat;
             background-size: cover;
             filter: brightness(85%);
+            
         }
         .main-title {
             color: white;
@@ -49,8 +51,7 @@
             padding: 1px;
             font-size: 20px;
             background: white;
-            border-radius: 30px;
-           
+            border-radius: 30px;      
             padding: 7px;
             margin-top:30px;
             margin-left:30px;
@@ -62,6 +63,7 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
         }
+        
         .main-button:hover {
             background-color: #123d2e;
             transform: scale(1.1);
@@ -70,6 +72,11 @@
             width: 100%;
             height: 150px;
             background-color: #154726;
+            
+        }
+        .footer-container{
+        	width: 100%;
+        	margin-top: 50px;
         }
         .acs-img {
             width: 200px;
@@ -78,6 +85,7 @@
             left: 50px;
             border-radius: 30px;
         }
+       
         .nav-join {
             font-size: 23px;
             color: rgb(90, 90, 90);
@@ -103,7 +111,7 @@
             background: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
-            height: 1000px;
+            height: 680px;
         }
         @media screen and (max-width: 1200px) {
             .nav-title a {
@@ -124,7 +132,7 @@
             .nav-title a {
                 font-size: 25px;
             }
-            .nav-item a {
+            .nav-item a{
                 font-size: 14px;
             }
             .main-content {
@@ -139,7 +147,7 @@
             .nav-title a {
                 font-size: 10px;
             }
-            .nav-item a {
+            .nav-item a{
                 font-size: 5px;
             }
             .main-title {
@@ -154,9 +162,14 @@
             	
             }
             .main-button {
-                width: 90px;
-                height: 60px;
-                font-size: 16px;
+                width: 100px;
+                height: 70px;
+                font-size: 15px;
+            }
+            .main-background{
+            	width: 100%;
+            	height: 950px;
+            	
             }
         }
     </style>
@@ -252,36 +265,52 @@
 
 <%@ include file="navbar.jsp" %>
 
-<div class="main-background">
-    <div class="main-expainbox">
-        <h4 class="main-title">storytelling</h4>
-        <p class="main-content">건강한 로컬푸드의<br>농가 이야기를 소개합니다.</p>
-        <div><a href="namecard_list.jsp"><button class="main-button">농가<br>알아보기</button></a></div>
-    </div>
-    <%
-         user_info = (MemberDTO) session.getAttribute("user_info");
-        if (user_info != null) {
-            FarmhouseDAO f_dao = new FarmhouseDAO();
-            String mb_id = user_info.getMb_id();
-            System.out.println("메인페이지" + mb_id);
-    %>
-        
-        <div><a href="SFarm_registerPage.jsp" class="new_farm"><button class="main-button" >농장<br> 등록하기</button></a></div>
-    <%
-        }
-    %>
-</div>
+		
+<div class="wrap" style="width: 100%; height: 800px;" >
+	<div class="main-background">
+	
+		
+		
+	    <div class="main-expainbox">
+	        <h4 class="main-title">storytelling</h4>
+	        <p class="main-content">건강한 로컬푸드의<br>농가 이야기를 소개합니다.</p>
+	        <div><a href="namecard_list.jsp"><button class="main-button">농가<br>알아보기</button></a></div>
+	    </div>
+	    <%
+	         user_info = (MemberDTO) session.getAttribute("user_info");
+	        if (user_info != null) {
+	            FarmhouseDAO f_dao = new FarmhouseDAO();
+	            String mb_id = user_info.getMb_id();
+	            System.out.println("메인페이지" + mb_id);
+	    %>
+	        
+	        <div><a href="SFarm_registerPage.jsp" class="new_farm"><button class="main-button" >농장<br> 등록하기</button></a></div>
+	    <%
+	        }
+	    %>
+	    
+	   
+		
+	    
+	    
+	</div>
+		
+			
+</div>		
 
-<!-- 오른쪽 부분에 배경 이미지 위로 내용 삽입 -->
-<div class="content-area" id="main-content">
-    <!-- 여기에 AJAX 요청으로 로드된 내용이 삽입됩니다. -->
-</div>
-
-<!-- footer -->
-<footer class="footer">
-    <div class="footer-container">
-        <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지">
-    </div>
-</footer>
+		<footer class="footer">
+		    <div class="footer-container">
+		        <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지">
+		    </div>
+		</footer>		
+			
+			
+			<!-- 오른쪽 부분에 배경 이미지 위로 내용 삽입 -->
+				<div class="content-area" id="main-content">
+				    <!-- 여기에 AJAX 요청으로 로드된 내용이 삽입됩니다. -->
+				</div>
+	
+				
+	
 </body>
 </html>
