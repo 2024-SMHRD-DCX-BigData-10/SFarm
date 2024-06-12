@@ -6,7 +6,9 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+ 	<!-- 아이콘 링크 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>농가 목록</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="CSS/navbar.css">
@@ -22,7 +24,7 @@
         }
         .wrap {
             width: 100%;
-            background-color: whitesmoke;
+            background-color: #bdfcc9;
             padding: 20px 0;
         }
         .container {
@@ -68,29 +70,15 @@
             margin-right: 10px;
             object-fit: contain; /* 이미지가 주어진 영역에 맞춰지도록 합니다 */
         }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: white;
-            background-color: #4CAF50;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
+        
+        .footer{
+        background-color: #154726;
         }
-        .btn:hover {
-            background-color: #45a049;
-        }
-        .footer {
-            width: 100%;
-            height: 130px;
-            background-color: darkcyan;
-            text-align: center;
-            padding: 20px 0;
-        }
+        
         .footer img {
             width: 200px;
             border-radius: 30px;
+            
         }
 
         .nav-join {
@@ -159,7 +147,7 @@
                         if (!dto.getFh_name().equals(currentFhName)) {
                             if (currentFarmhouse != null) {
             %>
-            <div class="col-md-4">
+            <div class="col-md-4 bg-light bg-opacity-75">
                 <div class="card">
                     <img src="https://www.foodnuri.go.kr/cmmn/file/getImage.do?atchFileId=FILE_000000000008233&fileSn=1" class="card-img-top" alt="농장이미지">
                     <div class="card-body">
@@ -170,7 +158,10 @@
                         <p class="card-text"><%= currentFarmhouse.getFh_intro() %></p>
                         <p>Tell. <%= currentFarmhouse.getFh_owner() %></p>
                         <p>농산물: <%= String.join(", ", agriNamesList) %></p> <!-- 농산물 이름들 표시 -->
-                        <a href="SFarmStoryCon?mb_id=<%= currentFarmhouse.getMb_id() %>&fh_name=<%= currentFarmhouse.getFh_name() %>" class="btn">들어가기</a>
+                        <a href="SFarmStoryCon?mb_id=<%= currentFarmhouse.getMb_id() %>&fh_name=<%= currentFarmhouse.getFh_name() %>" class="btn btn-dark rounded-pill">포스터 보기</a>
+                        <a href="#" class="btn btn-primary rounded-pill"><i class="bi bi-house"></i></a>
+                        <a href="#" class="btn btn-primary rounded-pill"><i class="bi bi-copy"></i></a>
+                        <a href="#" class="btn btn-warning rounded-pill"><i class="bi bi-camera-video-fill"></i></a>
                     </div>
                 </div>
             </div>
@@ -220,7 +211,7 @@
             <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지">
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     
 </body>
 </html>
