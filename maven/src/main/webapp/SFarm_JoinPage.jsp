@@ -41,7 +41,7 @@
         <div class="input-form-backgroud row">
             <div class="input-form col-md-12 mx-auto">
                 <h4 class="mb-3">회원가입</h4>
-                <form class="validation-form" novalidate>
+                <form action='S_JoinCon' class="validation-form" novalidate method='post'>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="mb_name">이름</label>
@@ -86,10 +86,10 @@
                     <div class="row">
                         <div class="col-md-8 mb-3">
                             <label for="root">회원 구분</label>
-                            <select class="custom-select d-block w-100" id="root">
+                            <select class="custom-select d-block w-100" id="root" name="mb_type">
                                 <option value=""></option>
-                                <option>농가회원</option>
-                                <option>소비자</option>
+                                <option >농가회원</option>
+                                <option >소비자</option>
                             </select>
                             <div class="invalid-feedback">
                                 회원구분을 선택해주세요.

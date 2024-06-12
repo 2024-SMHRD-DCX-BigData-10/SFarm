@@ -183,6 +183,22 @@
                     }
                 });
             });
+            $('.new_farm').click(function(event) {
+                event.preventDefault(); // 링크 기본 동작 방지
+                var href = $(this).attr('href'); // 링크의 href 속성 가져오기
+
+                // AJAX 요청 보내기
+                $.ajax({
+                    url: href,
+                    method: 'GET',
+                    success: function(data) {
+                        $('#main-content').html(data).addClass('loaded-content'); // 응답 데이터를 메인 컨텐츠 영역에 삽입하고 스타일 적용
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX 요청 실패: ' + error);
+                    }
+                });
+            });
 
             // 로그아웃 버튼 클릭 이벤트 처리
             $('.logout-btn').click(function(event) {
@@ -242,7 +258,6 @@
         <p class="main-content">건강한 로컬푸드의<br>농가 이야기를 소개합니다.</p>
         <div><a href="namecard_list.jsp"><button class="main-button">농가<br>알아보기</button></a></div>
     </div>
-    <br><br><br><br>
     <%
          user_info = (MemberDTO) session.getAttribute("user_info");
         if (user_info != null) {
@@ -251,7 +266,7 @@
             System.out.println("메인페이지" + mb_id);
     %>
         
-        <div><a href="SFarm_registerPage.jsp"><button class="main-button">농장<br> 등록하기</button></a></div>
+        <div><a href="SFarm_registerPage.jsp" class="new_farm"><button class="main-button" >농장<br> 등록하기</button></a></div>
     <%
         }
     %>
