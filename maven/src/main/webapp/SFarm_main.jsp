@@ -52,6 +52,8 @@
             border-radius: 30px;
             position: absolute;
             padding: 7px;
+            margin-top:30px;
+            margin-left:30px;
             width: 130px;
             height: 70px;
             background-color: #154726;
@@ -91,7 +93,7 @@
             position: absolute;
             top: 100px;
             right: 30px;
-            width: 50%; /* 폭을 넓혔습니다. */
+            width: 30%; /* 폭을 넓혔습니다. */
             padding: 20px;
             background-color: rgba(255, 255, 255, 0); /* 초기 상태에서 배경 투명 */
             border-radius: 10px;
@@ -134,10 +136,10 @@
         }
         @media screen and (max-width: 576px) {
             .nav-title a {
-                font-size: 20px;
+                font-size: 10px;
             }
             .nav-item a {
-                font-size: 12px;
+                font-size: 5px;
             }
             .main-title {
                 font-size: 16px;
@@ -146,9 +148,13 @@
             .main-content {
                 font-size: 24px;
             }
+            .nav-but{
+            	 
+            	
+            }
             .main-button {
                 width: 90px;
-                height: 40px;
+                height: 60px;
                 font-size: 16px;
             }
         }
