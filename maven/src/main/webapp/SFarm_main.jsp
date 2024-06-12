@@ -20,7 +20,7 @@
             position:absolute;
             padding: 1px;
             width: 100%;
-            height:900px;
+            height:800px;
             background-image: url(./img/main-banner.png);
             background-repeat: no-repeat;
             background-size: cover;
@@ -72,12 +72,12 @@
             width: 100%;
             height: 150px;
             background-color: #154726;
+            position: relative;
+            bottom: 0;
+            left: 0;
             
         }
-        .footer-container{
-        	width: 100%;
-        	margin-top: 50px;
-        }
+        
         .acs-img {
             width: 200px;
             position: relative;
@@ -95,6 +95,7 @@
       
         .content-area {
         	border:0px;
+        	
             position: absolute;
             top: 100px;
             right: 30px;
@@ -272,7 +273,7 @@
 <%@ include file="navbar.jsp" %>
 
 		
-<div class="wrap" style="width: 100%; height: 800px;" >
+<div class="wrap_main" style="width: 100%; height: 800px;" >
 	<div class="main-background">
 	
 		
@@ -305,9 +306,9 @@
 </div>		
 
 		<footer class="footer">
-		    <div class="footer-container">
+		    
 		        <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지">
-		    </div>
+		    
 		</footer>		
 			
 			
@@ -317,6 +318,11 @@
 				</div>
 	
 				
+
+
+
+
+
 	
 </body>
 </html>

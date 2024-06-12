@@ -209,6 +209,10 @@
             %>
         </div>
     </div>
+    
+				<div class="content-area" id="main-content">
+				    <!-- 여기에 AJAX 요청으로 로드된 내용이 삽입됩니다. -->
+				</div>
 
     <!-- footer -->
     <footer class="footer">
@@ -217,5 +221,6 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
 </body>
 </html>

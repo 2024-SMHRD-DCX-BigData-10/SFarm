@@ -31,8 +31,9 @@
         <div style="flex-grow: 1;"></div>
         <% if (user_info != null) { %>
             <div class="nav-join"><%= user_info.getMb_name() %>님 환영합니다.</div>
-              <div><a href="S_NameCardCon?mb_id=<%= user_info.getMb_name() %>"><button class="main-button">명함<br> 발급하기</button></a></div>
-            <a href="S_LogoutCon" class="logout-btn"><button class="nav-but">로그아웃</button></a>
+              <a href="S_LogoutCon" class="logout-btn"><button class="nav-but but_logout" >로그아웃</button></a>
+              <div><a href="S_NameCardCon?mb_id=<%= user_info.getMb_name() %>"><button class="nav-but" class="but_name">명함 발급</button></a></div>
+          
         <% } else { %>
             <button class="nav-but"><a href="SFarm_JoinPage.jsp" style="color:white; text-decoration:none;">회원 가입</a></button>
             <button class="nav-but" style="margin-left: 10px;"><a href="SFarm_LoginPage.jsp" style="color:white; text-decoration:none;">로그인</a></button>

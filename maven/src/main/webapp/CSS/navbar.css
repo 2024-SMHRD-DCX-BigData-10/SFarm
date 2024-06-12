@@ -89,5 +89,15 @@ body {
     background-color: #123d2e; /* 호버 시 색상 변경 */
     transform: scale(1.1); /* 호버 시 크기 확대 */
 }
+.but_name {
+	
+}
+.nav-but.but_logout{
+	background-color: white;
+	color: black;
+	font-weight: 800;
+	margin-right: 10px;
+	padding:0;
+	}
     
 
