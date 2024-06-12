@@ -21,6 +21,7 @@
         .content{
          margin: 0 auto;
         }
+        
         .wrap {
         	text-align : center;
         	height: 800px;

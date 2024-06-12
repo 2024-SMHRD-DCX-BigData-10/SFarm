@@ -24,6 +24,9 @@
         }
         
         .longin-form{
+        
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius:10px;
         font-family: "Noto Sans KR", sans-serif;
         display: flex;
         justify-content: center;
@@ -32,7 +35,7 @@
         background-size: cover;
         }
         .int-area{
-            width: 400px;
+            width: 100%;
             position: relative;
         }
         .int-area input{
@@ -54,6 +57,7 @@
             transition: 0.5s;
         }
         .int-area input:focus + label{
+        	
             top: 0;
             font-size: 1rem;
             color: var(--basis-font-color);
@@ -86,7 +90,11 @@
         .login-form{
         	width : 100px;
         	height : 500px;
-        	box-sizing: border-box;
+        	box-sizing: content-box;
+        	}
+  		form{
+        	width : 80%;
+    
         	}
         
     </style>

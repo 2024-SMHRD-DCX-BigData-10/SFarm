@@ -92,27 +92,25 @@
             font-family: fantasy;
             margin-left: 130px;
         }
-        .nav-but {
-            margin-left: 50px;
-            margin-right: 50px;
-        }
+      
         .content-area {
         	border:0px;
             position: absolute;
             top: 100px;
             right: 30px;
-            width: 30%; 
+            width: 40%; 
             padding: 20px;
             background-color: rgba(255, 255, 255, 0); /* 초기 상태에서 배경 투명 */
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0);
         }
         .loaded-content {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0);
             padding: 20px;
             border-radius: 10px;
-            height: 680px;
+            height: 850px;
         }
+        
         @media screen and (max-width: 1200px) {
             .nav-title a {
                 font-size: 30px;
@@ -129,6 +127,9 @@
             }
         }
         @media screen and (max-width: 768px) {
+        	.content-area{
+        		width : 60%;
+        	}
             .nav-title a {
                 font-size: 25px;
             }
@@ -140,10 +141,13 @@
             }
             .main-button {
                 width: 100px;
-                height: 50px;
+                height: 80px;
             }
         }
         @media screen and (max-width: 576px) {
+        	.content-area{
+        		width : 60%;
+        	}
             .nav-title a {
                 font-size: 10px;
             }
@@ -158,12 +162,14 @@
                 font-size: 24px;
             }
             .nav-but{
-            	 
+            
+            	width: 75px;
+            	height: 100px;
             	
             }
             .main-button {
                 width: 100px;
-                height: 70px;
+                height: 90px;
                 font-size: 15px;
             }
             .main-background{

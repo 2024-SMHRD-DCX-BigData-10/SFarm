@@ -24,7 +24,6 @@
 
         .input-form {
             max-width: 680px;
-            margin-top: 80px;
             padding: 32px;
             background: #fff;
             -webkit-border-radius: 10px;
