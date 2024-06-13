@@ -26,15 +26,17 @@ import java.util.List;
 public class NameCardCon extends HttpServlet {
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("NameCardCon");
+        System.out.println("NameCardCon 서비스 메서드 시작");
 
         request.setCharacterEncoding("UTF-8");
         
         String mb_id = request.getParameter("mb_id");
+        System.out.println("받은 mb_id: " + mb_id);
+        
         FarmhouseDAO f_dao = new FarmhouseDAO();
-        ArrayList<FarmhouseDTO> farm_name = f_dao.getFarmhouseDTO(mb_id);
-        System.out.println(mb_id);
-        System.out.println(farm_name);
+        ArrayList<FarmhouseDTO> farm_name = f_dao.getFarmhouse(mb_id);
+        
+        System.out.println("받은 농장 이름 목록: " + farm_name);
 
         if (mb_id == null || farm_name == null || farm_name.isEmpty()) {
             System.out.println("명함 발급을 위한 필요한 정보가 없습니다.");
