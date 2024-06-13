@@ -1,9 +1,10 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="com.smhrd.model.FarmhouseDTO"%>
+<%@page import="com.smhrd.model.FarmhouseDAO"%>
 <%@page import="com.smhrd.model.CertificationDTO"%>
+<%@page import="com.smhrd.model.FarmhouseDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smhrd.model.MemberDTO"%>
 <%@page import="com.smhrd.model.ProductDTO"%>
-<%@page import="com.smhrd.model.ProductDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -83,11 +84,11 @@
                 var productName = $(this).data('product-name');
                 var fhName = $(this).data('fh-name');
                 $.ajax({
-                    url: 'StoryPage.jsp',
-                    type: 'GET',
+                    url: 'ProductDetailsCon',
+                    type: 'POST',
                     data: { productName: productName, fh_name: fhName },
                     success: function(response) {
-                        $('#additional-info').html($(response).find('#product-detail').html());
+                        $('#additional-info').empty().append(response);
                     },
                     error: function(xhr, status, error) {
                         console.error('AJAX 요청 실패: ' + error);
@@ -175,39 +176,6 @@
     <% } %>
 
     <div id="additional-info"></div> <!-- AJAX 요청으로 추가할 데이터 영역 -->
-
-    <!-- AJAX 요청으로 추가할 데이터 영역 -->
-    <div id="product-detail" style="display:none;">
-        <%
-            String productName = request.getParameter("productName");
-            String fhName = request.getParameter("fh_name");
-
-            if (productName != null && fhName != null) {
-                ProductDAO dao = new ProductDAO();
-                ProductDTO product = dao.getProductDetails(productName, fhName);
-
-                if (product != null) {
-        %>
-            <div class="product-detail">
-                <h3><%= product.getAgri_name() %></h3>
-                <p>우리 농장의 <strong><%= product.getAgri_name() %></strong>는 <%= product.getEffect() %>를 함유하고 있어 건강에 매우 유익합니다.</p>
-                <p><%= product.getTrimming() %> 방법으로 손질하면, <%= product.getTime_production() %> 방법으로 오랫동안 보관할 수 있습니다. <%= product.getPurchase_method() %> 방법으로 구입하시면 좋습니다.</p>
-                <p>이 농산품으로 만들 수 있는 레시피는 다음과 같습니다: <%= product.getRecipe() %>.</p>
-                <div>
-                    <img src="<%= product.getAgri_img1() %>" alt="<%= product.getAgri_name() %> 이미지1">
-                    <img src="<%= product.getAgri_img2() %>" alt="<%= product.getAgri_name() %> 이미지2">
-                    <img src="<%= product.getAgri_img3() %>" alt="<%= product.getAgri_name() %> 이미지3">
-                </div>
-            </div>
-        <%
-                } else {
-        %>
-            <p>해당 농산품 정보를 찾을 수 없습니다.</p>
-        <%
-                }
-            }
-        %>
-    </div>
 
 </div>
 

@@ -161,7 +161,7 @@
                                 ProductDAO pd_dao = new ProductDAO();
                                 ProductDTO pd = pd_dao.getProductDetails(agriNamesList.get(0)); 
             %>
-            <div class="col-md-4 bg-light bg-opacity-75">
+        <div class="col-md-4 bg-light bg-opacity-75">
                 <div class="card">
                     <% if (pd != null && pd.getAgri_img1() != null) { %>
                     <img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
@@ -181,7 +181,6 @@
                     </div>
                 </div>
             </div>
-            
             <%
                             }
                             currentFhName = dto.getFh_name();
@@ -194,11 +193,31 @@
                         ProductDAO pd_dao = new ProductDAO();
                         ProductDTO pd = pd_dao.getProductDetails(agriNamesList.get(0)); 
             %>
-            
+         <div class="col-md-4 bg-light bg-opacity-75">
+                <div class="card">
+                    <% if (pd != null && pd.getAgri_img1() != null) { %>
+                    <img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
+                    <% } %>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= currentFarmhouse.getFh_name() %></h5>
+                        <div>
+                        </div>
+                        <div style="clear: both;"></div>
+                        <p class="card-text"><%= currentFarmhouse.getFh_intro() %></p>
+                        <p>Tell. <%= currentFarmhouse.getFh_owner() %></p>
+                        <p>농산물: <%= String.join(", ", agriNamesList) %></p> <!-- 농산물 이름들 표시 -->
+                        <a href="SFarmStoryCon?mb_id=<%= currentFarmhouse.getMb_id() %>&fh_name=<%= currentFarmhouse.getFh_name() %>" class="btn btn-dark rounded-pill">포스터 보기</a>
+                        <a href="#" class="btn btn-primary rounded-pill"><i class="bi bi-share-fill"></i></a>
+                        <a href="#" class="btn btn-primary rounded-pill"><i class="bi bi-copy"></i></a>
+                        <a href="#" class="btn btn-warning rounded-pill"><i class="bi bi-download"></i></a>
+                    </div>
+                </div>
+            </div>
             <%
                     }
                 } else {
             %>
+
             <p>농가 정보가 없습니다.</p>
             <%
                 }
