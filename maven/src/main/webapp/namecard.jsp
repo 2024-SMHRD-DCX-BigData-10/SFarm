@@ -104,7 +104,7 @@
                 String qrCodePath = qrPaths.get(i);
     %>
                 <div class="card" onclick="moveToPoster('<%= x.getFh_name() %>')">
-                    <h5 class="card-title"><%= x.getFh_name() %></h5>
+                    <h5 class="card-title"><%= x.getFh_nick() %></h5>
                     <p>농장주: <%= x.getFh_owner() %></p>
                     <ul>
                     <%

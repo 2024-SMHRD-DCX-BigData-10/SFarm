@@ -49,14 +49,13 @@
             border-radius: 5px;
             background-color: white;
         }
-         .card-body  {
+        .card-body {
             border-radius: 5px 5px 0 0;
             width: 100%;
             height: 200px; /* 높이 지정 */
             background-color: #f0f0f0; /* 빈 박스 배경색 */
             display: block; /* 박스가 보이도록 설정 */
             padding-top: 5px;
-            
         }
         .card img {
             border-radius: 5px 5px 0 0;
@@ -81,54 +80,45 @@
             margin-right: 10px;
             object-fit: contain; /* 이미지가 주어진 영역에 맞춰지도록 합니다 */
         }
-        
-        .footer{
-        
-        background-color: #154726;
-         width: 100%;
-         height: 130px;    
-         position: relative;
-          bottom: 0;
-          left: 0;
-        
+        .footer {
+            background-color: #154726;
+            width: 100%;
+            height: 130px;
+            position: relative;
+            bottom: 0;
+            left: 0;
         }
-        
         .footer img {
             width: 200px;
             position: relative;
             top: 60px;
             left: 50px;
             border-radius: 30px;
-            
         }
-
         .nav-join {
-        font-size: 23px;
-        color: rgb(90, 90, 90);
-        font-family:fantasy;
-        margin-left: 130px;
+            font-size: 23px;
+            color: rgb(90, 90, 90);
+            font-family: fantasy;
+            margin-left: 130px;
         }
-        .nav-but{
-        margin-left: 50px;
-        margin-right: 50PX;
+        .nav-but {
+            margin-left: 50px;
+            margin-right: 50px;
         }
-        .card-img-top{
-        	max-width: 700px;
-        	max-height: 200px;
-        	padding: 5px;
+        .card-img-top {
+            max-width: 700px;
+            max-height: 200px;
+            padding: 5px;
         }
         .img_box {
             width: 100%;
             height: 200px;
             border-radius: 5px 5px 0 0;
-            background-color: #f0f0f0;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            
         }
-        
         @media (max-width: 1200px) {
             .col-md-4 {
                 flex: 1 1 45%;
@@ -184,22 +174,19 @@
                         if (!dto.getFh_name().equals(currentFhName)) {
                             if (currentFarmhouse != null) {
                                 ProductDAO pd_dao = new ProductDAO();
-                                ProductDTO pd = pd_dao.getProductDetails(agriNamesList.get(0)); 
+                                ProductDTO pd = pd_dao.getProductDetails(agriNamesList.get(0));
             %>
-        <div class="col-md-4 bg-light bg-opacity-75">
+            <div class="col-md-4 bg-light bg-opacity-75">
                 <div class="card">
-                 <div class="img_box">
-                    <% if (pd != null && pd.getAgri_img1() != null) { %>
-                   
-                    	<img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
-                    
-                    <% } %>
+                    <div class="img_box">
+                        <% if (pd != null && pd.getAgri_img1() != null) { %>
+                            <img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
+                        <% } else { %>
+                            <img src="./img/이미지준비중.png" class="card-img-top" alt="농장이미지">
+                        <% } %>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title"><%= currentFarmhouse.getFh_name() %></h5>
-                        <div>
-                        </div>
-                        <div style="clear: both;"></div>
+                        <h5 class="card-title"><%= currentFarmhouse.getFh_nick() %></h5>
                         <p class="card-text"><%= currentFarmhouse.getFh_intro() %></p>
                         <p>Tell. <%= currentFarmhouse.getFh_owner() %></p>
                         <p>농산물: <%= String.join(", ", agriNamesList) %></p> <!-- 농산물 이름들 표시 -->
@@ -220,20 +207,19 @@
                     }
                     if (currentFarmhouse != null) {
                         ProductDAO pd_dao = new ProductDAO();
-                        ProductDTO pd = pd_dao.getProductDetails(agriNamesList.get(0)); 
+                        ProductDTO pd = pd_dao.getProductDetails(agriNamesList.get(0));
             %>
-         <div class="col-md-4 bg-light bg-opacity-75">
+            <div class="col-md-4 bg-light bg-opacity-75">
                 <div class="card">
-                    <% if (pd != null && pd.getAgri_img1() != null) { %>
                     <div class="img_box">
-                    	<img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
+                        <% if (pd != null && pd.getAgri_img1() != null) { %>
+                            <img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
+                        <% } else { %>
+                            <img src="./img/이미지준비중.png" class="card-img-top" alt="농장이미지">
+                        <% } %>
                     </div>
-                    <% } %>
                     <div class="card-body">
-                        <h5 class="card-title"><%= currentFarmhouse.getFh_name() %></h5>
-                        <div>
-                        </div>
-                        <div style="clear: both;"></div>
+                        <h5 class="card-title"><%= currentFarmhouse.getFh_nick() %></h5>
                         <p class="card-text"><%= currentFarmhouse.getFh_intro() %></p>
                         <p>Tell. <%= currentFarmhouse.getFh_owner() %></p>
                         <p>농산물: <%= String.join(", ", agriNamesList) %></p> <!-- 농산물 이름들 표시 -->
@@ -248,7 +234,6 @@
                     }
                 } else {
             %>
-
             <p>농가 정보가 없습니다.</p>
             <%
                 }
@@ -262,9 +247,7 @@
 
     <!-- footer -->
     <footer class="footer">
-        
-            <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지">
-      
+        <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지">
     </footer>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
