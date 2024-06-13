@@ -1,7 +1,9 @@
+<%@page import="com.smhrd.model.CertificationDAO"%>
 <%@page import="com.smhrd.model.FarmhouseDTO"%>
 <%@page import="com.smhrd.model.CertificationDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.HashSet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,51 +12,58 @@
 <title>농가 및 농산품 정보</title>
 <link rel="stylesheet" type="text/css" href="CSS/navbar.css">
 <style>
-	* {
+    * {
         margin: 0;
         padding: 0;
     }
-    .body {
+    body {
         margin: 0px;
         box-sizing: border-box;
         font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
     }
     .container {
         padding: 1px;
         display: flex;
-        padding-top: 120px;
         flex-wrap: wrap;
         justify-content: center;
+        padding-top: 150px; /* 상단 패딩 추가 */
     }
     .card {
-        width: 300px;
+        width: 700px; /* 카드의 너비를 조정 */
         height: auto;
-        margin: 10px;
-        border: 1px solid darkgray;
-        padding: 10px;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-        background-color: white;
+        margin: 15px;
+        border: 1px solid #ddd;
+        padding: 30px; /* 패딩을 늘려서 카드의 높이 증가 */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        background-color: #ffffff;
         box-sizing: border-box;
-        transition: background-color 0.3s;
+        transition: transform 0.3s;
+        display: flex;
+        flex-direction: column;
         cursor: pointer;
     }
     .card:hover {
-        background-color: #f0f0f0;
+        transform: scale(1.05);
+    }
+    .card-content {
+        flex: 1;
+    }
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px; /* 여백 감소 */
     }
     .card h5 {
-        font-size: 18px;
-        margin-bottom: 5px;
+        font-size: 21px;
+        font-weight: bold;
+        margin-bottom: 5px; /* 여백 감소 */
     }
     .card p {
-        margin: 2px 0;
-    }
-    .qr-code {
-        width: 50px;
-        height: 50px;
-        float: right;
-        margin-left: 10px;
-        object-fit: contain;
+        margin: 5px 0;
+        font-size: 16px;
     }
     .card ul {
         list-style-type: none;
@@ -62,16 +71,33 @@
         margin: 5px 0;
     }
     .card ul li {
-        display: inline;
+        display: inline-block;
         margin-right: 5px;
+        font-size: 16px;
     }
     .certification {
-        margin-top: 10px;
+        margin-top: 10px; /* 여백 감소 */
     }
-    .certification img {
-        width: 50px;
+    .certification-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .cert-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 48%; /* 인증 정보를 두 개씩 배치하기 위해 너비 조정 */
+        margin-bottom: 10px;
+    }
+    .cert-item p {
+        flex: 1;
+        margin: 0;
+    }
+    .cert-item img {
+        width: 50px; /* 인증 이미지 크기 조정 */
         height: 50px;
-        margin-right: 5px;
+        margin-left: 10px;
     }
     .nav-join {
         font-size: 23px;
@@ -82,6 +108,17 @@
     .nav-but {
         margin-left: 50px;
         margin-right: 50px;
+    }
+    .right-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .qr-code {
+        width: 100px; /* QR 코드 크기 조정 */
+        height: 100px;
+        object-fit: contain;
     }
 </style>
 <script>
@@ -96,8 +133,8 @@
     <%
         List<FarmhouseDTO> farm_name = (List<FarmhouseDTO>) request.getAttribute("farm_name");
         List<String> qrPaths = (List<String>) request.getAttribute("qrPaths");
-        CertificationDTO certiDTO = new CertificationDTO();
-        ArrayList<CertificationDTO> certificationList = (List<CertificationDTO>) request.getAttribute("certificationList");
+        CertificationDAO certiDAO = new CertificationDAO();
+        ArrayList<CertificationDTO> certificationList = new ArrayList<CertificationDTO>();
 
         if (farm_name != null && qrPaths != null) {
             for (int i = 0; i < farm_name.size(); i++) {
@@ -105,52 +142,68 @@
                 String qrCodePath = qrPaths.get(i);
     %>
                 <div class="card" onclick="moveToPoster('<%= x.getFh_name() %>')">
-                    <h5 class="card-title"><%= x.getFh_nick() %></h5>
-                    <p>농장주: <%= x.getFh_owner() %></p>
-                    <ul>
-                    <%
-                        for (FarmhouseDTO dto : farm_name) {
-                            if (dto.getFh_name().equals(x.getFh_name())) {
-                                String agri_name = dto.getAgri_name();
-                    %>
-                                <li><%= agri_name %></li>
-                    <%
-                            }
-                        }
-                    %>
-                    </ul>
-                    <div>
-                    <%
-                        if (qrCodePath != null) {
-                    %>
-                            <img src="<%= request.getContextPath() + qrCodePath %>" alt="QR Code" class="qr-code">
-                    <%
-                        } else {
-                    %>
-                            <h3>QR 없음</h3>
-                    <%
-                        }
-                    %>
-                    </div>
-                    <p class="card-text"><%= x.getFh_intro() %></p>
-                    <div class="certification">
-                        <h5>인증 정보</h5>
-                        <%
-                            if (certificationList != null && !certificationList.isEmpty()) {
-                                for (CertificationDTO cert : certificationList) {
-                                    if (cert.getFh_name().equals(x.getFh_name())) {
-                        %>
-                                        <p>인증 종류: <%= cert.getCert_type() %></p>
-                                        <img src="<%= cert.getCert_img() %>" alt="인증 이미지">
-                        <%
-                                    }
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h5 class="card-title"><%= x.getFh_nick() %></h5>
+                            <%
+                                if (qrCodePath != null) {
+                            %>
+                                    <img src="<%= request.getContextPath() + qrCodePath %>" alt="QR Code" class="qr-code">
+                            <%
+                                } else {
+                            %>
+                                    <h3>QR 없음</h3>
+                            <%
                                 }
-                            } else {
-                        %>
-                                <p>인증 정보를 찾을 수 없습니다.</p>
+                            %>
+                        </div>
+                        <p>대표: <%= x.getFh_owner() %></p>
+                        <ul>품목: 
                         <%
+                            for (FarmhouseDTO dto : farm_name) {
+                                if (dto.getFh_name().equals(x.getFh_name())) {
+                                    String agri_name = dto.getAgri_name();
+                        %>
+                                    <li><%= agri_name %></li>
+                        <%
+                                }
                             }
                         %>
+                        </ul>
+                        <p class="card-text"><%= x.getFh_intro() %></p>
+                        <div class="certification">
+                            <h5>인증 정보</h5>
+                            <div class="certification-list">
+                                <% 
+                                    certificationList = certiDAO.getCertifications(x.getFh_name());
+                                    ArrayList<String> displayedProducts = new ArrayList<>(); // 이미 출력된 인증 제품을 저장할 리스트
+                                    if (certificationList != null && !certificationList.isEmpty()) {
+                                        for (CertificationDTO cert : certificationList) {
+                                            if (cert.getCert_product() != null && !displayedProducts.contains(cert.getCert_product()) && cert.getCert_product().equals(x.getAgri_name())) {
+                                                displayedProducts.add(cert.getCert_product()); // 출력된 인증 제품을 리스트에 추가
+                                                String cert_img = "";
+                                                if ("무농약농산물".equals(cert.getCert_type())) {
+                                                    cert_img = request.getContextPath() + "/img/enviagro_logo_01.jpg";
+                                                } else if ("유기농농산물".equals(cert.getCert_type())) {
+                                                    cert_img = request.getContextPath() + "/img/enviagro_logo_03.jpg";
+                                                }
+                                %>
+                                                <div class="cert-item">
+                                                    <p><%= cert.getCert_type() %> <%= cert.getCert_product() %></p>
+                                                    <img src="<%= cert_img %>" alt="인증 이미지">
+                                                </div>
+                                <%
+                                            }
+                                        }
+                                    } else {
+                                %>
+                                        <p>인증 정보가 없습니다.</p>
+                                <%
+                                    }
+                                %>
+                                 </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
     <%
