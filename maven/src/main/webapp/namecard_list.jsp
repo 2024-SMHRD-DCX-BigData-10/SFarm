@@ -188,11 +188,13 @@
             %>
         <div class="col-md-4 bg-light bg-opacity-75">
                 <div class="card">
+                 <div class="img_box">
                     <% if (pd != null && pd.getAgri_img1() != null) { %>
-                    <div class="img_box">
+                   
                     	<img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
-                    </div>
+                    
                     <% } %>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title"><%= currentFarmhouse.getFh_name() %></h5>
                         <div>
