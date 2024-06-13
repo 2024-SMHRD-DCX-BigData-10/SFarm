@@ -30,6 +30,8 @@ public class FarmhouseDTO  {
 
     // 농가 대표자 
     @NonNull private String fh_owner;
+    
+    @NonNull private String fh_region;
     // 품목
     @NonNull private String agri_name;
     // 소개

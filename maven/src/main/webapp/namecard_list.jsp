@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.ProductDAO"%>
 <%@page import="com.smhrd.model.ProductDTO"%>
 <%@page import="com.smhrd.model.FarmhouseDTO"%>
@@ -145,7 +146,7 @@
 
     <div class="wrap">
         <div class="container">
-            <%
+            <%	MemberDAO mDAO = new MemberDAO();
                 String filterType = request.getParameter("filterType");
                 String searchKeyword = request.getParameter("searchKeyword");
                 FarmhouseDAO dao = new FarmhouseDAO();
@@ -188,8 +189,8 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= currentFarmhouse.getFh_nick() %></h5>
                         <p class="card-text"><%= currentFarmhouse.getFh_intro() %></p>
-                         <p>대 표  <%= currentFarmhouse.getFh_owner() %></p>
-                        <p>Tell <%= user_info.getMb_phone()%></p>
+                        <p>대 표  <%= currentFarmhouse.getFh_owner() %>      지 역  <%= currentFarmhouse.getFh_region() %></p>
+                         <p>Tell <%= mDAO.getPhone(currentFhName).getMb_phone()%></p>
                         <p>농산물 <%= String.join(", ", agriNamesList) %></p> <!-- 농산물 이름들 표시 -->
            <br>
                         <a href="SFarmStoryCon?mb_id=<%= currentFarmhouse.getMb_id() %>&fh_name=<%= currentFarmhouse.getFh_name() %>" class="btn btn-dark rounded-pill">포스터 보기</a>
@@ -223,8 +224,8 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= currentFarmhouse.getFh_nick() %></h5>
                         <p class="card-text"><%= currentFarmhouse.getFh_intro() %></p>
-                        <p>대 표  <%= currentFarmhouse.getFh_owner() %></p>
-                        <p>Tell <%= user_info.getMb_phone()%></p>
+                        <p>대 표  <%= currentFarmhouse.getFh_owner() %>      지 역  <%= currentFarmhouse.getFh_region() %></p>
+                        <p>Tell <%= mDAO.getPhone(currentFhName).getMb_phone()%></p>
                         <p>농산물 <%= String.join(", ", agriNamesList) %></p> <!-- 농산물 이름들 표시 -->
                         <br>
                         <a href="SFarmStoryCon?mb_id=<%= currentFarmhouse.getMb_id() %>&fh_name=<%= currentFarmhouse.getFh_name() %>" class="btn btn-dark rounded-pill">포스터 보기</a>

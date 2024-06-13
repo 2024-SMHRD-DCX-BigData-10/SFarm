@@ -105,6 +105,10 @@
                 <dt>대표자</dt>
                 <dd><input name="fh_owner" type="text" placeholder="대표자 이름을 입력해주세요."></dd>
             </dl>
+             <dl>
+                <dt>지역</dt>
+                <dd><input name="fh_region" type="text" placeholder="지역 이름을 입력해주세요."></dd>
+            </dl>
             <dl>
                 <dt>농작물<br><input id="addButton" type="button" value="추가" onclick="addInputField()"></dt>
                 <dd id="agriContainer"><input name="agri_names" type="text" placeholder="품명을 입력하세요"></dd>

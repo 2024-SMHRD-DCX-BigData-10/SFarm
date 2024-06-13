@@ -169,7 +169,7 @@
                                 }
                             %>
                         </div>
-                        <p>대표: <%= x.getFh_owner() %></p>
+                        <p>대표: <%= x.getFh_owner() %>   지역 : <%= x.getFh_region() %></p>
                         <p>Tell <%= user_info.getMb_phone()%></p>
                         <ul>품목: 
                         <%

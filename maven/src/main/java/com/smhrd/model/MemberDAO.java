@@ -34,6 +34,13 @@ public MemberDTO Login(MemberDTO dto) {
 	return user_info;
 }
 
+public MemberDTO getPhone(String fh_name) {
+	SqlSession session = sqlSessionFactory.openSession(true);
+	MemberDTO phoneDTO = session.selectOne("getPhone", fh_name);
+	session.close();
+	return phoneDTO;
+}
+
 public int Update(MemberDTO dto) {
 	SqlSession session = sqlSessionFactory.openSession(true);
 	int row =session.update("Update",dto);

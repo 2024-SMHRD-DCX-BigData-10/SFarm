@@ -15,6 +15,14 @@
 		select mb_id from tb_member where mb_id=#{mb_id}
 	</select>
 
-
+<select id="getPhone" parameterType="String"  resultType="MemberDTO">
+       SELECT mb_phone
+        FROM tb_member
+        WHERE mb_id = (
+            SELECT mb_id
+            FROM tb_farmhouse
+            WHERE fh_name = #{fh_name} AND ROWNUM = 1
+        )
+    </select>
 
 </mapper>
