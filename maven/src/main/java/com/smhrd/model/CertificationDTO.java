@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Getter
 
 public class CertificationDTO {
@@ -28,7 +27,7 @@ public class CertificationDTO {
     // 인증번호 
     private String cert_num;
     // 작물 
-    private String cert_pruduct;
+    private String cert_product;
     // 인증기간 
     private String cert_period;
 

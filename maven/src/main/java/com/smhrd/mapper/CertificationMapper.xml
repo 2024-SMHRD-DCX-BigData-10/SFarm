@@ -5,6 +5,6 @@
 
 <mapper namespace="com.smhrd.model.CertificationMapper">
     <select id="getCertifications" parameterType="String" resultType="com.smhrd.model.CertificationDTO">
-        SELECT cert_type, cert_img FROM tb_certification WHERE fh_name = #{fh_name}
+        SELECT cert_type, cert_product FROM tb_certification WHERE fh_name = #{fh_name}
     </select>
 </mapper>
