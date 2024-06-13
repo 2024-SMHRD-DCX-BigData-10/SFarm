@@ -49,6 +49,15 @@
             border-radius: 5px;
             background-color: white;
         }
+         .card-body  {
+            border-radius: 5px 5px 0 0;
+            width: 100%;
+            height: 200px; /* 높이 지정 */
+            background-color: #f0f0f0; /* 빈 박스 배경색 */
+            display: block; /* 박스가 보이도록 설정 */
+            padding-top: 5px;
+            
+        }
         .card img {
             border-radius: 5px 5px 0 0;
             width: 100%;
@@ -102,8 +111,24 @@
         .nav-but{
         margin-left: 50px;
         margin-right: 50PX;
-        }  
-
+        }
+        .card-img-top{
+        	max-width: 700px;
+        	max-height: 200px;
+        	padding: 5px;
+        }
+        .img_box {
+            width: 100%;
+            height: 200px;
+            border-radius: 5px 5px 0 0;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            
+        }
+        
         @media (max-width: 1200px) {
             .col-md-4 {
                 flex: 1 1 45%;
@@ -164,7 +189,9 @@
         <div class="col-md-4 bg-light bg-opacity-75">
                 <div class="card">
                     <% if (pd != null && pd.getAgri_img1() != null) { %>
-                    <img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
+                    <div class="img_box">
+                    	<img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
+                    </div>
                     <% } %>
                     <div class="card-body">
                         <h5 class="card-title"><%= currentFarmhouse.getFh_name() %></h5>
@@ -196,7 +223,9 @@
          <div class="col-md-4 bg-light bg-opacity-75">
                 <div class="card">
                     <% if (pd != null && pd.getAgri_img1() != null) { %>
-                    <img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
+                    <div class="img_box">
+                    	<img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
+                    </div>
                     <% } %>
                     <div class="card-body">
                         <h5 class="card-title"><%= currentFarmhouse.getFh_name() %></h5>
