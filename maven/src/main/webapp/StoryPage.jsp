@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.CertificationDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.FarmhouseDTO"%>
@@ -17,65 +18,81 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-color: #ffffff;
+            background-color: #f4f4f4;
             color: #333333;
         }
         .container {
             padding: 20px;
             text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
         header {
-            background-color: #f8f9fa;
+            background-color: #2d6a4f;
+            color: #ffffff;
             padding: 20px;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 2px solid #1b4332;
         }
         header h1 {
-            font-size: 24px;
+            font-size: 36px;
             margin: 0;
-        }
-        .eco-mark {
-            max-width: 50px;
-            margin: 20px auto;
         }
         .intro, .crops, .contact, .certification-info, .product-info, .product-detail {
             padding: 20px;
+            margin: 20px 0;
+            border-bottom: 1px solid #eaeaea;
         }
         .intro h2, .crops h2, .contact h2, .certification-info h2, .product-info h2, .product-detail h2 {
-            font-size: 20px;
+            font-size: 28px;
             margin-top: 0;
         }
         .intro p, .crops p, .contact p, .certification-info p, .product-info p, .product-detail p {
-            font-size: 16px;
-            line-height: 1.5;
+            font-size: 18px;
+            line-height: 1.6;
             margin: 10px 0;
         }
-        .crops img, .product-info img, .product-detail img {
+        .crops ul {
+            list-style: none;
+            padding: 0;
+        }
+        .crops ul li {
+            font-size: 18px;
+            background-color: #e9ecef;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .cert-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .cert-item p {
+            margin: 0;
+            font-size: 18px;
+        }
+        .cert-item img {
+            width: 50px;
+            height: 50px;
+        }
+        .product-detail img {
             max-width: 100%;
             height: auto;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
-        @media (min-width: 600px) {
-            header h1 {
-                font-size: 36px;
-            }
-            .intro, .crops, .contact, .certification-info, .product-info, .product-detail {
-                padding: 20px 40px;
-            }
-        }
-        .link-button {
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            background: none;
-            color: #007BFF;
-            text-decoration: underline;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .link-button:hover {
-            color: #0056b3;
-        }
-        .product-detail {
-            display: block; /* 항상 보이도록 설정 */
+        .footer {
+            padding: 20px;
+            background-color: #2d6a4f;
+            color: #ffffff;
+            text-align: center;
+            margin-top: 20px;
+            border-top: 2px solid #1b4332;
         }
     </style>
 </head>
@@ -86,11 +103,13 @@
 <div class="container">
     <% 
         ArrayList<FarmhouseDTO> farmDTO = (ArrayList<FarmhouseDTO>) request.getAttribute("farmDTO");
+    CertificationDAO certiDAO = new CertificationDAO();
+    ArrayList<CertificationDTO> certificationList = new ArrayList<CertificationDTO>();
         if (farmDTO != null && !farmDTO.isEmpty()) { 
             FarmhouseDTO x = farmDTO.get(0); // 첫 번째 농가 정보를 가져옵니다.
     %>
         <div class="intro">
-            <h2><%= x.getFh_name() %></h2>
+            <h2><%= x.getFh_nick() %></h2>
             <p>농장주 <strong><%= x.getFh_owner() %></strong>님은 항상 자연을 생각하며 농사를 지으십니다. <strong><%= x.getFh_name() %></strong> 농장은 <%= x.getFh_intro() %>.</p>
         </div>
 
@@ -106,14 +125,23 @@
 
         <div class="certification-info">
             <h2>인증 정보</h2>
-            <%
-                List<CertificationDTO> certificationList = (List<CertificationDTO>) request.getAttribute("certificationList");
+            <% certificationList = certiDAO.getCertifications(x.getFh_name());
+                ArrayList<String> displayedProducts = new ArrayList<>(); // 이미 출력된 인증 제품을 저장할 리스트
                 if (certificationList != null && !certificationList.isEmpty()) {
                     for (CertificationDTO cert : certificationList) {
-                        if (cert.getFh_name().equals(x.getFh_name())) {
+                        if (cert.getCert_product() != null && !displayedProducts.contains(cert.getCert_product()) && cert.getCert_product().equals(x.getAgri_name())) {
+                            displayedProducts.add(cert.getCert_product()); // 출력된 인증 제품을 리스트에 추가
+                            String cert_img = "";
+                            if ("무농약농산물".equals(cert.getCert_type())) {
+                                cert_img = request.getContextPath() + "/img/enviagro_logo_03.jpg";
+                            } else if ("유기농농산물".equals(cert.getCert_type())) {
+                                cert_img = request.getContextPath() + "/img/enviagro_logo_01.jpg";
+                            }
             %>
-                            <p>우리 농장은 <strong><%= cert.getCert_type() %></strong> 인증을 받았습니다. 이는 저희가 제공하는 모든 농산물이 최고 품질임을 보장합니다.</p>
-                            <img src="<%= cert.getCert_img() %>" alt="인증 이미지">
+                            <div class="cert-item">
+                                <p>우리 농장은 <%= cert.getCert_product() %>에 대해 <strong><%= cert.getCert_type() %></strong> 인증을 받았습니다. 이는 저희가 제공하는 모든 농산물이 최고 품질임을 보장합니다.</p>
+                                <img src="<%= cert_img %>" alt="인증 이미지">
+                            </div>
             <% 
                         }
                     }
@@ -124,6 +152,7 @@
         </div>
 
         <div id="product-detail" class="product-detail">
+            <h2>농산품 상세 정보</h2>
             <%
                 // 첫 번째 농산물 이름을 가져옵니다.
                 String productName = farmDTO.get(0).getAgri_name();
@@ -137,33 +166,35 @@
                     }
                     if (product.getEffect() != null) {
             %>
-                <p>우리 농장의 <strong><%= product.getAgri_name() %></strong>는 <%= product.getEffect() %>를 함유하고 있어 건강에 매우 유익합니다.</p>
+                <p>우리 농장의 <strong><%= product.getAgri_name()%></strong>는 <%= product.getEffect() %>의 효능이 있습니다.</p>
             <% 
-                    }
-                    if (product.getTrimming() != null && product.getTime_production() != null && product.getPurchase_method() != null) {
+                    } if (product.getTime_production() != null) {
             %>
-                <p><%= product.getTrimming() %> 방법으로 손질하면, <%= product.getTime_production() %> 방법으로 오랫동안 보관할 수 있습니다. <%= product.getPurchase_method() %> 방법으로 구입하시면 좋습니다.</p>
+                <p>우리 농장의 <strong><%= product.getAgri_name() %></strong>는 <%= product.getTime_production() %>기간에 나며</p>
             <% 
-                    }
-                    if (product.getRecipe() != null) {
-            %>
+                    } if (product.getTrimming() != null) { %>
+                    <p><%= product.getTrimming() %> 방법으로 손질하면</p>
+                <% } %>
+                
+                <% if (product.getPurchase_method() != null) { %>
+                    <p><%= product.getPurchase_method() %> 방법으로 구입하시면 좋습니다.</p>
+                <% } %>
+                <% if (product.getRecipe() != null) { %>
                 <p>이 농산품으로 만들 수 있는 레시피는 다음과 같습니다: <%= product.getRecipe() %>.</p>
             <% 
                     }
-                    if (product.getAgri_img1() != null) {
+                    if (product.getAgri_img1() != null || product.getAgri_img2() != null || product.getAgri_img3() != null) {
             %>
                 <div>
-                    <img src="<%= product.getAgri_img1() %>" alt="<%= product.getAgri_name() %> 이미지1">
-            <% 
-                    }
-                    if (product.getAgri_img2() != null) {
-            %>
-                    <img src="<%= product.getAgri_img2() %>" alt="<%= product.getAgri_name() %> 이미지2">
-            <% 
-                    }
-                    if (product.getAgri_img3() != null) {
-            %>
-                    <img src="<%= product.getAgri_img3() %>" alt="<%= product.getAgri_name() %> 이미지3">
+                    <% if (product.getAgri_img1() != null) { %>
+                        <img src="<%= product.getAgri_img1() %>" alt="<%= product.getAgri_name() %> 이미지1">
+                    <% } %>
+                    <% if (product.getAgri_img2() != null) { %>
+                        <img src="<%= product.getAgri_img2() %>" alt="<%= product.getAgri_name() %> 이미지2">
+                    <% } %>
+                    <% if (product.getAgri_img3() != null) { %>
+                        <img src="<%= product.getAgri_img3() %>" alt="<%= product.getAgri_name() %> 이미지3">
+                    <% } %>
                 </div>
             <% 
                     }

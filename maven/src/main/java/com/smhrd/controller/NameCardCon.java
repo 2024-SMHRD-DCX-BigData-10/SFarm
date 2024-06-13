@@ -1,6 +1,8 @@
 package com.smhrd.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -53,7 +55,8 @@ public class NameCardCon extends HttpServlet {
         List<String> qrPaths = new ArrayList<>();
         for (FarmhouseDTO fh_dto : farm_name) {
             String fh_name = fh_dto.getFh_name();
-            String url = "http://localhost:8081/maven/StoryPage.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name;
+            String encoded_fh_name = URLEncoder.encode(fh_name, StandardCharsets.UTF_8.toString());
+            String url = "http://192.168.0.25:8081/maven/SFarmStoryCon?fh_name=" + encoded_fh_name;
 
             ServletContext context = getServletContext();
             String qr_path = "/images/" + fh_name + ".png";
