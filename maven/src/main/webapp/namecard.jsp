@@ -4,7 +4,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashSet"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,16 +27,16 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        padding-top: 150px; /* 상단 패딩 추가 */
+        padding-top: 100px; /* 상단 패딩을 줄임 */
     }
     .card {
-        width: 700px; /* 카드의 너비를 조정 */
+        width: 600px; /* 카드의 너비를 조정 */
         height: auto;
-        margin: 15px;
+        margin: 10px 30px 30px 30px; /* 상단 마진을 줄이고 하단 마진을 늘림 */
         border: 1px solid #ddd;
         padding: 30px; /* 패딩을 늘려서 카드의 높이 증가 */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
+        border-radius: 15px;
         background-color: #ffffff;
         box-sizing: border-box;
         transition: transform 0.3s;
@@ -46,6 +46,7 @@
     }
     .card:hover {
         transform: scale(1.05);
+        background-color : pink;
     }
     .card-content {
         flex: 1;
@@ -60,6 +61,13 @@
         font-size: 21px;
         font-weight: bold;
         margin-bottom: 5px; /* 여백 감소 */
+        
+    }
+        .card h6 {
+        font-size: 19px;
+        font-weight: bold;
+        margin-bottom: 5px; /* 여백 감소 */
+        
     }
     .card p {
         margin: 5px 0;
@@ -172,20 +180,22 @@
                         </ul>
                         <p class="card-text"><%= x.getFh_intro() %></p>
                         <div class="certification">
-                            <h5>인증 정보</h5>
+                        <% certificationList = certiDAO.getCertifications(x.getFh_name());
+                        ArrayList<String> displayedProducts = new ArrayList<>(); // 이미 출력된 인증 제품을 저장할 리스트
+                        if (certificationList != null && !certificationList.isEmpty()) { %>
+                        <br>
+                            <h6>인증 정보</h6>
                             <div class="certification-list">
                                 <% 
-                                    certificationList = certiDAO.getCertifications(x.getFh_name());
-                                    ArrayList<String> displayedProducts = new ArrayList<>(); // 이미 출력된 인증 제품을 저장할 리스트
-                                    if (certificationList != null && !certificationList.isEmpty()) {
+                                   
                                         for (CertificationDTO cert : certificationList) {
                                             if (cert.getCert_product() != null && !displayedProducts.contains(cert.getCert_product()) && cert.getCert_product().equals(x.getAgri_name())) {
                                                 displayedProducts.add(cert.getCert_product()); // 출력된 인증 제품을 리스트에 추가
                                                 String cert_img = "";
                                                 if ("무농약농산물".equals(cert.getCert_type())) {
-                                                    cert_img = request.getContextPath() + "/img/enviagro_logo_01.jpg";
-                                                } else if ("유기농농산물".equals(cert.getCert_type())) {
                                                     cert_img = request.getContextPath() + "/img/enviagro_logo_03.jpg";
+                                                } else if ("유기농농산물".equals(cert.getCert_type())) {
+                                                    cert_img = request.getContextPath() + "/img/enviagro_logo_01.jpg";
                                                 }
                                 %>
                                                 <div class="cert-item">
@@ -197,11 +207,17 @@
                                         }
                                     } else {
                                 %>
-                                        <p>인증 정보가 없습니다.</p>
+                                        <br>
+                            <h6></h6>
+                            <div class="certification-list">
+                               
+                                                <div class="cert-item">
+                                                    <p></p>
+                                                    
+                                                </div>
                                 <%
                                     }
                                 %>
-                                 </div>
                             </div>
                         </div>
                     </div>
