@@ -22,15 +22,17 @@ public class FarmhouseDTO  {
 
     // 회원 아이디 
     @NonNull private String mb_id;
+    // 농가 닉네임 
+    @NonNull private String fh_nick;
 
-    // 농가 명 
+    // 농가 명(사업 등록 인증용) 
     @NonNull private String fh_name;
 
     // 농가 대표자 
     @NonNull private String fh_owner;
     // 품목
     @NonNull private String agri_name;
-
+    // 소개
     @NonNull private String fh_intro;
 
 

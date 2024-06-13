@@ -29,16 +29,22 @@ public class NameCardCon extends HttpServlet {
         System.out.println("NameCardCon 서비스 메서드 시작");
 
         request.setCharacterEncoding("UTF-8");
-        
+
         String mb_id = request.getParameter("mb_id");
         System.out.println("받은 mb_id: " + mb_id);
-        
+
+        if (mb_id == null || mb_id.isEmpty()) {
+            System.out.println("mb_id가 null이거나 빈 문자열입니다.");
+            response.sendRedirect("SFarm_main.jsp");
+            return;
+        }
+
         FarmhouseDAO f_dao = new FarmhouseDAO();
         ArrayList<FarmhouseDTO> farm_name = f_dao.getFarmhouse(mb_id);
-        
+
         System.out.println("받은 농장 이름 목록: " + farm_name);
 
-        if (mb_id == null || farm_name == null || farm_name.isEmpty()) {
+        if (farm_name == null || farm_name.isEmpty()) {
             System.out.println("명함 발급을 위한 필요한 정보가 없습니다.");
             response.sendRedirect("SFarm_main.jsp");
             return;
@@ -47,7 +53,7 @@ public class NameCardCon extends HttpServlet {
         List<String> qrPaths = new ArrayList<>();
         for (FarmhouseDTO fh_dto : farm_name) {
             String fh_name = fh_dto.getFh_name();
-            String url = "http://localhost:8081/maven/namecard.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name;
+            String url = "http://localhost:8081/maven/StoryPage.jsp?mb_id=" + mb_id + "&fh_name=" + fh_name;
 
             ServletContext context = getServletContext();
             String qr_path = "/images/" + fh_name + ".png";
@@ -60,6 +66,8 @@ public class NameCardCon extends HttpServlet {
             }
 
             try {
+                System.out.println("Generating QR code for URL: " + url);
+                System.out.println("QR code will be saved at: " + realPath);
                 generateQRCodeImage(url, 300, 300, realPath);
                 qrPaths.add(qr_path);
             } catch (WriterException e) {

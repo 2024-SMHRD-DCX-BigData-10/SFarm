@@ -96,7 +96,8 @@
     <%
         List<FarmhouseDTO> farm_name = (List<FarmhouseDTO>) request.getAttribute("farm_name");
         List<String> qrPaths = (List<String>) request.getAttribute("qrPaths");
-        List<CertificationDTO> certificationList = (List<CertificationDTO>) request.getAttribute("certificationList");
+        CertificationDTO certiDTO = new CertificationDTO();
+        ArrayList<CertificationDTO> certificationList = (List<CertificationDTO>) request.getAttribute("certificationList");
 
         if (farm_name != null && qrPaths != null) {
             for (int i = 0; i < farm_name.size(); i++) {
@@ -104,7 +105,7 @@
                 String qrCodePath = qrPaths.get(i);
     %>
                 <div class="card" onclick="moveToPoster('<%= x.getFh_name() %>')">
-                    <h5 class="card-title"><%= x.getFh_name() %></h5>
+                    <h5 class="card-title"><%= x.getFh_nick() %></h5>
                     <p>농장주: <%= x.getFh_owner() %></p>
                     <ul>
                     <%

@@ -95,7 +95,11 @@
             <h1>농장등록</h1>
             <dl>
                 <dt>농가명</dt>
-                <dd><input name="fh_name" type="text" placeholder="농가 이름을 입력해주세요."></dd>
+                <dd><input name="fh_nick" type="text" placeholder="농가 이름을 입력해주세요.(홍보용 이름)"></dd>
+            </dl>
+                        <dl>
+                <dt>사업자명</dt>
+                <dd><input name="fh_name" type="text" placeholder="사업자 혹은 인증 등록된 이름"></dd>
             </dl>
             <dl>
                 <dt>대표자</dt>
