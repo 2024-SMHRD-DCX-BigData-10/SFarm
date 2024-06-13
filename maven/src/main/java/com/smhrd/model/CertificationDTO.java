@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 
 @AllArgsConstructor
 
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Getter
 
 public class CertificationDTO {

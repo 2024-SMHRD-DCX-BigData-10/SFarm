@@ -96,7 +96,8 @@
     <%
         List<FarmhouseDTO> farm_name = (List<FarmhouseDTO>) request.getAttribute("farm_name");
         List<String> qrPaths = (List<String>) request.getAttribute("qrPaths");
-        List<CertificationDTO> certificationList = (List<CertificationDTO>) request.getAttribute("certificationList");
+        CertificationDTO certiDTO = new CertificationDTO();
+        ArrayList<CertificationDTO> certificationList = (List<CertificationDTO>) request.getAttribute("certificationList");
 
         if (farm_name != null && qrPaths != null) {
             for (int i = 0; i < farm_name.size(); i++) {
