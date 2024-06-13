@@ -20,7 +20,7 @@
             position:absolute;
             padding: 1px;
             width: 100%;
-            height:800px;
+            height:850px;
             background-image: url(./img/main-banner.png);
             background-repeat: no-repeat;
             background-size: cover;
@@ -70,7 +70,7 @@
         }
         .footer {
             width: 100%;
-            height: 150px;
+            height: 200px;
             background-color: #154726;
             position: relative;
             bottom: 0;
