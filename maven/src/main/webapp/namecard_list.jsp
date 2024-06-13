@@ -26,7 +26,7 @@
         }
         .wrap {
             width: 100%;
-            background-color: #bdfcc9;
+            background-color: white;
             padding: 20px 0;
         }
         .container {
@@ -74,11 +74,21 @@
         }
         
         .footer{
+        
         background-color: #154726;
+         width: 100%;
+         height: 130px;    
+         position: relative;
+          bottom: 0;
+          left: 0;
+        
         }
         
         .footer img {
             width: 200px;
+            position: relative;
+            top: 60px;
+            left: 50px;
             border-radius: 30px;
             
         }
@@ -165,12 +175,13 @@
                         <p>Tell. <%= currentFarmhouse.getFh_owner() %></p>
                         <p>농산물: <%= String.join(", ", agriNamesList) %></p> <!-- 농산물 이름들 표시 -->
                         <a href="SFarmStoryCon?mb_id=<%= currentFarmhouse.getMb_id() %>&fh_name=<%= currentFarmhouse.getFh_name() %>" class="btn btn-dark rounded-pill">포스터 보기</a>
-                        <a href="#" class="btn btn-primary rounded-pill"><i class="bi bi-house"></i></a>
+                        <a href="#" class="btn btn-primary rounded-pill"><i class="bi bi-share-fill"></i></a>
                         <a href="#" class="btn btn-primary rounded-pill"><i class="bi bi-copy"></i></a>
-                        <a href="#" class="btn btn-warning rounded-pill"><i class="bi bi-camera-video-fill"></i></a>
+                        <a href="#" class="btn btn-warning rounded-pill"><i class="bi bi-download"></i></a>
                     </div>
                 </div>
             </div>
+            
             <%
                             }
                             currentFhName = dto.getFh_name();
@@ -183,23 +194,7 @@
                         ProductDAO pd_dao = new ProductDAO();
                         ProductDTO pd = pd_dao.getProductDetails(agriNamesList.get(0)); 
             %>
-            <div class="col-md-4">
-                <div class="card">
-                    <% if (pd != null && pd.getAgri_img1() != null) { %>
-                    <img src="<%=pd.getAgri_img1() %>" class="card-img-top" alt="농장이미지">
-                    <% } %>
-                    <div class="card-body">
-                        <h5 class="card-title"><%= currentFarmhouse.getFh_name() %></h5>
-                        <div>
-                        </div>
-                        <div style="clear: both;"></div>
-                        <p class="card-text"><%= currentFarmhouse.getFh_intro() %></p>
-                        <p>Tell. <%= currentFarmhouse.getFh_owner() %></p>
-                        <p>농산물: <%= String.join(", ", agriNamesList) %></p> <!-- 농산물 이름들 표시 -->
-                        <a href="SFarmStoryCon?mb_id=<%= currentFarmhouse.getMb_id() %>&fh_name=<%= currentFarmhouse.getFh_name() %>" class="btn">들어가기</a>
-                    </div>
-                </div>
-            </div>
+            
             <%
                     }
                 } else {
@@ -217,10 +212,11 @@
 
     <!-- footer -->
     <footer class="footer">
-        <div class="footer-container">
+        
             <img class="acs-img" src="./img/농림축산식품부_국_좌우.jpg" alt="농림축산이미지">
-        </div>
+      
     </footer>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     
 </body>

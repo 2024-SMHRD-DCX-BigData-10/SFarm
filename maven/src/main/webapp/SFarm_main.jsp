@@ -228,26 +228,23 @@
             });
         });
         
-      
+        $(document).ready(function() {
+            // h4.main-title 애니메이션
+            $('.main-title').css({ 
+                'opacity': '0'
+            }).animate({ 
+                'opacity': '1'
+            }, {
+                duration: 3000, // 3초로 애니메이션 지속 시간을 설정
+                step: function(now, fx) {
+                    if (fx.prop === 'opacity') {
+                        $(this).css('transform', 'translateY(' + (50 - 50 * now) + 'px)');
+                    }
+                }
+            });
+        });
            	
-        	 $(document).ready(function() {
-        	        // h4.main-title 회전 애니메이션 (속도를 3초로 설정)
-        	        $('.main-title').css({ 
-        	            'opacity': '0',
-        	            'transform': 'rotate(-180deg)'
-        	        }).animate({ 
-        	            'opacity': '1',
-        	            'transform': 'rotate(0deg)'
-        	        }, {
-        	            duration: 3000, // 3초로 애니메이션 지속 시간을 설정
-        	            step: function(now, fx) {
-        	                if (fx.prop === 'opacity') {
-        	                    var rotateValue = -180 + (180 * now);
-        	                    $(this).css('transform', 'rotate(' + rotateValue + 'deg)');
-        	                }
-        	            }
-        	        });
-        	    });
+        
         	
          $(document).ready(function() {
             // p.main-content 애니메이션
