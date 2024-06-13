@@ -32,7 +32,7 @@
         <% if (user_info != null) { %>
             <div class="nav-join"><%= user_info.getMb_name() %>님 환영합니다.</div>
               <a href="S_LogoutCon" class="logout-btn"><button class="nav-but but_logout" >로그아웃</button></a>
-              <div><a href="S_NameCardCon?mb_id=<%= user_info.getMb_id() %>"><button class="nav-but" class="but_name">명함 발급</button></a></div>
+              <div><a href="S_NameCardCon?mb_id=<%= user_info.getMb_id() %>"><button class="nav-but" class="but_name">내 농장 명함</button></a></div>
           
         <% } else { %>
             <button class="nav-but"><a href="SFarm_JoinPage.jsp" style="color:white; text-decoration:none;">회원 가입</a></button>
