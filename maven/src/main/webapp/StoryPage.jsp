@@ -25,7 +25,7 @@
             padding: 20px;
             text-align: center;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto; /* 네비게이션 바 높이 만큼 마진 추가 */
             background-color: #ffffff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
@@ -94,6 +94,20 @@
             margin-top: 20px;
             border-top: 2px solid #1b4332;
         }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            header h1 {
+                font-size: 24px;
+            }
+            .intro h2, .crops h2, .contact h2, .certification-info h2, .product-info h2, .product-detail h2 {
+                font-size: 22px;
+            }
+            .intro p, .crops p, .contact p, .certification-info p, .product-info p, .product-detail p {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -103,8 +117,8 @@
 <div class="container">
     <% 
         ArrayList<FarmhouseDTO> farmDTO = (ArrayList<FarmhouseDTO>) request.getAttribute("farmDTO");
-    CertificationDAO certiDAO = new CertificationDAO();
-    ArrayList<CertificationDTO> certificationList = new ArrayList<CertificationDTO>();
+        CertificationDAO certiDAO = new CertificationDAO();
+        ArrayList<CertificationDTO> certificationList = new ArrayList<CertificationDTO>();
         if (farmDTO != null && !farmDTO.isEmpty()) { 
             FarmhouseDTO x = farmDTO.get(0); // 첫 번째 농가 정보를 가져옵니다.
     %>

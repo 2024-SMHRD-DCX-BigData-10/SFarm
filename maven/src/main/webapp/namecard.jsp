@@ -170,6 +170,7 @@
                             %>
                         </div>
                         <p>대표: <%= x.getFh_owner() %></p>
+                        <p>Tell <%= user_info.getMb_phone()%></p>
                         <ul>품목: 
                         <%
                             for (FarmhouseDTO dto : farm_name) {
@@ -212,9 +213,9 @@
                                     } else {
                                 %>
                                         <br>
-                            <h6></h6>
+                            <h6> </h6>
                             <div class="certification-list">
-                               
+                               <Br><br>
                                                 <div class="cert-item">
                                                     <p></p>
                                                     
