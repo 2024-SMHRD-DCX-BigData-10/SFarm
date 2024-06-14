@@ -48,20 +48,29 @@ header h1 {
 }
 
 .intro, .crops, .contact, .certification-info, .product-info,
-    .product-detail {
+.product-detail {
     padding: 20px;
     margin: 20px 0;
     border-bottom: 1px solid #eaeaea;
+    opacity: 0; /* 초기 상태를 숨김 */
+    transform: translateY(20px); /* 아래로 이동한 상태 */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* 애니메이션 */
+}
+
+.intro.show, .crops.show, .contact.show, .certification-info.show, .product-info.show,
+.product-detail.show {
+    opacity: 1; /* 보이도록 설정 */
+    transform: translateY(0); /* 원래 위치로 이동 */
 }
 
 .intro h2, .crops h2, .contact h2, .certification-info h2, .product-info h2,
-    .product-detail h2 {
+.product-detail h2 {
     font-size: 25px;
     margin-top: 0;
 }
 
 .intro p, .crops p, .contact p, .certification-info p, .product-info p,
-    .product-detail p {
+.product-detail p {
     font-size: 18px;
     line-height: 1.6;
     margin: 10px 0;
@@ -122,14 +131,15 @@ header h1 {
         font-size: 24px;
     }
     .intro h2, .crops h2, .contact h2, .certification-info h2, .product-info h2,
-        .product-detail h2 {
+    .product-detail h2 {
         font-size: 22px;
     }
     .intro p, .crops p, .contact p, .certification-info p, .product-info p,
-        .product-detail p {
+    .product-detail p {
         font-size: 16px;
     }
 }
+
 #productDetailBtn{
  display: none;
   position: fixed; /* 고정 위치 */
@@ -213,11 +223,11 @@ header h1 {
         });
         
         window.addEventListener('scroll', function() {
-            var scrollBtn = document.getElementById('productDetailBtn');
+            var productDetailBtn = document.getElementById('productDetailBtn');
             if (window.scrollY > 30) {
-                scrollBtn.style.display = 'block';
+                productDetailBtn.style.display = 'block';
             } else {
-                scrollBtn.style.display = 'none';
+                productDetailBtn.style.display = 'none';
             }
         });
 
@@ -226,6 +236,25 @@ header h1 {
 
         // 추가적인 버튼을 클릭하여 다음 product-detail로 스크롤합니다.
         document.getElementById('productDetailBtn').addEventListener('click', scrollToNextProductDetail);
+
+        // 애니메이션을 위해 요소가 보이게 되는 이벤트 처리
+        const sections = document.querySelectorAll('.intro, .crops, .contact, .certification-info, .product-info, .product-detail');
+        const options = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
     });
 </script>
 </head>
@@ -243,10 +272,10 @@ header h1 {
         FarmhouseDTO x = farmDTO.get(0); // 첫 번째 농가 정보를 가져옵니다.
     %>
     <div class="intro">
-        <h2><%=x.getFh_nick()%></h2>
+        <h2><%=x.getFh_nick()%></h2><br>
         <p>
-           <strong>"<%=x.getFh_owner()%>"</strong>님은 항상 자연과 소비자를 생각합니다.<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<strong><%=x.getFh_nick()%></strong> 농장은
+           <strong>"<%=x.getFh_owner()%>"</strong>님은 항상 자연과 소비자를 생각합니다.<br><br>
+            <strong><%=x.getFh_nick()%></strong> 농장은
             "<%=x.getFh_intro().replaceAll("\\\\n", "<br>")%>".
         </p>
     </div>
@@ -264,6 +293,7 @@ header h1 {
             }
         } 
         %>
+
     </p>
     <P>
     <%for (FarmhouseDTO fD : farmDTO){ %>
@@ -274,14 +304,41 @@ header h1 {
             ProductDAO dao = new ProductDAO();
             ProductDTO product = dao.getProductDetails(productName);
         %>
+                       <%         if (product.getAgri_img1() != null || product.getAgri_img2() != null || product.getAgri_img3() != null) {
+            %>
+
+            
  
-        <br>
+      
         <div id="product-detail" class="product-detail">
             <% 
             if (product != null) {
                 if (product.getAgri_name() != null) {
             %>
-            <h3><%=product.getAgri_name()%> 제대로 알고 먹는 TIP</h3>
+            <h3><%=product.getAgri_name()%> 제대로 알고 먹는 TIP</h3><br>
+                        <div>
+                <% 
+                    if (product.getAgri_img1() != null) {
+                %>
+                <img src="<%=product.getAgri_img1()%>"
+                    alt="<%=product.getAgri_name()%> 이미지1">
+                <% 
+                    }
+                    if (product.getAgri_img2() != null) {
+                %>
+                <img src="<%=product.getAgri_img2()%>"
+                    alt="<%=product.getAgri_name()%> 이미지2">
+                <% 
+                    }
+                    if (product.getAgri_img3() != null) {
+                %>
+                <img src="<%=product.getAgri_img3()%>"
+                    alt="<%=product.getAgri_name()%> 이미지3">
+                <% 
+                    }
+                %><% 
+                }%>
+            </div>
             <br>
             <% 
                 }
@@ -289,7 +346,7 @@ header h1 {
             %>
             <p>
                 
-                <%=product.getTime_production().replaceAll("\\\\n", "<br>")%>에 제철로 즐길 수 있습니다.
+                <strong><%=product.getTime_production().replaceAll("\\\\n", "<br>")%></strong>에 제철로 즐길 수 있습니다.
             </p>
             <% 
                 }
@@ -325,32 +382,7 @@ header h1 {
             </p>
             <% 
                 }
-                if (product.getAgri_img1() != null || product.getAgri_img2() != null || product.getAgri_img3() != null) {
-            %>
-            <div>
-                <% 
-                    if (product.getAgri_img1() != null) {
-                %>
-                <img src="<%=product.getAgri_img1()%>"
-                    alt="<%=product.getAgri_name()%> 이미지1">
-                <% 
-                    }
-                    if (product.getAgri_img2() != null) {
-                %>
-                <img src="<%=product.getAgri_img2()%>"
-                    alt="<%=product.getAgri_name()%> 이미지2">
-                <% 
-                    }
-                    if (product.getAgri_img3() != null) {
-                %>
-                <img src="<%=product.getAgri_img3()%>"
-                    alt="<%=product.getAgri_name()%> 이미지3">
-                <% 
-                    }
-                %>
-            </div>
-            <% 
-                }
+
             } else {
             %>
             <h3></h3>
