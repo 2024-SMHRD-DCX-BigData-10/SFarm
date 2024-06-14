@@ -189,7 +189,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= currentFarmhouse.getFh_nick() %></h5>
                         <p class="card-text"><%= currentFarmhouse.getFh_intro() %></p>
-                        <p>대 표  <%= currentFarmhouse.getFh_owner() %>      지 역  <%= currentFarmhouse.getFh_region() %></p>
+                        <p>대 표  <%= currentFarmhouse.getFh_owner() %>  &emsp;&emsp;    지 역  <%= currentFarmhouse.getFh_region() %></p>
                          <p>Tell <%= mDAO.getPhone(currentFhName).getMb_phone()%></p>
                         <p>농산물 <%= String.join(", ", agriNamesList) %></p> <!-- 농산물 이름들 표시 -->
            <br>
@@ -224,7 +224,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= currentFarmhouse.getFh_nick() %></h5>
                         <p class="card-text"><%= currentFarmhouse.getFh_intro() %></p>
-                        <p>대 표  <%= currentFarmhouse.getFh_owner() %>      지 역  <%= currentFarmhouse.getFh_region() %></p>
+                        <p>대 표  <%= currentFarmhouse.getFh_owner() %>   &emsp;&emsp;   지 역  <%= currentFarmhouse.getFh_region() %></p>
                         <p>Tell <%= mDAO.getPhone(currentFhName).getMb_phone()%></p>
                         <p>농산물 <%= String.join(", ", agriNamesList) %></p> <!-- 농산물 이름들 표시 -->
                         <br>
