@@ -261,6 +261,22 @@
                 }
             });
         });
+         
+         $(document).ready(function() {
+             // p.main-content 애니메이션
+             $('.main-button').css({ 
+                 'opacity': '0'
+             }).animate({ 
+                 'opacity': '1'
+             }, {
+                 duration: 3000,
+                 step: function(now, fx) {
+                     if (fx.prop === 'opacity') {
+                         $(this).css('transform', 'translateY(' + (100 - 100 * now) + 'px)');
+                     }
+                 }
+             });
+         });
         
         
     </script>
