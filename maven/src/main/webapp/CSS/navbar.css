@@ -3,10 +3,14 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
+
 body {
     margin: 0;
+    font-family: Arial, sans-serif;
 }
+
 .nav-container {
     position: fixed;
     top: 0;
@@ -18,19 +22,25 @@ body {
     border: 1px solid #154726;
     width: 100%;
     z-index: 1000;
+    flex-wrap: nowrap; /* flex-wrap을 nowrap으로 설정하여 한 줄에 유지 */
+    overflow-x: auto; /* 내용이 넘치면 가로 스크롤 생성 */
 }
+
 .nav-title a {
-    margin-right: 35px;
+    margin-right: 20px;
     font-size: 40px;
     font-family: 'impact';
     color: #154726;
     text-decoration: none;
     transition: color 0.3s, transform 0.3s;
+    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 */
 }
+
 .nav-title a:hover {
-    color: #123d2e; /* 호버 시 색상 변경 */
-    transform: scale(1.1); /* 호버 시 크기 확대 */
+    color: #123d2e;
+    transform: scale(1.1);
 }
+
 .nav-item a {
     margin-right: 15px;
     font-weight: bolder;
@@ -38,25 +48,32 @@ body {
     color: #154726;
     text-decoration: none;
     transition: color 0.3s, transform 0.3s;
+    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 */
 }
+
 .nav-item a:hover {
-    color: #123d2e; /* 호버 시 색상 변경 */
-    transform: scale(1.1); /* 호버 시 크기 확대 */
+    color: #123d2e;
+    transform: scale(1.1);
 }
+
 .search-container {
+	width:20%;
     flex-grow: 1;
     display: flex;
     justify-content: center;
 }
+
 .search-bar {
     display: flex;
     align-items: center;
 }
+
 .search-bar select, .search-bar input[type="search"], .search-bar button {
     padding: 5px;
     font-size: 16px;
     margin-right: 5px;
 }
+
 .search-bar button {
     border: none;
     background-color: #4CAF50;
@@ -64,18 +81,22 @@ body {
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
 }
+
 .search-bar button:hover {
     background-color: #45a049;
 }
+
 .nav-join {
-    font-size: 23px;
+    font-size: 18px;
     color: rgb(90, 90, 90);
     font-family: fantasy;
     margin-right: 20px;
+    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 */
 }
+
 .nav-but {
-    margin-left: 10px;
-    padding: 10px 20px;
+    margin-left: 5px;
+    padding: 10px 10px;
     font-size: 16px;
     color: white;
     background-color: #154726;
@@ -83,21 +104,92 @@ body {
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    margin-right: 30px;
+    margin-right: 15px;
+    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 */
 }
-.nav-but:hover {
-    background-color: #123d2e; /* 호버 시 색상 변경 */
-    transform: scale(1.1); /* 호버 시 크기 확대 */
-}
-.but_name {
-	
-}
-.nav-but.but_logout{
-	background-color: white;
-	color: black;
-	font-weight: 800;
-	margin-right: 10px;
-	padding:0;
-	}
-    
 
+.nav-but:hover {
+    background-color: #123d2e;
+    transform: scale(1.1);
+}
+
+.nav-but.but_logout {
+    background-color: white;
+    color: black;
+    font-weight: 800;
+    margin-right: 10px;
+    padding: 0;
+    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 */
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media screen and (max-width: 1200px) {
+    .nav-title a {
+        font-size: 30px;
+    }
+
+    .nav-item a {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+	.nav-container{
+	width : 100%;
+	}
+    .nav-title a {
+        font-size: 23px;
+    }
+
+    .nav-item a {
+        font-size: 12px;
+    }
+
+    .nav-join {
+        font-size: 15px;
+        margin-right: 10px;
+    }
+
+    .nav-but {
+        font-size: 14px;
+        padding: 8px 16px;
+        margin-right: 15px;
+    }
+
+    .search-bar select, .search-bar input[type="search"], .search-bar button {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+		.nav-container{
+	width : 100%;
+	}
+    .nav-title a {
+        font-size: 20px;
+    }
+
+    .nav-item a {
+        font-size: 12px;
+    }
+     .nav-item p {
+        font-size: 12px;
+    }
+
+    .nav-join {
+        font-size: 12px;
+        margin-right: 5px;
+    }
+
+    .nav-but {
+        font-size: 12px;
+        padding: 6px 6px;
+        margin-right: 5px;
+    }
+    .search-container {
+	width:10px;
+
+    .search-bar select, .search-bar input[type="search"], .search-bar button {
+        font-size: 10px;
+    }
+}

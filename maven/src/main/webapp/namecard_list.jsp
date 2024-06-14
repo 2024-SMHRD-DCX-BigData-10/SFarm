@@ -39,13 +39,13 @@
         }
         .col-md-4 {
             flex: 1 1 30%;
-            max-width: 30%;
+            max-width: 35%;
             box-sizing: border-box;
             padding: 15px;
         }
         .card {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             border: 1px solid darkgray;
             border-radius: 5px;
             background-color: white;
@@ -96,16 +96,7 @@
             left: 50px;
             border-radius: 30px;
         }
-        .nav-join {
-            font-size: 23px;
-            color: rgb(90, 90, 90);
-            font-family: fantasy;
-            margin-left: 130px;
-        }
-        .nav-but {
-            margin-left: 50px;
-            margin-right: 50px;
-        }
+
         .card-img-top {
             max-width: 700px;
             max-height: 190px;
