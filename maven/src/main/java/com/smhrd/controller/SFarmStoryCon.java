@@ -38,8 +38,24 @@ public class SFarmStoryCon extends HttpServlet {
             productList = productDAO.getProductsByFarmhouse(productName);
         }
 
+        // Extract fh_intro from the first farmhouseDTO if available
+        String fh_intro = "";
+        if (farmDTO != null && !farmDTO.isEmpty()) {
+            fh_intro = farmDTO.get(0).getFh_intro();
+        }
+
+        // Generate image URL
+        String imageUrl = null;
+        try {
+            imageUrl = OpenAIImageGenerator.generateImage(fh_intro);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         request.setAttribute("farmDTO", farmDTO);
         request.setAttribute("productList", productList);
+        request.setAttribute("fh_intro", fh_intro); // Pass fh_intro to JSP
+        request.setAttribute("imageUrl", imageUrl); // Pass image URL to JSP
 
         RequestDispatcher rd = request.getRequestDispatcher("/StoryPage.jsp");
         rd.forward(request, response);

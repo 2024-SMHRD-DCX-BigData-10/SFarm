@@ -29,10 +29,13 @@ body {
     padding: 20px;
     text-align: left;
     max-width: 800px;
-    margin: 40px auto; /* 네비게이션 바 높이 만큼 마진 추가 */
+    margin: 40px auto;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 header {
@@ -255,6 +258,14 @@ header h1 {
         sections.forEach(section => {
             observer.observe(section);
         });
+
+        // 페이지 로드 시 호출하여 배경 이미지를 설정
+        const imageUrl = '<%=request.getAttribute("imageUrl")%>';
+        if (imageUrl) {
+            console.log('Fetched image URL:', imageUrl); // 로그에 출력하여 확인
+            const container = document.querySelector('.container');
+            container.style.backgroundImage = 'url(' + imageUrl + ')';
+        }
     });
 </script>
 </head>
