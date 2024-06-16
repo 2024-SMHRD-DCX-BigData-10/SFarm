@@ -184,6 +184,14 @@ header h1 {
 #scrollBtn:hover, #productDetailBtn:hover img {
   background-color: #1b4332; /* 호버 시 배경색 변경 */
 }
+.ai_img {
+	width:700px;
+	height: 400px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	 
+}
 </style>
 <script>
     let currentIndex = 0; // 현재 요소 인덱스를 추적하는 변수
@@ -263,8 +271,8 @@ header h1 {
         const imageUrl = '<%=request.getAttribute("imageUrl")%>';
         if (imageUrl) {
             console.log('Fetched image URL:', imageUrl); // 로그에 출력하여 확인
-            const container = document.querySelector('.container');
-            container.style.backgroundImage = 'url(' + imageUrl + ')';
+            const ai_img = document.querySelector('.ai_img');
+            ai_img.style.backgroundImage = 'url(' + imageUrl + ')';
         }
     });
 </script>
@@ -289,6 +297,7 @@ header h1 {
             <strong><%=x.getFh_nick()%></strong> 농장은
             "<%=x.getFh_intro().replaceAll("\\\\n", "<br>")%>".
         </p>
+        <div class="ai_img"></div>
     </div>
 
     <div class="crops">
