@@ -5,8 +5,8 @@
 
 <mapper namespace="com.smhrd.mapper.FarmhouseMapper">
     <insert id="fh_join" parameterType="FarmhouseDTO">
-  INSERT INTO tb_farmhouse (mb_id, fh_nick, fh_name, fh_owner, agri_name, fh_intro)
-        VALUES (#{mb_id}, #{fh_nick}, #{fh_name}, #{fh_owner}, #{agri_name}, #{fh_intro})
+  INSERT INTO tb_farmhouse (mb_id, fh_nick, fh_name, fh_owner, fh_region, agri_name, fh_intro)
+        VALUES (#{mb_id}, #{fh_nick}, #{fh_name}, #{fh_owner},#{fh_region}, #{agri_name}, #{fh_intro})
     </insert>
     
     <select id="fh_Login" parameterType="FarmhouseDTO" resultType="FarmhouseDTO">

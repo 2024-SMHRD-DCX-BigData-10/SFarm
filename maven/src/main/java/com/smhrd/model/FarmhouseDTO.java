@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
-
 @Getter
 
 public class FarmhouseDTO  {

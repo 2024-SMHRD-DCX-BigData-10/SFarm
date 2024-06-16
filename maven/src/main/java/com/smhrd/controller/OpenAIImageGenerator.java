@@ -19,12 +19,14 @@ import java.util.concurrent.TimeUnit;
 @WebServlet("/GenerateImage")
 public class OpenAIImageGenerator extends HttpServlet {
     private static final String API_KEY = System.getenv("OPENAI_API_KEY");
-    private static final String URL = "https://api.openai.com/v1/images/generations";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 디버깅을 위해 API 키를 콘솔에 출력 (프로덕션 코드에서는 절대 하지 마세요)
+        System.out.println("API Key: " + API_KEY);
+
         String prompt = request.getParameter("prompt");
         if (prompt != null && !prompt.isEmpty()) {
-            String imageUrl = generateImage(prompt);
+            String imageUrl = generateImage(prompt+"farmimage");
             BufferedImage image = downloadImage(imageUrl);
             BufferedImage transparentImage = makeImageTransparent(image, 0.5f);
             response.setContentType("image/png");
@@ -52,7 +54,7 @@ public class OpenAIImageGenerator extends HttpServlet {
         RequestBody body = RequestBody.create(mediaType, jsonBody);
 
         Request request = new Request.Builder()
-                .url(URL)
+                .url("https://api.openai.com/v1/images/generations")
                 .post(body)
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization", "Bearer " + API_KEY)
@@ -87,3 +89,4 @@ public class OpenAIImageGenerator extends HttpServlet {
         return transparentImage;
     }
 }
+

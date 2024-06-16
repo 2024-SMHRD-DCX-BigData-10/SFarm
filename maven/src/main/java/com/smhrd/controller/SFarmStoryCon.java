@@ -24,7 +24,8 @@ public class SFarmStoryCon extends HttpServlet {
         System.out.println("StoryCon");
 
         request.setCharacterEncoding("UTF-8");
-
+        
+        String fh_nick = request.getParameter("fh_nick");
         String fh_name = request.getParameter("fh_name");
         FarmhouseDAO farmdao = new FarmhouseDAO();
         ArrayList<FarmhouseDTO> farmDTO = farmdao.FarmhouseDTO(fh_name);

@@ -176,12 +176,15 @@
         List<String> qrPaths = (List<String>) request.getAttribute("qrPaths");
         CertificationDAO certiDAO = new CertificationDAO();
         ArrayList<CertificationDTO> certificationList = new ArrayList<CertificationDTO>();
+        Set<String> displayedNicknames = new HashSet<>(); // 중복된 fh_nick을 제외하기 위한 Set
 
         if (farm_name != null && qrPaths != null) {
             for (int i = 0; i < farm_name.size(); i++) {
                 FarmhouseDTO x = farm_name.get(i);
-                String qrCodePath = qrPaths.get(i);
-                Set<String> displayedAgriNames = new HashSet<>(); // 중복된 품목 이름을 제외하기 위한 Set
+                if (!displayedNicknames.contains(x.getFh_nick())) {
+                    displayedNicknames.add(x.getFh_nick());
+                    String qrCodePath = qrPaths.get(i);
+                    Set<String> displayedAgriNames = new HashSet<>(); // 중복된 품목 이름을 제외하기 위한 Set
     %>
                 <div class="card" onclick="moveToPoster('<%= x.getFh_name() %>')">
                     <div class="card-content">
@@ -225,23 +228,21 @@
                         displayedAgriNames.clear(); // Set을 비워서 인증 정보를 중복 체크
                         certificationList = certiDAO.getCertifications(x.getFh_name());
                         if (certificationList != null && !certificationList.isEmpty()) {
-                            for (FarmhouseDTO dto : farm_name) {
-                                for (CertificationDTO cert : certificationList) {
-                                    if (cert.getCert_product() != null && !displayedAgriNames.contains(cert.getCert_product()) && cert.getCert_product().equals(dto.getAgri_name())) {
-                                        displayedAgriNames.add(cert.getCert_product()); // 출력된 인증 제품을 리스트에 추가
-                                        String cert_img = "";
-                                        if ("무농약농산물".equals(cert.getCert_type())) {
-                                            cert_img = request.getContextPath() + "/img/enviagro_logo_03.jpg";
-                                        } else if ("유기농농산물".equals(cert.getCert_type())) {
-                                            cert_img = request.getContextPath() + "/img/enviagro_logo_01.jpg";
-                                        }
-                        %>
-                                        <div class="cert-item">
-                                            <p><%= cert.getCert_type() %> <%= cert.getCert_product() %></p>
-                                            <img src="<%= cert_img %>" alt="인증 이미지">
-                                        </div>
-                        <%
+                            for (CertificationDTO cert : certificationList) {
+                                if (cert.getCert_product() != null && !displayedAgriNames.contains(cert.getCert_product()) && cert.getCert_product().equals(x.getAgri_name())) {
+                                    displayedAgriNames.add(cert.getCert_product()); // 출력된 인증 제품을 리스트에 추가
+                                    String cert_img = "";
+                                    if ("무농약농산물".equals(cert.getCert_type())) {
+                                        cert_img = request.getContextPath() + "/img/enviagro_logo_03.jpg";
+                                    } else if ("유기농농산물".equals(cert.getCert_type())) {
+                                        cert_img = request.getContextPath() + "/img/enviagro_logo_01.jpg";
                                     }
+                        %>
+                                    <div class="cert-item">
+                                        <p><%= cert.getCert_type() %> <%= cert.getCert_product() %></p>
+                                        <img src="<%= cert_img %>" alt="인증 이미지">
+                                    </div>
+                        <%
                                 }
                             }
                         } else {
@@ -255,6 +256,7 @@
                     </div>
                 </div>
     <%
+                }
             }
         } else {
     %>
@@ -265,3 +267,4 @@
 </div>
 </body>
 </html>
+
