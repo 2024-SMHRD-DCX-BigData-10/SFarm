@@ -135,12 +135,17 @@
         object-fit: contain;
         cursor: pointer;
         transition: background-color 0.3s;
-        background-color: green;
+       	background:white;
+        
         align-item : center;
         margin : 0;
     }
     .qr-code-container:hover {
-        background-color: lime; /* 중요도 설정을 추가 */
+        background: #fc00ff;  /* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #00dbde, #fc00ff);  /* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to right, #00dbde, #fc00ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        
+        
     }
     .qr-code {
         width: 96%;

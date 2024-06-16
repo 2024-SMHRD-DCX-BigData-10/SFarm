@@ -9,6 +9,7 @@
 <%@page import="com.smhrd.model.ProductDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,13 +17,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>농가 홍보 포스터</title>
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
+
 body {
-    font-family: Arial, sans-serif;
+   	font-family: 'Merriweather', serif; 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f4f4f4;
-    color: #333333;
+   	background: #649173;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #DBD5A4, #649173);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #DBD5A4, #649173); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
 }
 
 .container {
@@ -30,12 +37,19 @@ body {
     text-align: left;
     max-width: 800px;
     margin: 40px auto;
-    background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     background-size: cover;
+    background-color: white;
     background-position: center;
     background-repeat: no-repeat;
+    font-family: 'Anton', sans-serif;
+}
+
+
+p{
+color:#0f0c29; 
+
 }
 
 header {
@@ -102,6 +116,7 @@ header h1 {
 .cert-item p {
     margin: 0;
     font-size: 18px;
+    white-space: pre-wrap;
 }
 
 .cert-item img {
@@ -125,6 +140,14 @@ header h1 {
     margin-top: 20px;
     border-top: 2px solid #1b4332;
 }
+
+strong {
+    color: black;
+    font-size: 20px;  /* fallback for old browsers */
+ 
+    
+}
+
 
 @media ( max-width : 600px) {
     .container {
@@ -429,7 +452,7 @@ header h1 {
                 <p>
                     우리 농장은
                     <%=cert.getCert_product()%>에 대해 <strong><%=cert.getCert_type()%></strong>
-                    인증을 받았습니다. <br>이는 저희가 제공하는 모든 농산물이 최고 품질임을 보장합니다.
+                    인증을 받았습니다.<br><br> <br><strong>이는 저희가 제공하는 모든 농산물이 최고 품질임을 보장합니다.</strong>
                 </p>
                 <img src="<%=cert_img%>" alt="인증 이미지">
             </div>
