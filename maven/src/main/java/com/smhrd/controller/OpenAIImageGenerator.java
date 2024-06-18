@@ -26,7 +26,7 @@ public class OpenAIImageGenerator extends HttpServlet {
 
         String prompt = request.getParameter("prompt");
         if (prompt != null && !prompt.isEmpty()) {
-            String imageUrl = generateImage(prompt+"farmimage");
+            String imageUrl = generateImage("farmimage");
             BufferedImage image = downloadImage(imageUrl);
             BufferedImage transparentImage = makeImageTransparent(image, 0.5f);
             response.setContentType("image/png");
