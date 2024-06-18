@@ -218,7 +218,7 @@
                         <p>대 표  <%= currentFarmhouse.getFh_owner() %>   &emsp;&emsp;   지 역  <%= currentFarmhouse.getFh_region() %></p>
                         <p>Tell <%= mDAO.getPhone(currentFhName).getMb_phone()%></p>
                         <p>농산물 <%= String.join(", ", agriNamesList) %></p> <!-- 농산물 이름들 표시 -->
-                        <br>
+                       
                         <a href="SFarmStoryCon?mb_id=<%= currentFarmhouse.getMb_id() %>&fh_name=<%= currentFarmhouse.getFh_name() %>" class="btn btn-dark rounded-pill">포스터 보기</a>
                         <a href="#" class="btn btn-primary rounded-pill"><i class="bi bi-share-fill"></i></a>
                         <a href="#" class="btn btn-primary rounded-pill"><i class="bi bi-copy"></i></a>

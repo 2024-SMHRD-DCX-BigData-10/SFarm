@@ -347,7 +347,7 @@ strong {
             ProductDAO dao = new ProductDAO();
             ProductDTO product = dao.getProductDetails(productName);
         %>
-                       <%         if (product.getAgri_img1() != null || product.getAgri_img2() != null || product.getAgri_img3() != null) {
+                       <%         if (product.getAgri_img1() != null ) {
             %>
 
             
@@ -367,19 +367,7 @@ strong {
                     alt="<%=product.getAgri_name()%> 이미지1">
                 <% 
                     }
-                    if (product.getAgri_img2() != null) {
-                %>
-                <img src="<%=product.getAgri_img2()%>"
-                    alt="<%=product.getAgri_name()%> 이미지2">
-                <% 
-                    }
-                    if (product.getAgri_img3() != null) {
-                %>
-                <img src="<%=product.getAgri_img3()%>"
-                    alt="<%=product.getAgri_name()%> 이미지3">
-                <% 
-                    }
-                %><% 
+                    
                 }%>
             </div>
             <br>

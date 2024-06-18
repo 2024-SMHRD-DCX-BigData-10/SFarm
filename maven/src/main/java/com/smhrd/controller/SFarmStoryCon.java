@@ -55,7 +55,7 @@ public class SFarmStoryCon extends HttpServlet {
 
         request.setAttribute("farmDTO", farmDTO);
         request.setAttribute("productList", productList);
-        request.setAttribute("fh_intro", fh_intro); // Pass fh_intro to JSP
+        request.setAttribute("fh_intro", "farm"); // Pass fh_intro to JSP
         request.setAttribute("imageUrl", imageUrl); // Pass image URL to JSP
 
         RequestDispatcher rd = request.getRequestDispatcher("/StoryPage.jsp");
